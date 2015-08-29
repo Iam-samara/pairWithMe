@@ -41,7 +41,7 @@ function bundle() {
     .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
     // Add transformation tasks to the pipeline here.
     .pipe(sourcemaps.write('./')) // writes .map file
-    .pipe(gulp.dest('./client/js/'));
+    .pipe(gulp.dest('./client/build/'));
 }
 var child = require('child_process');
 gulp.task('server', function() {
