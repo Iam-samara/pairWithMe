@@ -16,7 +16,7 @@
   "bugs": {
     "url": "https://github.com/pairWithMeSite/pairWithMe.git"
   },
-  "homepage": "https://github.com/Iam-samara/pairWithMe",
+  "homepage": "https://github.com/pairWithMeSite/pairWithMe",
   "dependencies": {
     "async": "^1.4.2",
     "babelify": "^6.2.0",
