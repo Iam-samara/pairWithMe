@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/Iam-samara/pairWithMe",
   "dependencies": {
-    "async": "1.4.2",
-    "babelify": "^6.2.0",
+    "async": "^1.4.2",
+   "babelify": "^6.2.0",
     "body-parser": "^1.13.3",
     "browserify": "^11.0.1",
     "express": "^4.13.3",
