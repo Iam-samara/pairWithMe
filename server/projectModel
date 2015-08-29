@@ -11,4 +11,4 @@ var projectSchema = new Schema({
 var Projects = mongoose.model('Projects',projectSchema);
 
 
-model.exports = Projects;
+module.exports = Projects;

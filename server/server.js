@@ -6,9 +6,9 @@ var express = require('express'),
     http = require('http'),
     bodyParser = require('body-parser'),
     Schema = mongoose.Schema,
-    UserModel = require('./userModel.js'),
-    TagModel = require('./tagModel.js'),
-    ProjectModel = require('./projectModel.js'),
+    UserModel = require('./userModel'),
+    TagModel = require('./tagModel'),
+    ProjectModel = require('./projectModel'),
     config = require('config');
 
 /** connection to database */
@@ -18,23 +18,19 @@ mongoose.connect(config.get('databaseLink'), function(error){
 });
 
 
-/** oAuth configurations for this app */
-// CLIENT_ID = "114fa33aeb2551ee3084";
-// CLIENT_SECRET = "9b98012dbfb5286493ac0b278a1862499e660ae";
-
-passport.use('GitHub', new OAuth2Strategy({
-    authorizationURL: 'https://github.com/login/oauth/authorize',
-    tokenURL: 'https://www.provider.com/oauth2/token',
-    clientID: '114fa33aeb2551ee3084',
-    clientSecret: '9b98012dbfb5286493ac0b278a1862499e660ae'
-    callbackURL: 'https://www.example.com/auth/provider/callback'
-  },
-  function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate(..., function(err, user) {
-      done(err, user);
-    });
-  }
-));
+// passport.use('GitHub', new OAuth2Strategy({
+//     authorizationURL: 'https://github.com/login/oauth/authorize',
+//     tokenURL: 'https://www.provider.com/oauth2/token',
+//     clientID: config.get('oAuth.clientID'),
+//     clientSecret: config.get('oAuth.clientSecret'),
+//     callbackURL: 'https://www.example.com/auth/provider/callback'
+//   },
+//   function(accessToken, refreshToken, profile, done) {
+//     User.findOrCreate(..., function(err, user) {
+//       done(err, user);
+//     });
+//   }
+// ));
 
 /**  */
 
