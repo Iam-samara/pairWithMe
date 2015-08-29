@@ -46,7 +46,7 @@ function bundle() {
 var child = require('child_process');
 gulp.task('server', function() {
    nodemon({ script: './server/server.js'
-          , exec: 'babel-node'
+          , exec: 'node'
           , ext: 'html js'
           , ignore: ['client/']});
 });

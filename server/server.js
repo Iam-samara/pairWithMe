@@ -5,7 +5,7 @@ var express = require('express'),
     OAuth2Strategy = require('passport-oauth').oAuth2Strategy,
     http = require('http'),
     bodyParser = require('body-parser'),
-    Schema = moongoose.Schema;
+    Schema = mongoose.Schema;
 
 /** connection to database */
 mongoose.connect('mongodb://pairwithme:codesmith@ds035593.mongolab.com:35593/pairwithme', function(error){
