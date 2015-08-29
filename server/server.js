@@ -17,7 +17,19 @@ CLIENT_ID = "114fa33aeb2551ee3084";
 CLIENT_SECRET = "9b98012dbfb5286493ac0b278a1862499e660ae";
 
 /**  */
-
+passport.use('github', new OAuth2Strategy({
+    autherizationUrl:'https://github.com/login/oauth/access_token',
+    tokenUrl: '',
+    clientID: '',
+    clientSecret: '',
+    callbackkUrl: ''
+  },
+  function(accessToken, refreshToken, profile, done){
+    User.findOrCreate({}, function(err,user){
+      done(err, user);
+    });
+  }
+));
 
 
 app.use(express.static('client'));
