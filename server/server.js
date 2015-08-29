@@ -5,12 +5,11 @@ var express = require('express'),
     OAuth2Strategy = require('passport-oauth').oAuth2Strategy,
     http = require('http'),
     bodyParser = require('body-parser'),
-    Schema = moongoose.Schema,
+    Schema = mongoose.Schema,
     UserModel = require('./userModel.js'),
     TagModel = require('./tagModel.js'),
     ProjectModel = require('./projectModel.js'),
     config = require('config');
-
 
 /** connection to database */
 mongoose.connect(config.get('databaseLink'), function(error){
