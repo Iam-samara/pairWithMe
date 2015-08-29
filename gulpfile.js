@@ -15,7 +15,7 @@ var path = require('path');
 var node;
 
 var customOpts = {
-  entries: ['./src/index.js'],
+  entries: ['./servenb r/server.js'],
   debug: true
 };
 var opts = assign({}, watchify.args, customOpts);
@@ -46,7 +46,7 @@ function bundle() {
 var child = require('child_process');
 gulp.task('server', function() {
    nodemon({ script: './server/server.js'
-          , exec: 'babel-node'
+          , exec: 'node'
           , ext: 'html js'
           , ignore: ['client/']});
 });
