@@ -1,38 +1,46 @@
 var express = require('express'),
     app = express(),
+    path = require('path'),
     mongoose = require('mongoose'),
-    passport = require('passport'),
-    OAuth2Strategy = require('passport-oauth').oAuth2Strategy,
-    http = require('http'),
-    bodyParser = require('body-parser'),
-    Schema = mongoose.Schema,
-    UserModel = require('./userModel'),
-    TagModel = require('./tagModel'),
-    ProjectModel = require('./projectModel'),
-    config = require('config');
+    config = require('config'),
+    bodyParser = require('body-parser').urlencoded({ extended: true }),
+    passport = require('./oauth.js');
+  //  InternalOAuthError = require('passport-oauth2').InternalOauthError
+  //  cookieParser = require('cookie-parser'),
+
 
 /** connection to database */
-mongoose.connect(config.get('databaseLink'), function(error){
+mongoose.connect('mongodb://pairwithme:codesmith@ds035593.mongolab.com:35593/pairwithme', function(error){
   if(error) throw error;
-  else {console.log('connected to DB');}
+  console.log('connected to DB');
 });
 
+app.use('/', express.static(__dirname + '/../client'));
+app.use(bodyParser);
+app.use(passport.initialize());
+app.use(passport.session());
 
-// passport.use('GitHub', new OAuth2Strategy({
-//     authorizationURL: 'https://github.com/login/oauth/authorize',
-//     tokenURL: 'https://www.provider.com/oauth2/token',
-//     clientID: config.get('oAuth.clientID'),
-//     clientSecret: config.get('oAuth.clientSecret'),
-//     callbackURL: 'https://www.example.com/auth/provider/callback'
-//   },
-//   function(accessToken, refreshToken, profile, done) {
-//     User.findOrCreate(..., function(err, user) {
-//       done(err, user);
-//     });
-//   }
-// ));
+/** loading home page */
+app.get('/', function(req, res) {
+  res.sendFile(path.resolve(__dirname + '/../src/index.html'));
+});
 
-/**  */
+/** request for login, redirects to github.com */
+app.get('/auth/github', passport.authenticate('github'), function(req,res) {
+  //request will redirect to Githib for authentication
+});
+
+/** authenticates callback */
+app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), function(req,res) {
+  //on success authentication
+  res.redirect('/profile' + req.user.username); // want to redirect to their profile and post their username in the url
+});
+
+/** ends session*/
+app.get('/logout', function(req,res) {
+  req.logout();
+  res.redirect('/');
+});
 
 
 
