@@ -1,7 +1,0 @@
-{
-  "databaseLink": "mongodb://pairwithme:codesmith@ds035593.mongolab.com:35593/pairwithme",
-  "oAuth" : {
-    "clientID": "55bc55057210f2c649f5",
-    "clientSecret": "db87c178b869be3713ae15357c4d711bb033b438"
-  }
-}
