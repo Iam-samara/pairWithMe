@@ -1,39 +1,45 @@
 var express = require('express'),
-    app = express(),
-    mongoose = require('mongoose'),
-    passport = require('passport'),
-    OAuth2Strategy = require('passport-oauth').oAuth2Strategy,
-    http = require('http'),
-    bodyParser = require('body-parser'),
-    Schema = mongoose.Schema,
-    UserModel = require('./userModel'),
-    TagModel = require('./tagModel'),
-    ProjectModel = require('./projectModel'),
-    config = require('config');
+  app = express(),
+  mongoose = require('mongoose'),
+  passport = require('passport'),
+  OAuth2Strategy = require('passport-oauth').oAuth2Strategy,
+  http = require('http'),
+  bodyParser = require('body-parser'),
+  Schema = mongoose.Schema,
+  UserModel = require('./userModel'),
+  TagModel = require('./tagModel'),
+  ProjectModel = require('./projectModel'),
+  config = require('config'),
+  pg = require('pg');
+  Sequelize = require('sequelize'),
 
-/** connection to database */
-mongoose.connect(config.get('databaseLink'), function(error){
-  if(error) throw error;
-  else {console.log('connected to DB');}
+
+sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
+  dialect: 'postgres',
+  host: config.get('database.host'),
+  port: 5432,
+  dialectOptions: {
+    ssl: true
+  }
 });
 
 
-// passport.use('GitHub', new OAuth2Strategy({
-//     authorizationURL: 'https://github.com/login/oauth/authorize',
-//     tokenURL: 'https://www.provider.com/oauth2/token',
-//     clientID: config.get('oAuth.clientID'),
-//     clientSecret: config.get('oAuth.clientSecret'),
-//     callbackURL: 'https://www.example.com/auth/provider/callback'
-//   },
-//   function(accessToken, refreshToken, profile, done) {
-//     User.findOrCreate(..., function(err, user) {
-//       done(err, user);
-//     });
-//   }
-// ));
 
-/**  */
+var Tests = sequelize.define('testtable', {
+  area: Sequelize.STRING,
+  tags: Sequelize.STRING
+});
 
+sequelize.sync().then(function () {
+  return Tests.create({
+    area: 'meh',
+    tags: "js"
+  });
+})
+
+app.use('/search', function (req, res) {
+  
+});
 
 
 app.use(express.static('client'));
