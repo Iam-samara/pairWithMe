@@ -2,6 +2,13 @@
   "databaseLink": "mongodb://pairwithme:codesmith@ds035593.mongolab.com:35593/pairwithme",
   "oAuth" : {
     "clientID": "55bc55057210f2c649f5",
-    "clientSecret": "db87c178b869be3713ae15357c4d711bb033b438"
+    "clientSecret": "a9a54f1ceb56baf3f3bc512f42e28418bb973d28"
+  },
+  "mailer": {
+    "auth": {
+      "user": "samara.hernandez0@gmail.com",
+      "pass": "Azucena09"
+    },
+    "defaultFromAddress": "samara Hernandez <samara.hernandez0@gmail.com>"
   }
 }
