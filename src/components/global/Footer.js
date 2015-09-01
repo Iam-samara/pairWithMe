@@ -1,13 +1,38 @@
 var React = require('react');
+var Router= require('react-router');
+var Route = Router.Route;
+var Link = Router.Link;
 var Footer = React.createClass({
 	render: function(){
-		return (
-		<div>
-		<h2>Footer</h2>
-		<button id ="home" type="button">home</button>
-		<button id ="login" type="button">login</button>
-		<button id ="projects" type="button">projects</button>
-		</div>
+	return (
+			<nav>
+				<ul>
+					<li>
+						<Link to= "/">Home</Link>
+					</li>
+					<li>
+						<Link to= "guide">Guide</Link>
+					</li>
+					<li>
+						<Link to= "profile">Profile</Link>
+					</li>
+					<li>
+						<Link to= "profileform">Profile Editor</Link>
+					</li>
+					<li>
+						<Link to= "recentprojects">Recent Projects</Link>
+					</li>
+					<li>
+						<Link to= "individualprojects">Individul Projets</Link>
+					</li>
+								<li>
+						<Link to= "search">search</Link>
+					</li>
+					<li>
+						<a href="/auth/github">githubLogin</a>
+					</li>
+				</ul>
+			</nav>
 		);
 	},
 });

@@ -48,7 +48,7 @@ app.use(passport.session());
 
 /** loading home page */
 app.get('/', function(req, res) {
-  res.sendFile(path.resolve(__dirname + '/../src/index.html'));
+  res.sendFile(path.resolve(__dirname + '/../client/index.html'));
 });
 
 
@@ -70,6 +70,7 @@ app.get('/logout', function(req,res) {
   res.redirect('/');
 });
 
+
 // app.get('/profile' function(req,res) {
 //   User.findOne({
 //     where: {
@@ -77,6 +78,12 @@ app.get('/logout', function(req,res) {
 //     }
 //   })
 // })
+
+app.get('*', function (req, res) {
+  res.sendFile(path.resolve(__dirname + '/../client/index.html'));
+});
+
+
 
 app.use(express.static('client'));
 app.listen(process.env.PORT || 3000);
