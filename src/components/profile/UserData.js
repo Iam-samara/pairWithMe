@@ -1,4 +1,4 @@
 var React = require('react');
-var howTo = React.createClass({
+var UserData = React.createClass({
 
 });

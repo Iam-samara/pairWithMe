@@ -1,9 +1,9 @@
 var React = require('react');
-var Header = React.createClass({
+var Home = React.createClass({
 	render: function(){
 		return (
-		<div>HEADER</div>
+			<div>Home</div>
 		);
 	},
 });
-module.exports = Header;
+module.exports = Home;

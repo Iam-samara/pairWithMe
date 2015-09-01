@@ -1,9 +1,9 @@
 var React = require('react');
-var Header = React.createClass({
+var Search = React.createClass({
 	render: function(){
 		return (
-		<div>HEADER</div>
+			<div>Search</div>
 		);
 	},
 });
-module.exports = Header;
+module.exports = Search;

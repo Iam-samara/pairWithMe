@@ -1,4 +1,4 @@
 var React = require('react');
-var userInfo = React.createClass({
+var UserInfo = React.createClass({
 
 });
