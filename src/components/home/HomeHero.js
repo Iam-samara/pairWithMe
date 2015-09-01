@@ -1,4 +1,4 @@
 var React = require('react');
-var form = React.createClass({
+var HomeHero = React.createClass({
 
 });

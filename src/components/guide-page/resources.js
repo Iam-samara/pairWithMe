@@ -1,4 +1,4 @@
 var React = require('react');
-var resources = React.createClass({
+var Resources = React.createClass({
 
 });
