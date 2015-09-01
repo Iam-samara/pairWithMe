@@ -28,6 +28,9 @@ var Header = React.createClass({
 								<li>
 						<Link to= "search">search</Link>
 					</li>
+					<li>
+						<a href="/auth/github">githubLogin</a>
+					</li>
 				</ul>
 			</nav>
 		);
