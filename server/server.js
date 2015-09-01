@@ -41,7 +41,7 @@ app.use(passport.session());
 
 /** loading home page */
 app.get('/', function(req, res) {
-  res.sendFile(path.resolve(__dirname + '/../src/index.html'));
+  res.sendFile(path.resolve(__dirname + '/../client/index.html'));
 });
 
 
@@ -61,6 +61,10 @@ app.get('/auth/github/callback', passport.authenticate('github', {failureRedirec
 app.get('/logout', function(req,res) {
   req.logout();
   res.redirect('/');
+});
+
+app.get('*', function (req, res) {
+  res.sendFile(path.resolve(__dirname + '/../client/index.html'));
 });
 
 

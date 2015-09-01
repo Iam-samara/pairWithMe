@@ -15,7 +15,7 @@ var Route = Router.Route;
 
 var routes = (
 	<Route handler = {App}>
-		<Route path = "home" handler={Home}/>
+		<Route path = "/" handler={Home}/>
 		<Route path = "profile" handler={Profile}/>
 		<Route path = "profileForm" handler={ProfileForm}/>
 		<Route path = "recentProjects" handler={RecentProjects}/>
@@ -25,7 +25,12 @@ var routes = (
 		
 	</Route>
 	)
-Router.run(routes, function (Handler) {
+
+// Router.run(routes, function (Handler) {
+//   React.render(<Handler/>, document.getElementById("header"));
+// });
+
+Router.run(routes, Router.HistoryLocation, function (Handler) {
   React.render(<Handler/>, document.getElementById("header"));
 });
 
