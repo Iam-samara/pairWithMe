@@ -12,16 +12,18 @@ var Guide = require('./components/guide-page/Guide.js')
 var App = require('./components/app/App.js');
 var Router = require('react-router');
 var Route = Router.Route;
+var Link = Router.Link;
+
 
 var routes = (
 	<Route handler = {App}>
-		<Route path = "/" handler={Home}/>
-		<Route path = "profile" handler={Profile}/>
-		<Route path = "profileForm" handler={ProfileForm}/>
-		<Route path = "recentProjects" handler={RecentProjects}/>
-		<Route path = "individualProjects" handler={IndividualProjects}/>
-		<Route path = "search" handler={Search}/>
-		<Route path = "guide" handler={Guide}/>
+		<Route name="home" path = "/" handler={Home}/>
+		<Route name="profile" path = "profile" handler={Profile}/>
+		<Route name="profileform" path = "profileForm" handler={ProfileForm}/>
+		<Route name="recentprojects" path= "recentProjects" handler={RecentProjects}/>
+		<Route name="individualprojects" path = "individualProjects" handler={IndividualProjects}/>
+		<Route name="search" path = "search" handler={Search}/>
+		<Route name="guide" path = "guide" handler={Guide}/>
 		
 	</Route>
 	)
@@ -31,9 +33,9 @@ var routes = (
 // });
 
 Router.run(routes, Router.HistoryLocation, function (Handler) {
-  React.render(<Handler/>, document.getElementById("header"));
+  React.render(<Handler/>, document.getElementById("main"));
 });
 
-// React.render(<Header />, document.getElementById('header'));
+// React.render(<App />, document.getElementById('main'));
 // React.render(<Footer />, document.getElementById('footer')); 
 	// <Route path = "guide/:read" handler={Guide}/>
