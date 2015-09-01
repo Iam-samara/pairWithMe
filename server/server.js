@@ -5,14 +5,9 @@ var express = require('express'),
   path = require('path'),
   bodyParser = require('body-parser').urlencoded({ extended: true }),
   passport = require('./oauth.js'),
-  UserModel = require('./userModel'),
-  TagModel = require('./tagModel'),
-  ProjectModel = require('./projectModel'),
-  config = require('config'),
-  pg = require('pg'),
-  Sequelize = require('sequelize');
-
-
+  Sequelize = require('sequelize'),
+  config = require('config');
+  
 sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
   dialect: 'postgres',
   host: config.get('database.host'),
@@ -21,18 +16,30 @@ sequelize = new Sequelize(config.get('database.database'), config.get('database.
     ssl: true
   }
 });
-    
-var Tests = sequelize.define('testtable', {
-  area: Sequelize.STRING,
-  tags: Sequelize.STRING
-});
+
+var  User = require('./db_models/userModel.js'),
+  Tag = require('./db_models/tagModel.js'),
+  Project = require('./db_models/projectModel.js');
+
+Tag.belongsToMany(User, {through: 'usertag'});
+User.belongsToMany(Tag, {through: 'usertag'});
+Project.belongsToMany(User, {through: 'userproject'});
+User.belongsToMany(Project, {through: 'userproject'});
+
+// User.create({username: 'testusername',
+//   email: 'fakeemail',
+//   githubID: 'numbah',
+//   githubProfileURL: 'profilelink',
+//   githubProfileImage: 'imagelink',
+// })
+
+
 
 sequelize.sync().then(function () {
-  return Tests.create({
-    area: 'meh',
-    tags: "js"
-  });
+  return User.findAll();
+  // console.log("database has synced");
 });
+
 
 app.use('/', express.static(__dirname + '/../client'));
 app.use(bodyParser);
@@ -54,7 +61,7 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), function(req,res) {
   //on success authentication
-  res.redirect('/profile' + req.user.username); // want to redirect to their profile and post their username in the url
+  res.redirect('/profile'); // want to redirect to their profile and post their username in the url
 });
 
 /** ends session*/
@@ -63,8 +70,15 @@ app.get('/logout', function(req,res) {
   res.redirect('/');
 });
 
-
+// app.get('/profile' function(req,res) {
+//   User.findOne({
+//     where: {
+//       username: 
+//     }
+//   })
+// })
 
 app.use(express.static('client'));
 app.listen(process.env.PORT || 3000);
 module.exports = app;
+
