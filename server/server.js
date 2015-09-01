@@ -9,7 +9,7 @@ var express = require('express'),
   TagModel = require('./tagModel'),
   ProjectModel = require('./projectModel'),
   config = require('config'),
-  pg = require('pg');
+  pg = require('pg'),
   Sequelize = require('sequelize');
 
 
@@ -20,18 +20,8 @@ sequelize = new Sequelize(config.get('database.database'), config.get('database.
   dialectOptions: {
     ssl: true
   }
-    
-
-app.use('/', express.static(__dirname + '/../client'));
-app.use(bodyParser);
-app.use(passport.initialize());
-app.use(passport.session());
-
-/** loading home page */
-app.get('/', function(req, res) {
-  res.sendFile(path.resolve(__dirname + '/../src/index.html'));
 });
-
+    
 var Tests = sequelize.define('testtable', {
   area: Sequelize.STRING,
   tags: Sequelize.STRING
@@ -43,6 +33,18 @@ sequelize.sync().then(function () {
     tags: "js"
   });
 });
+
+app.use('/', express.static(__dirname + '/../client'));
+app.use(bodyParser);
+app.use(passport.initialize());
+app.use(passport.session());
+
+/** loading home page */
+app.get('/', function(req, res) {
+  res.sendFile(path.resolve(__dirname + '/../src/index.html'));
+});
+
+
 
 /** request for login, redirects to github.com */
 app.get('/auth/github', passport.authenticate('github'), function(req,res) {
@@ -59,7 +61,7 @@ app.get('/auth/github/callback', passport.authenticate('github', {failureRedirec
 app.get('/logout', function(req,res) {
   req.logout();
   res.redirect('/');
-
+});
 
 
 
