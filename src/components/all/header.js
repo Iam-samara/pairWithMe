@@ -1,6 +1,7 @@
 var React = require('react');
-var header = React.createClass({
+var Header = React.createClass({
 	render: function(){
 		<div>we made it</div>
 	},
 });
+module.exports = Header;
