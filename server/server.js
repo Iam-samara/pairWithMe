@@ -14,7 +14,8 @@ sequelize = new Sequelize(config.get('database.database'), config.get('database.
   port: 5432,
   dialectOptions: {
     ssl: true
-  }
+  },
+  logging: false
 });
 
 var  User = require('./db_models/userModel.js'),
@@ -36,8 +37,7 @@ User.belongsToMany(Project, {through: 'userproject'});
 
 
 sequelize.sync().then(function () {
-  return User.findAll();
-  // console.log("database has synced");
+  return console.log("database has synced");
 });
 
 
@@ -61,6 +61,7 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), function(req,res) {
   //on success authentication
+  // User.create()
   res.redirect('/profile'); // want to redirect to their profile and post their username in the url
 });
 
