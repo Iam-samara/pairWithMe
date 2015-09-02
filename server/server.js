@@ -48,8 +48,18 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), function(req,res) {
   //on success authentication
-console.log(req.user);
-  res.redirect('/profile'); // want to redirect to their profile and post their username in the url
+  // console.log(req.user);
+  User.findOrCreate({where: {username: req.user.username}, defaults: {
+    githubID: req.user.id, githubProfileURL: req.user.profileUrl,
+    githubProfileImage: req.user.profilePic}}).spread(function(user, created) {
+    if (created === true) {
+      res.redirect('/profileForm');
+    }
+    else {
+      res.redirect('/profile');
+    }
+  })
+  // res.redirect('/profile'); // want to redirect to their profile and post their username in the url
 });
 
 /** ends session*/
