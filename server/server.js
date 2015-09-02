@@ -5,8 +5,7 @@ var express = require('express'),
   http = require('http'),
   path = require('path'),
   bodyParser = require('body-parser').urlencoded({ extended: true }),
-  passport = require('./oauth.js'),
-  sendEmail=require('./sendgrid');
+  passport = require('./oauth.js');
 
 sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
   dialect: 'postgres',
@@ -50,22 +49,15 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), function(req,res) {
   //on success authentication
   // User.create()
+  console.log('req.user is   '+req.user);
   res.redirect('/profile'); // want to redirect to their profile and post their username in the url
 });
 
 /** ends session*/
-app.get('/logout', function(req,res) {
-  req.logout();
-  res.redirect('/');
-});
-
-/** calls sendEmail using sendgrid and a template that includes
-  * to, from, subject, and text(message)
-  * ideally want to use the users email as from
-  * and their match's email as the to*/
-app.get('/email', function(req,res) {
-  sendEmail('samara.hernandez0@gmail.com', 'hello@example.com', 'attemp number one', 'can i input my own params in this function?');
-});
+// app.get('/logout', function(req,res) {
+//   req.logout();
+//   res.redirect('/');
+// });
 
 // app.get('/profile' function(req,res) {
 //   User.findOne({

@@ -13,7 +13,6 @@ passport.use(new GitHubStrategy({
 function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
     done(null, profile);
-    console.log(profile);
     var myobj = {};
     //profile.emails[0].value
 
