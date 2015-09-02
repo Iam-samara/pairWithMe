@@ -6,8 +6,6 @@ var express = require('express'),
     bodyParser = require('body-parser').urlencoded({ extended: true }),
     passport = require('./oauth.js'),
     sendEmail=require('./sendgrid');
-  //  InternalOAuthError = require('passport-oauth2').InternalOauthError
-  //  cookieParser = require('cookie-parser'),
 
 
 /** connection to database */
@@ -43,6 +41,10 @@ app.get('/logout', function(req,res) {
   res.redirect('/');
 });
 
+/** calls sendEmail using sendgrid and a template that includes
+  * to, from, subject, and text(message)
+  *ideally want to use the users email as from
+  * and their match's email as the to*/
 app.get('/email', function(req,res) {
   sendEmail('samara.hernandez0@gmail.com', 'hello@example.com', 'attemp number one', 'can i input my own params in this function?');
 });
