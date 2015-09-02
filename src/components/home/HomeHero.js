@@ -1,4 +1,4 @@
 var React = require('react');
-var profile = React.createClass({
+var HomeHero = React.createClass({
 
 });

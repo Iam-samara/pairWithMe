@@ -1,4 +1,4 @@
 var React = require('react');
-var form = React.createClass({
+var UserData = React.createClass({
 
 });

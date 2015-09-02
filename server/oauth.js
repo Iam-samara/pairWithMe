@@ -13,13 +13,14 @@ passport.use(new GitHubStrategy({
 function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
     done(null, profile);
+    console.log(profile);
     var myobj = {};
 
     /** saving this use data */
     myobj.id = profile.id;
     myobj.username = profile.username;
     myobj.profileUrl = profile.profileUrl;
-    myobj.emails = profile._json.email,
+    myobj.emails = profile._json.email;
     myobj.profilePic = profile._json.avatar_url;
     console.log(myobj);
   });
