@@ -19,7 +19,7 @@ function(accessToken, refreshToken, profile, done) {
     myobj.id = profile.id;
     myobj.username = profile.username;
     myobj.profileUrl = profile.profileUrl;
-    myobj.emails = profile.emails[0].value;
+    myobj.emails = profile._json.email,
     myobj.profilePic = profile._json.avatar_url;
     console.log(myobj);
   });

@@ -4,7 +4,8 @@ var express = require('express'),
     mongoose = require('mongoose'),
     config = require('config'),
     bodyParser = require('body-parser').urlencoded({ extended: true }),
-    passport = require('./oauth.js');
+    passport = require('./oauth.js'),
+    sendEmail=require('./sendgrid');
   //  InternalOAuthError = require('passport-oauth2').InternalOauthError
   //  cookieParser = require('cookie-parser'),
 
@@ -42,6 +43,9 @@ app.get('/logout', function(req,res) {
   res.redirect('/');
 });
 
+app.get('/email', function(req,res) {
+  sendEmail('samara.hernandez0@gmail.com', 'hello@example.com', 'attemp number one', 'can i input my own params in this function?');
+});
 
 
 app.use(express.static('client'));
