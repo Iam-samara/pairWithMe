@@ -12,10 +12,8 @@ passport.use(new GitHubStrategy({
 },
 function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
-    done(null, profile);
-    var myobj = {};
-    //profile.emails[0].value
 
+    var myobj = {};
     /** saving this use data */
     myobj.id = profile.id;
     myobj.username = profile.username;
@@ -23,6 +21,7 @@ function(accessToken, refreshToken, profile, done) {
     myobj.emails = profile._json.email;
     myobj.profilePic = profile._json.avatar_url;
     console.log(myobj);
+    done(null, myobj);
   });
 }));
 
@@ -47,7 +46,7 @@ passport.deserializeUser(function(user, done) {
 /** use this middleware on any routes that need to be protected */
 function ensureAuthentication(req,res, next) {
   if(req.isAuthenticated()) {return next();}
-  res.redirect('/login');
+  res.redirect('/auth/github');
 }
 
 module.exports = passport;

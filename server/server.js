@@ -48,8 +48,7 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), function(req,res) {
   //on success authentication
-  // User.create()
-  console.log('req.user is   '+req.user);
+console.log(req.user);
   res.redirect('/profile'); // want to redirect to their profile and post their username in the url
 });
 
