@@ -26,12 +26,10 @@ User.belongsToMany(Tag, {through: 'usertag'});
 Project.belongsToMany(User, {through: 'userproject'});
 User.belongsToMany(Project, {through: 'userproject'});
 
-
 sequelize.sync().then(function () {
   return User.findAll();
   // console.log("database has synced");
 });
-
 
 app.use('/', express.static(__dirname + '/../client'));
 app.use(bodyParser);
@@ -62,7 +60,7 @@ app.get('/logout', function(req,res) {
 
 /** calls sendEmail using sendgrid and a template that includes
   * to, from, subject, and text(message)
-  *ideally want to use the users email as from
+  * ideally want to use the users email as from
   * and their match's email as the to*/
 app.get('/email', function(req,res) {
   sendEmail('samara.hernandez0@gmail.com', 'hello@example.com', 'attemp number one', 'can i input my own params in this function?');
