@@ -1,13 +1,13 @@
 var express = require('express'),
   app = express(),
-  OAuth2Strategy = require('passport-oauth').oAuth2Strategy,
+  Sequelize = require('sequelize'),
+  config = require('config'),
   http = require('http'),
   path = require('path'),
   bodyParser = require('body-parser').urlencoded({ extended: true }),
   passport = require('./oauth.js'),
-  Sequelize = require('sequelize'),
-  config = require('config');
-  
+  sendEmail=require('./sendgrid');
+
 sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
   dialect: 'postgres',
   host: config.get('database.host'),
@@ -27,19 +27,9 @@ User.belongsToMany(Tag, {through: 'usertag'});
 Project.belongsToMany(User, {through: 'userproject'});
 User.belongsToMany(Project, {through: 'userproject'});
 
-// User.create({username: 'testusername',
-//   email: 'fakeemail',
-//   githubID: 'numbah',
-//   githubProfileURL: 'profilelink',
-//   githubProfileImage: 'imagelink',
-// })
-
-
-
 sequelize.sync().then(function () {
   return console.log("database has synced");
 });
-
 
 app.use('/', express.static(__dirname + '/../client'));
 app.use(bodyParser);
@@ -50,8 +40,6 @@ app.use(passport.session());
 app.get('/', function(req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/index.html'));
 });
-
-
 
 /** request for login, redirects to github.com */
 app.get('/auth/github', passport.authenticate('github'), function(req,res) {
@@ -71,11 +59,18 @@ app.get('/logout', function(req,res) {
   res.redirect('/');
 });
 
+/** calls sendEmail using sendgrid and a template that includes
+  * to, from, subject, and text(message)
+  * ideally want to use the users email as from
+  * and their match's email as the to*/
+app.get('/email', function(req,res) {
+  sendEmail('samara.hernandez0@gmail.com', 'hello@example.com', 'attemp number one', 'can i input my own params in this function?');
+});
 
 // app.get('/profile' function(req,res) {
 //   User.findOne({
 //     where: {
-//       username: 
+//       username:
 //     }
 //   })
 // })
@@ -88,9 +83,6 @@ app.get('*', function (req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/index.html'));
 });
 
-
-
 app.use(express.static('client'));
 app.listen(process.env.PORT || 3000);
 module.exports = app;
-
