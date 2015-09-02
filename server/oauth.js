@@ -15,6 +15,7 @@ function(accessToken, refreshToken, profile, done) {
     done(null, profile);
     console.log(profile);
     var myobj = {};
+    //profile.emails[0].value
 
     /** saving this use data */
     myobj.id = profile.id;

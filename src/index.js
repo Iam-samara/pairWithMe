@@ -14,7 +14,7 @@ var Router = require('react-router');
 var Route = Router.Route;
 var Link = Router.Link;
 
-
+/* establishes our routes and gives designated names */
 var routes = (
 	<Route handler = {App}>
 		<Route name="home" path = "/" handler={Home}/>
@@ -28,14 +28,9 @@ var routes = (
 	</Route>
 	)
 
-// Router.run(routes, function (Handler) {
-//   React.render(<Handler/>, document.getElementById("header"));
-// });
 
+/*runs routes and attcehes them to our div with the class main
+	also designates which handler to render */
 Router.run(routes, Router.HistoryLocation, function (Handler) {
   React.render(<Handler/>, document.getElementById("main"));
 });
-
-// React.render(<App />, document.getElementById('main'));
-// React.render(<Footer />, document.getElementById('footer')); 
-	// <Route path = "guide/:read" handler={Guide}/>
