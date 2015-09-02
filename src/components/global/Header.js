@@ -24,7 +24,7 @@ var Header = React.createClass({
 						<Link to= "recentprojects">Recent Projects</Link>
 					</li>
 					<li>
-						<Link to= "individualprojects">Individul Projets</Link>
+						<Link to= "individualprojects">Individual Projets</Link>
 					</li>
 								<li>
 						<Link to= "search">search</Link>
