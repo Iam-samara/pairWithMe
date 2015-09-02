@@ -12,8 +12,9 @@ passport.use(new GitHubStrategy({
 },
 function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
-    done(null, profile);
-    console.log(profile);
+      // console.log(profile);
+    
+    // console.log(profile);
     var myobj = {};
     //profile.emails[0].value
 
@@ -23,7 +24,8 @@ function(accessToken, refreshToken, profile, done) {
     myobj.profileUrl = profile.profileUrl;
     myobj.emails = profile._json.email;
     myobj.profilePic = profile._json.avatar_url;
-    console.log(myobj);
+    return done(null, myobj);
+    // console.log(myobj);
   });
 }));
 
