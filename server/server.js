@@ -80,6 +80,10 @@ app.get('/logout', function(req,res) {
 //   })
 // })
 
+/* This is our initial get request for our html and allows us to remove the #
+ It along with our work on the client side allows us to not reload the whole
+ page on each route switch
+ */
 app.get('*', function (req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/index.html'));
 });
