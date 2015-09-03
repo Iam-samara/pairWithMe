@@ -17,14 +17,14 @@ var Link = Router.Link;
 /* establishes our routes and gives designated names */
 var routes = (
 	<Route handler = {App}>
-		<Route name="home" path = "/" handler={Home}/>
-		<Route name="profile" path = "profile" handler={Profile}/>
-		<Route name="profileform" path = "profileForm" handler={ProfileForm}/>
-		<Route name="recentprojects" path= "recentProjects" handler={RecentProjects}/>
-		<Route name="individualprojects" path = "individualProjects" handler={IndividualProjects}/>
-		<Route name="search" path = "search" handler={Search}/>
-		<Route name="guide" path = "guide" handler={Guide}/>
-		
+		<Route name="home" path="/" handler={Home}/>
+		<Route name="profile" path="profile" handler={Profile}/>
+		<Route name="profileform" path="profileForm" handler={ProfileForm}/>
+		<Route name="recentprojects" path="recentProjects" handler={RecentProjects}/>
+		<Route name="individualprojects" path="individualProjects" handler={IndividualProjects}/>
+		<Route name="search" path="search" handler={Search}/>
+		<Route name="guide" path="guide" handler={Guide}/>
+
 	</Route>
 	)
 

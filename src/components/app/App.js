@@ -8,10 +8,9 @@ var App = React.createClass({
 	render: function() {
     return (
       <div>
-      
-      	<Header/>
-        <RouteHandler/>
-        <Footer/>
+					<Header/>
+					<RouteHandler/>
+					<Footer/>
       </div>
     );
 	}
