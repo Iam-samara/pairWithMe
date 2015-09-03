@@ -52,6 +52,7 @@ app.get('/auth/github/callback', passport.authenticate('github', {failureRedirec
   User.findOrCreate({where: {username: req.user.username}, defaults: {
     githubID: req.user.id, githubProfileURL: req.user.profileUrl,
     githubProfileImage: req.user.profilePic}}).spread(function(user, created) {
+      // res.write(JSON.stringify({user:user}));
     if (created === true) {
       res.redirect('/profileForm');
     }
