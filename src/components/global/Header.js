@@ -5,7 +5,7 @@ var Link = Router.Link;
 var Header = React.createClass({
 	/* this renders a link to all of our routes */
 	"getInitialState": function(){
-		return {active: "/"}
+		return {active: window.location.pathname}
 	},
 	"active": function(event){
 		this.setState({
@@ -13,7 +13,6 @@ var Header = React.createClass({
 		});
 	},
 	render: function(){
-
 		return (
 			<div className="header clearfix row">
       <nav>
@@ -27,14 +26,8 @@ var Header = React.createClass({
 						<li role="presentation" className={this.state.active === '/profile' ? 'active' : ''}>
 							<Link to="profile" onClick={this.active}>Profile</Link>
 						</li>
-						<li role="presentation" className={this.state.active === '/profileForm' ? 'active' : ''}>
-							<Link to="profileform" onClick={this.active}>Profile Editor</Link>
-						</li>
 						<li role="presentation" className={this.state.active === '/recentProjects' ? 'active' : ''}>
 							<Link to="recentprojects" onClick={this.active}>Recent Projects</Link>
-						</li>
-						<li role="presentation" className={this.state.active === '/individualProjects' ? 'active' : ''}>
-							<Link to="individualprojects" onClick={this.active}>Individual Projets</Link>
 						</li>
 						<li role="presentation" className={this.state.active === '/search' ? 'active' : ''}>
 							<Link to="search" onClick={this.active}>search</Link>
