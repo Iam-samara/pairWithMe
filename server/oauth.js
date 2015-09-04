@@ -3,7 +3,11 @@ var passport = require('passport'),
     config = require('config');
 
 /** request to Github, w.out specifying scope
-  * user: email & follow, public repo url **/
+  * user: email & follow, public repo url
+  * when callback is successful it runs done()
+  * done() sends back the user Obj holding data
+  * specified to the server, server will save it to
+  * the database **/
 passport.use(new GitHubStrategy({
   clientID: config.get('oAuth.clientID'),
   clientSecret: config.get('oAuth.clientSecret'),
@@ -12,21 +16,14 @@ passport.use(new GitHubStrategy({
 },
 function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
-<<<<<<< HEAD
-=======
-    var myobj = {};
-    //profile.emails[0].value
->>>>>>> 1f9fb5553eeda35d83a918a213833f2161035bfe
-
-    var myobj = {};
-    /** saving this use data */
-    myobj.id = profile.id;
-    myobj.username = profile.username;
-    myobj.profileUrl = profile.profileUrl;
-    myobj.emails = profile._json.email;
-    myobj.profilePic = profile._json.avatar_url;
-    return done(null, myobj);
-    // console.log(myobj);
+    var userObj = {};
+    /** saving this user data */
+    userObj.id = profile.id;
+    userObj.username = profile.username;
+    userObj.profileUrl = profile.profileUrl;
+    userObj.emails = profile._json.email;
+    userObj.profilePic = profile._json.avatar_url;
+    return done(null, userObj);
   });
 }));
 
@@ -34,13 +31,12 @@ function(accessToken, refreshToken, profile, done) {
   * serializeuser stores the user id in the session
   * deserializeuser gets the user from database and store it in req.user */
 passport.serializeUser(function(user, done) {
-  done(null, user);
+  done(null, user.id);
 });
-passport.deserializeUser(function(user, done) {
-  // User.find({id: user.id?}, function() {
-  //
-  // })
-  done(null, user);
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err,user){
+    done(err, user);
+  });
 });
 
 /** authenticate every request */

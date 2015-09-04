@@ -5,7 +5,8 @@ var express = require('express'),
   http = require('http'),
   path = require('path'),
   bodyParser = require('body-parser').urlencoded({ extended: true }),
-  passport = require('./oauth.js');
+  passport = require('./oauth.js'),
+  ensureAuthenticated = require('./ensureAuthenticated.js');
 
 sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
   dialect: 'postgres',
@@ -32,8 +33,8 @@ sequelize.sync().then(function () {
 
 app.use('/', express.static(__dirname + '/../client'));
 app.use(bodyParser);
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize()); //middleware to start passport
+app.use(passport.session()); //used for persisten login
 
 /** loading home page */
 app.get('/', function(req, res) {
@@ -46,7 +47,7 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 });
 
 /** authenticates callback */
-app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), function(req,res) {
+app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: '/login'}), function(req,res) {
   //on success authentication
   // console.log(req.user);
   User.findOrCreate({where: {username: req.user.username}, defaults: {
@@ -62,19 +63,23 @@ app.get('/auth/github/callback', passport.authenticate('github', {failureRedirec
   // res.redirect('/profile'); // want to redirect to their profile and post their username in the url
 });
 
+
+
+
 /** ends session*/
 // app.get('/logout', function(req,res) {
 //   req.logout();
 //   res.redirect('/');
 // });
 
-// app.get('/profile' function(req,res) {
-//   User.findOne({
-//     where: {
-//       username:
-//     }
-//   })
-// })
+app.get('/profile',function(req,res,next) {
+  if(!req.cookie) {
+    return res.json({error: 'This is a secret page'});
+  }
+  next();
+}, function(req,res) {
+  res.json({message: 'this is only for authorized users'});
+});
 
 /* This is our initial get request for our html and allows us to remove the #
  It along with our work on the client side allows us to not reload the whole
