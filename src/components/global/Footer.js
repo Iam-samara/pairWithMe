@@ -41,6 +41,7 @@ var Footer = React.createClass({
        </div>
       </nav>
       </div>
+
 		);
 	},
 });

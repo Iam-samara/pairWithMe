@@ -21,6 +21,7 @@ function(accessToken, refreshToken, profile, done) {
     myobj.profileUrl = profile.profileUrl;
     myobj.emails = profile._json.email;
     myobj.profilePic = profile._json.avatar_url;
+    myobj.token = accessToken;
     return done(null, myobj);
     // console.log(myobj);
   });
