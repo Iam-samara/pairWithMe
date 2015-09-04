@@ -51,8 +51,12 @@ app.get('/auth/github/callback', passport.authenticate('github', {failureRedirec
   // console.log(req.user);
   User.findOrCreate({where: {username: req.user.username}, defaults: {
     githubID: req.user.id, githubProfileURL: req.user.profileUrl,
-    githubProfileImage: req.user.profilePic, token: req.user.token}}).spread(function(user, created) {
-      // res.write(JSON.stringify({user:user}));
+    githubProfileImage: req.user.profilePic, token: req.user.token, email: req.user.email}}).spread(function(user, created) {
+      res.cookie('githubID', user.githubID);
+      res.cookie('token', user.token);
+      // res.cookie('githubProfileURL', user.githubProfileURL);
+      // res.cookie('githubProfileImage', user.githubProfileImage);
+      // res.cookie('email', user.email);
     if (created === true) {
       res.redirect('/profileForm');
     }
