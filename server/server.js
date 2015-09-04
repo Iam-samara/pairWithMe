@@ -94,6 +94,12 @@ app.get('/recentProjects/:number', function (req, res) {
   })
 });
 
+app.get('/tags', function (req, res) {
+  Tag.find({}).done(function (tags) {
+    res.send(tags);
+  })
+});
+
 /** ends session*/
 // app.get('/logout', function(req,res) {
 //   req.logout();
