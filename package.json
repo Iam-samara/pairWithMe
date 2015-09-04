@@ -39,6 +39,7 @@
     "pg-hstore": "~2.3.2",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
+    "react-select": "^0.6.7",
     "reactify": "^1.1.1",
     "sendgrid": "^1.9.2",
     "sequelize": "~3.6.0",
