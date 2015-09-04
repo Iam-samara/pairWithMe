@@ -52,7 +52,8 @@ app.get('/auth/github/callback', passport.authenticate('github', {failureRedirec
   // console.log(req.user);
   User.findOrCreate({where: {username: req.user.username}, defaults: {
     githubID: req.user.id, githubProfileURL: req.user.profileUrl,
-    githubProfileImage: req.user.profilePic}}).spread(function(user, created) {
+    githubProfileImage: req.user.profilePic, token: req.user.token}}).spread(function(user, created) {
+      // res.write(JSON.stringify({user:user}));
     if (created === true) {
       res.redirect('/profileForm');
     }
@@ -60,7 +61,34 @@ app.get('/auth/github/callback', passport.authenticate('github', {failureRedirec
       res.redirect('/profile');
     }
   })
-  // res.redirect('/profile'); // want to redirect to their profile and post their username in the url
+});
+
+app.get('/profile/:number', function (req, res) {
+  User.findOne({where: {id: req.params.number}}).done(function (userProfile) {
+    console.log(userProfile);
+    res.send(userProfile)
+  })
+});
+
+app.post('/createProject', function (req, res) {
+  Project.create({projectName: req.body.projectName, githubLink: req.body.githubLink, description: req.body.description});
+});
+
+app.post('/updateProject', function (req, res) {
+  Project.findOne({where: {id: req.body.projectid} }).on('success', function (project) {
+    project.updateAttributes({
+      description: req.body.description
+    }).success(function () {
+      console.log("updated project " + project.id);
+    });
+  });
+});
+
+app.get('/recentProjects/:number', function (req, res) {
+  Project.findOne({where: {id: req.params.number}}).done(function (project) {
+    console.log(project);
+    res.send(project);
+  })
 });
 
 
