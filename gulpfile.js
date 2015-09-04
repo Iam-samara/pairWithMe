@@ -12,6 +12,9 @@ var babelify = require('babelify');
 var spawn = require('child_process').spawn;
 var async = require( 'async' );
 var path = require('path');
+var concat = require('gulp-concat');
+var minifyCSS = require('gulp-minify-css');
+var rename = require('gulp-rename');
 var node;
 
 var customOpts = {
@@ -50,4 +53,17 @@ gulp.task('server', function() {
           , ext: 'html js'
           , ignore: ['client/']});
 });
-gulp.task('default', ['js', 'server']);
+
+//css concat/minification/piping to public css folder
+gulp.task('css', function () {
+  gulp.src('./src/styles/*.css')
+    .pipe(concat('style.css'))
+    .pipe(minifyCSS())
+    .pipe(rename('style.min.css'))
+    .pipe(gulp.dest('./client/css/'));
+});
+gulp.task('css:watch', function () {
+  gulp.watch('./src/styles/*.css', ['css']);
+});
+
+gulp.task('default', ['js', 'css', 'css:watch', 'server']);
