@@ -42,18 +42,20 @@ app.get('/', function(req, res) {
 });
 
 /** request for login, redirects to github.com */
-app.get('/auth/github', passport.authenticate('github'), function(req,res) {
+app.get('/auth/github', passport.authenticate('github',{scope: 'user:email'}), function(req,res) {
   //request will redirect to Githib for authentication
 });
 
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: '/login'}), function(req,res) {
   //on success authentication
+  console.log(req.user.email);
    console.log(req.user);
   User.findOrCreate({where: {username: req.user.username}, defaults: {
     githubID: req.user.id, githubProfileURL: req.user.profileUrl,
     githubProfileImage: req.user.profilePic, token: req.user.token}}).spread(function(user, created) {
       // res.write(JSON.stringify({user:user}));
+
     if (created === true) {
       res.redirect('/profileForm');
     }
