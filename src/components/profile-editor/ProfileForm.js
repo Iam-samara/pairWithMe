@@ -68,7 +68,7 @@ var ProfileForm = React.createClass({
   render: function() {
     return(
 				<div className="row">
-					<div className=" col-xs-12 col-sm-8 col-sm-offset-2">
+					<div className="col-xs-8 col-xs-offset-2">
 						<form id="searchForm" encType="multipart/form-data" onSubmit={this.handle} className="form-inline">
 							<div className="row">
 								<div className="col-xs-12 col-sm-6">
