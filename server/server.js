@@ -17,9 +17,10 @@ sequelize = new Sequelize(config.get('database.database'), config.get('database.
   logging: false
 });
 
-var  User = require('./db_models/userModel.js'),
-  Tag = require('./db_models/tagModel.js'),
-  Project = require('./db_models/projectModel.js');
+var User = require('./db_models/userModel.js');
+var Tag = require('./db_models/tagModel.js');
+var Project = require('./db_models/projectModel.js');
+// var UserTag = require('./db_models/userTags.js');
 
 Tag.model.belongsToMany(User.model, {through: 'usertag'});
 User.model.belongsToMany(Tag.model, {through: 'usertag'});
@@ -58,7 +59,8 @@ app.get('/recentProjects/:number', Project.recentProjects);
 
 app.get('/tags', Tag.getAllTags);
 
-app.post('/tags', Tag.addTags)
+app.post('/tags', Tag.addTags);
+
 
 /** ends session*/
 // app.get('/logout', function(req,res) {
@@ -66,13 +68,6 @@ app.post('/tags', Tag.addTags)
 //   res.redirect('/');
 // });
 
-// app.get('/profile' function(req,res) {
-//   User.findOne({
-//     where: {
-//       username:
-//     }
-//   })
-// })
 
 /* This is our initial get request for our html and allows us to remove the #
  It along with our work on the client side allows us to not reload the whole
