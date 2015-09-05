@@ -20,12 +20,7 @@ var ProfileForm = React.createClass({
 
 	getInitialState: function () {
     return {
-      ids: [],
-      images: [],
-      itemColor: "",
-      itemWarmth: "",
-      itemPattern: "",
-      itemFormality: ""
+      tags: []
     }
   },
   onChange: function(e) {
@@ -35,6 +30,16 @@ var ProfileForm = React.createClass({
       itemWarmth: e.target.itemWarmth,
       itemFormality: e.target.itemFormality
     });
+  },
+  componentDidMount: function() {
+    $.getJSON('/tags', function(result) {
+      result = result.map(function (element, index) {
+        return ({value: element.tagName, label: element.tagName})
+      })
+      console.log(result);
+       this.setState({tags: result});
+      console.log(this.state);
+    }.bind(this))
   },
   handle: function (e) {
     var that = this;
@@ -68,14 +73,14 @@ var ProfileForm = React.createClass({
   render: function() {
     return(
 				<div className="row">
-					<div className=" col-xs-12 col-sm-8 col-sm-offset-2">
+					<div className="col-xs-8 col-xs-offset-2">
 						<form id="searchForm" encType="multipart/form-data" onSubmit={this.handle} className="form-inline">
 							<div className="row">
 								<div className="col-xs-12 col-sm-6">
 									<Select
 										name="form-field-name"
-										value="HTML, CSS"
-										options={haveSkills}
+										value=""
+										options={this.state.tags}
 										multi={true}
 										allowCreate={true}
 									/>
@@ -83,8 +88,8 @@ var ProfileForm = React.createClass({
 								<div className="col-xs-12 col-sm-6">
 									<Select
 										name="form-field-name"
-										value="HTML, CSS, JavaScript"
-										options={haveSkills}
+										
+										options={this.state.tags}
 										multi={true}
 										allowCreate={true}
 									/>

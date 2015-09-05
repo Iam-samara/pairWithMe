@@ -94,6 +94,18 @@ app.get('/recentProjects/:number', function (req, res) {
   })
 });
 
+app.get('/tags', function (req, res) {
+  Tag.findAll({attributes:['tagName']}).done(function (tags) {
+    res.send(tags);
+  })
+});
+
+app.post('/tags', function (req, res) {
+  for (var i = 0; i < req.tags.length; i++) {
+    Tag.findOrCreate({tagName: req.tags[i].tagName});
+  }
+})
+
 /** ends session*/
 // app.get('/logout', function(req,res) {
 //   req.logout();

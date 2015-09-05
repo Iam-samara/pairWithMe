@@ -1,9 +1,9 @@
 var React = require('react');
-var HomeHero = require('./HomeHero')
+var HomeHero = require('./HomeHero.js')
 var Home = React.createClass({
 	render: function(){
 		return (
-		<div>HomeHero</div>
+		<HomeHero/>
 		);
 	},
 });
