@@ -63,12 +63,24 @@ app.get('/auth/github/callback', passport.authenticate('github', {failureRedirec
   })
 });
 
-app.get('/profile/:number', function (req, res) {
-  User.findOne({where: {id: req.params.number}}).done(function (userProfile) {
-    console.log(userProfile);
-    res.send(userProfile)
+app.get('/profile/:number',function(req,res) {
+  User.findOne({where: {id: req.params.number}}).done(function (user) {
+   //console.log(user.token);
+    res.send(user);
   })
 });
+
+// app.get('/profile/:number', function (req, res, next) {
+//   if(!req.cookie) {
+//     return res.json({error: "this is a secret page"});
+//   }
+// }, function(req,res) {
+//   User.findOne({where: {id: req.params.number}}).done(function (userProfile) {
+//     console.log(userProfile);
+//     res.send(userProfile)
+//   })
+// });
+
 
 app.post('/createProject', function (req, res) {
   Project.create({projectName: req.body.projectName, githubLink: req.body.githubLink, description: req.body.description});
@@ -95,19 +107,12 @@ app.get('/recentProjects/:number', function (req, res) {
 
 
 /** ends session*/
-// app.get('/logout', function(req,res) {
-//   req.logout();
-//   res.redirect('/');
-// });
-
-app.get('/profile',function(req,res,next) {
-  if(!req.cookie) {
-    return res.json({error: 'This is a secret page'});
-  }
-  next();
-}, function(req,res) {
-  res.json({message: 'this is only for authorized users'});
+app.get('/logout', function(req,res) {
+  req.logout();
+  res.redirect('/');
 });
+
+
 
 /* This is our initial get request for our html and allows us to remove the #
  It along with our work on the client side allows us to not reload the whole

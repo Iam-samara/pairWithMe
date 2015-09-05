@@ -11,12 +11,14 @@ var passport = require('passport'),
 passport.use(new GitHubStrategy({
   clientID: config.get('oAuth.clientID'),
   clientSecret: config.get('oAuth.clientSecret'),
+  scope: ['user:email'],
   callbackURL: 'http://localhost:3000/auth/github/callback',
   userAgent: 'pairWithMe'
 },
 function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
 
+    console.log(profile);
     var userObj = {};
     /** saving this user data */
     userObj.id = profile.id;
