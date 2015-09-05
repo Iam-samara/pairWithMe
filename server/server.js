@@ -21,8 +21,8 @@ var  User = require('./db_models/userModel.js'),
   Tag = require('./db_models/tagModel.js'),
   Project = require('./db_models/projectModel.js');
 
-Tag.belongsToMany(User.model, {through: 'usertag'});
-User.model.belongsToMany(Tag, {through: 'usertag'});
+Tag.model.belongsToMany(User.model, {through: 'usertag'});
+User.model.belongsToMany(Tag.model, {through: 'usertag'});
 Project.model.belongsToMany(User.model, {through: 'userproject'});
 User.model.belongsToMany(Project.model, {through: 'userproject'});
 
@@ -56,17 +56,9 @@ app.post('/updateProject', Project.updateProject);
 
 app.get('/recentProjects/:number', Project.recentProjects);
 
-app.get('/tags', function (req, res) {
-  Tag.findAll({attributes:['tagName']}).done(function (tags) {
-    res.send(tags);
-  })
-});
+app.get('/tags', Tag.getAllTags);
 
-app.post('/tags', function (req, res) {
-  for (var i = 0; i < req.tags.length; i++) {
-    Tag.findOrCreate({tagName: req.tags[i].tagName});
-  }
-})
+app.post('/tags', Tag.addTags)
 
 /** ends session*/
 // app.get('/logout', function(req,res) {
