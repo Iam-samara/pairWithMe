@@ -103,6 +103,13 @@ app.get('/recentProjects/:number', function (req, res) {
   })
 });
 
+app.get('/tags', function (req, res) {
+
+
+  Tag.findAll().done(function (tags) {
+    res.send(tags);
+  })
+});
 /** ends session*/
 app.get('/logout', function(req,res) {
   req.logout();
