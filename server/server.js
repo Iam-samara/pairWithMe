@@ -49,7 +49,7 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: '/login'}), function(req,res) {
   //on success authentication
-  // console.log(req.user);
+   console.log(req.user);
   User.findOrCreate({where: {username: req.user.username}, defaults: {
     githubID: req.user.id, githubProfileURL: req.user.profileUrl,
     githubProfileImage: req.user.profilePic, token: req.user.token}}).spread(function(user, created) {
@@ -103,16 +103,11 @@ app.get('/recentProjects/:number', function (req, res) {
   })
 });
 
-
-
-
 /** ends session*/
 app.get('/logout', function(req,res) {
   req.logout();
   res.redirect('/');
 });
-
-
 
 /* This is our initial get request for our html and allows us to remove the #
  It along with our work on the client side allows us to not reload the whole
