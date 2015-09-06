@@ -32,6 +32,7 @@ User.signIn = function(req,res) {
 };
 
 User.profileByNumber = function (req, res) {
+  console.log(req.cookies);
   User.model.findOne({where: {id: req.params.number}}).done(function (userProfile) {
     console.log(userProfile);
     res.send(userProfile)
