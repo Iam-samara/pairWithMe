@@ -1,8 +1,10 @@
 var Sequelize = require('sequelize');
+var User = require('./userModel.js');
+var Tag = require('./tagModel.js');
 
-var UserTags = sequelize.define('userTags', {
-  user_ID: Sequelize.STRING,
-  tag_ID: Sequelize.STRING
-});
+var UserTag = {};
 
-module.exports = UserTags;
+Tag.model.belongsToMany(User.model, {through: 'usertag'});
+User.model.belongsToMany(Tag.model, {through: 'usertag'});
+
+module.exports = UserTag;
