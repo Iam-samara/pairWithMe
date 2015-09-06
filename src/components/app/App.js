@@ -10,7 +10,6 @@ var App = React.createClass({
       <div>
 					<Header/>
 					<RouteHandler/>
-					{/*<Footer/>*/}
       </div>
     );
 	}
