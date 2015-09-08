@@ -43,13 +43,13 @@ function(accessToken, refreshToken, profile, done) {
   * serializeuser stores the user id in the session
   * deserializeuser gets the user from database and store it in req.user */
 passport.serializeUser(function(user, done) {
-  done(null, user);
+  done(null, user.id);
 });
-passport.deserializeUser(function(user, done) {
-  // User.find({id: user.id?}, function() {
-  //
-  // })
-  done(null, user);
+passport.deserializeUser(function(id, done) {
+  User.model.findOne(id).done(function (userProfile) {
+    done(null, userProfile);
+  });
+
 });
 
 module.exports = passport;

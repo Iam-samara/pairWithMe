@@ -36,6 +36,7 @@ sequelize.sync().then(function () {
 app.use('/', express.static(__dirname + '/../client'));
 app.use(bodyParser);
 app.use(cookieParser());
+app.use(express.session({secret: "feeling losta"}));
 app.use(passport.initialize()); //middleware to start passport
 app.use(passport.session()); //used for persisten login
 
