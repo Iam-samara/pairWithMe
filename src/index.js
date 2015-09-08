@@ -1,7 +1,6 @@
 var React = require('react');
 var Header = require('./components/global/Header.js');
 var Footer = require('./components/global/Footer.js');
-
 var Home = require('./components/home/Home.js');
 var Profile = require('./components/profile/Profile.js');
 var ProfileForm = require('./components/profile-editor/ProfileForm.js');
