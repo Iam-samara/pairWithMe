@@ -72,7 +72,7 @@ var Search = React.createClass({
 									<Select
 										name="form-field-name"
 										value=""
-										options={this.state.tags}
+										options={wantedSkills}
 										multi={true}
 										allowCreate={true}
 									/>
