@@ -1,11 +1,31 @@
 var React = require('react');
 var Select = require('react-select');
 
+
+var haveSkills = [
+	{ value: 'HTML', label: 'HTML' },
+	{ value: 'CSS', label: 'CSS' },
+	{ value: 'JavaScript', label: 'JavaScript' },
+	{ value: 'Angular', label: 'Angular' },
+	{ value: 'React', label: 'React' },
+];
+
+var wantSkills = [
+	{ value: 'one', label: 'One' },
+	{ value: 'two', label: 'Two' },
+];
+
 var ProfileForm = React.createClass({
+
 
 	getInitialState: function () {
     return {
-      tags: []
+      ids: [],
+      images: [],
+      itemColor: "",
+      itemWarmth: "",
+      itemPattern: "",
+      itemFormality: ""
     }
   },
   onChange: function(e) {
@@ -15,16 +35,6 @@ var ProfileForm = React.createClass({
       itemWarmth: e.target.itemWarmth,
       itemFormality: e.target.itemFormality
     });
-  },
-  componentDidMount: function() {
-    $.getJSON('/tags', function(result) {
-      result = result.map(function (element, index) {
-        return ({value: element.tagName, label: element.tagName})
-      })
-      console.log(result);
-       this.setState({tags: result});
-      console.log(this.state);
-    }.bind(this))
   },
   handle: function (e) {
     var that = this;
@@ -64,8 +74,8 @@ var ProfileForm = React.createClass({
 								<div className="col-xs-12 col-sm-6">
 									<Select
 										name="form-field-name"
-										value=""
-										options={this.state.tags}
+										value="HTML, CSS"
+										options={haveSkills}
 										multi={true}
 										allowCreate={true}
 									/>
@@ -73,8 +83,8 @@ var ProfileForm = React.createClass({
 								<div className="col-xs-12 col-sm-6">
 									<Select
 										name="form-field-name"
-										
-										options={this.state.tags}
+										value="HTML, CSS, JavaScript"
+										options={haveSkills}
 										multi={true}
 										allowCreate={true}
 									/>

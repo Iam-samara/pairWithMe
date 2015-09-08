@@ -39,6 +39,10 @@ app.use(cookieParser());
 app.use(passport.initialize()); //middleware to start passport
 app.use(passport.session()); //used for persisten login
 
+/** middleware used to authenticate any route
+  * checks if a cookie exist, if so it will display continue
+  * onthe the next param when used. else it would redirect to the
+  * ouath/github route that will redirect to the github page */
 var authenticate = function(req,res,next) {
   console.log('req.cookies.githubID ' + req.cookies.githubID + " req.cookies.token " + req.cookies.token);
   if(!req.cookies.token) {
@@ -63,6 +67,7 @@ app.get('/auth/github/callback', passport.authenticate('github', {failureRedirec
 
 app.get('/profile',authenticate,User.profileByNumber);
 
+/* this route is authenticated, user must have cookie before diplaying profile*/
 app.get('/profile/:number',authenticate, User.profileByNumber);
 
 app.post('/createProject', Project.createProject);
