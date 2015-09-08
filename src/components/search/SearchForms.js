@@ -17,15 +17,15 @@ var SearchForms = React.createClass({
       learn: ''
     }
   },
+  valueHolder: {
+    partner: '',
+    learn: ''
+  },
   onChangePartner: function(value) {
-    this.setState({
-      partner: value
-    });
+    this.valueHolder.partner = value;
   },
   onChangeTag: function(value) {
-    this.setState({
-      learn: value
-    });
+    this.valueHolder.learn = value;
   },
   componentDidMount: function() {
     $.getJSON('/tags', function(result) {
@@ -39,8 +39,8 @@ var SearchForms = React.createClass({
    
     e.preventDefault();
     var sendObject = {};
-    sendObject.partner = this.state.partner;
-    sendObject.tag = this.state.learn;
+    sendObject.partner = this.valueHolder.partner;
+    sendObject.tag = this.valueHolder.learn;
     $.ajax({
       url: '/search',
       contentType: 'application/json',
