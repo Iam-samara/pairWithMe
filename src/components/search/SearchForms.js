@@ -15,14 +15,7 @@ var SearchForms = React.createClass({
       tags: []
     }
   },
-  onChange: function(e) {
-    this.setState({
-      itemColor: e.target.itemColor,
-      itemPattern: e.target.itemPattern,
-      itemWarmth: e.target.itemWarmth,
-      itemFormality: e.target.itemFormality
-    });
-  },
+
   componentDidMount: function() {
     $.getJSON('/tags', function(result) {
       result = result.map(function (element, index) {
@@ -38,13 +31,13 @@ var SearchForms = React.createClass({
     console.log(e);
     e.preventDefault();
     var that = this;
-    console.log('update time');
     var temp1 = e.target[0].value;
     var sendObject = {};
     sendObject.partner = e.target[0].value;
     sendObject.tag = e.target[1].value;
 
- 
+     console.log("initial object", e.target);
+
     console.log("nick", sendObject);
     $.ajax({
       url: '/search',
@@ -78,6 +71,7 @@ var SearchForms = React.createClass({
 								<div className="col-xs-12 col-sm-6">
 									<Select
 										name="form-field-name"
+										value=""
 										options={this.state.tags}
 										multi={false}
 									/>
