@@ -43,8 +43,9 @@ var SearchForms = React.createClass({
     var sendObject = {};
     sendObject.partner = e.target[0].value;
     sendObject.tag = e.target[1].value;
+
  
-    console.log(sendObject);
+    console.log("nick", sendObject);
     $.ajax({
       url: '/search',
       contentType: 'application/json',
@@ -77,6 +78,7 @@ var SearchForms = React.createClass({
 								<div className="col-xs-12 col-sm-6">
 									<Select
 										name="form-field-name"
+										options={this.state.tags}
 										multi={false}
 									/>
 								</div>
