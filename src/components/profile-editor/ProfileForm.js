@@ -1,22 +1,7 @@
 var React = require('react');
 var Select = require('react-select');
 
-
-var haveSkills = [
-	{ value: 'HTML', label: 'HTML' },
-	{ value: 'CSS', label: 'CSS' },
-	{ value: 'JavaScript', label: 'JavaScript' },
-	{ value: 'Angular', label: 'Angular' },
-	{ value: 'React', label: 'React' },
-];
-
-var wantSkills = [
-	{ value: 'one', label: 'One' },
-	{ value: 'two', label: 'Two' },
-];
-
 var ProfileForm = React.createClass({
-
 
 	getInitialState: function () {
     return {
