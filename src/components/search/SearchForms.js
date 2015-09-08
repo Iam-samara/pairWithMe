@@ -2,7 +2,7 @@ var React = require('react');
 var Select = require('react-select');
 
 
-var wantedSkills = [
+var partner = [
 	{ value: 'Collaborater', label: 'Collaborater' },
 	{ value: 'Student', label: 'Student' },
 	{ value: 'Teacher', label: 'Teacher'}
@@ -41,21 +41,20 @@ var SearchForms = React.createClass({
     console.log('update time');
     var temp1 = e.target[0].value;
     var sendObject = {};
-    sendObject.category = e.target[0].value;
-    sendObject.itemColor = e.target[1].value;
-    sendObject.itemWarmth = e.target[2].value;
-    sendObject.itemPattern = e.target[3].value;
-    sendObject.itemFormality = e.target[4].value;
-    console.log(sendObject);
+    sendObject.partner = e.target[0].value;
+    sendObject.tag = e.target[1].value;
+
+ 
+    console.log("nick", sendObject);
     $.ajax({
       url: '/search',
       contentType: 'application/json',
       type: 'POST',
       data: JSON.stringify(sendObject),
-      success: function(data) {
-        this.props.update(data);
-        console.log(data);
-      }.bind(this),
+      // success: function(data) {
+      //   this.props.update(data);
+      //   console.log(data);
+      // }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
@@ -72,16 +71,15 @@ var SearchForms = React.createClass({
 									<Select
 										name="form-field-name"
 										value=""
-										options={wantedSkills}
-										multi={true}
+										options={partner}
+										multi={false}
 									/>
 								</div>
 								<div className="col-xs-12 col-sm-6">
 									<Select
 										name="form-field-name"
-										
 										options={this.state.tags}
-										multi={true}
+										multi={false}
 									/>
 								</div>
 							</div>
