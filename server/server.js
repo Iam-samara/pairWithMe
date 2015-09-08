@@ -50,6 +50,8 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), User.signIn);
 
+// app.get('/updateProfile', User.updateProfile);s
+
 app.get('/profile/:number', User.profileByNumber);
 
 app.post('/createProject', Project.createProject);
@@ -64,7 +66,6 @@ app.post('/tags', Tag.addTags);
 
 app.post('/search', function (req, res) {
   console.log(req.body);
-  console.log(req.body.partner)
   res.send();
 })
 
