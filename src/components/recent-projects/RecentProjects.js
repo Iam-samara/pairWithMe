@@ -1,8 +1,16 @@
 var React = require('react');
+var Projects = require('./Projects');
 var RecentProjects = React.createClass({
 	render: function(){
 		return (
-			<div>RecentProjects</div>
+			<div>
+				<Projects/>
+				<Projects/>
+				<Projects/>				
+				<Projects/>
+				<Projects/>
+				<Projects/>		
+			</div>
 		);
 	},
 });

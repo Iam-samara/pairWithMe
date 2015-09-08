@@ -75,6 +75,11 @@ app.get('/tags', Tag.getAllTags);
 
 app.post('/tags', Tag.addTags);
 
+app.get('/logout', function (req, res) {
+  res.clearCookie('githubID');
+  res.clearCookie('token');
+  res.redirect('/');
+})
 
 /** ends session*/
 // app.get('/logout', function(req,res) {
