@@ -50,10 +50,10 @@ var SearchForms = React.createClass({
       contentType: 'application/json',
       type: 'POST',
       data: JSON.stringify(sendObject),
-      success: function(data) {
-        this.props.update(data);
-        console.log(data);
-      }.bind(this),
+      // success: function(data) {
+      //   this.props.update(data);
+      //   console.log(data);
+      // }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
@@ -71,13 +71,13 @@ var SearchForms = React.createClass({
 										name="form-field-name"
 										value=""
 										options={partner}
+										multi={false}
 									/>
 								</div>
 								<div className="col-xs-12 col-sm-6">
 									<Select
 										name="form-field-name"
-										
-										options={this.state.tags}
+										multi={false}
 									/>
 								</div>
 							</div>
