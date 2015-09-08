@@ -4,7 +4,8 @@ var express = require('express'),
   config = require('config'),
   http = require('http'),
   path = require('path'),
-  bodyParser = require('body-parser').urlencoded({ extended: true }),
+  bodyParser = require('body-parser'),
+  // .urlencoded({ extended: true }),
   passport = require('./oauth.js');
 
 sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
@@ -32,7 +33,7 @@ sequelize.sync().then(function () {
 });
 
 app.use('/', express.static(__dirname + '/../client'));
-app.use(bodyParser);
+app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -63,7 +64,8 @@ app.post('/tags', Tag.addTags);
 
 app.post('/search', function (req, res) {
   console.log(req.body);
-  res.send('hi');
+  console.log(req.body.partner)
+  res.send();
 })
 
 app.get('/logout', function (req, res) {
