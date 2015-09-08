@@ -2,7 +2,7 @@ var React = require('react');
 var Select = require('react-select');
 
 
-var wantedSkills = [
+var partner = [
 	{ value: 'Collaborater', label: 'Collaborater' },
 	{ value: 'Student', label: 'Student' },
 	{ value: 'Teacher', label: 'Teacher'}
@@ -41,11 +41,9 @@ var SearchForms = React.createClass({
     console.log('update time');
     var temp1 = e.target[0].value;
     var sendObject = {};
-    sendObject.category = e.target[0].value;
-    sendObject.itemColor = e.target[1].value;
-    sendObject.itemWarmth = e.target[2].value;
-    sendObject.itemPattern = e.target[3].value;
-    sendObject.itemFormality = e.target[4].value;
+    sendObject.partner = e.target[0].value;
+    sendObject.tag = e.target[1].value;
+ 
     console.log(sendObject);
     $.ajax({
       url: '/search',
@@ -72,8 +70,7 @@ var SearchForms = React.createClass({
 									<Select
 										name="form-field-name"
 										value=""
-										options={wantedSkills}
-										multi={true}
+										options={partner}
 									/>
 								</div>
 								<div className="col-xs-12 col-sm-6">
@@ -81,7 +78,6 @@ var SearchForms = React.createClass({
 										name="form-field-name"
 										
 										options={this.state.tags}
-										multi={true}
 									/>
 								</div>
 							</div>
