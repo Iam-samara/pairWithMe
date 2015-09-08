@@ -76,6 +76,7 @@ var SearchForms = React.createClass({
                     value=""
                     options={this.state.tags}
                     onChange = {this.onChangeTag}
+										multi={false}
 									/>
 								</div>
 							</div>
