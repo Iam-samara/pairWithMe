@@ -10,9 +10,8 @@ User.model = sequelize.define('users', {
   githubProfileImage: Sequelize.STRING,
   token: Sequelize.STRING
 });
-
+//on success authentication
 User.signIn = function(req,res) {
-  //on success authentication
   // console.log(req.user);
   User.model.findOrCreate({where: {username: req.user.username}, defaults: {
     githubID: req.user.id, githubProfileURL: req.user.profileUrl,
@@ -32,10 +31,9 @@ User.signIn = function(req,res) {
 };
 
 User.profileByNumber = function (req, res) {
-  User.model.findOne({where: {id: req.params.number}}).done(function (userProfile) {
-    console.log(userProfile);
-    res.send(userProfile)
-  })
+    User.model.findOne({where: {id: req.params.number}}).done(function (userProfile) {
+      res.send(userProfile)
+    });
 };
 
 // User.

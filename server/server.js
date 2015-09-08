@@ -6,7 +6,8 @@ var express = require('express'),
   path = require('path'),
   bodyParser = require('body-parser').urlencoded({ extended: true }),
   passport = require('./oauth.js'),
-  ensureAuthenticated = require('./ensureAuthenticated.js');
+  ensureAuthenticated = require('./ensureAuthenticated.js'),
+  cookieParser = require('cookie-parser');
 
 sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
   dialect: 'postgres',
@@ -34,8 +35,18 @@ sequelize.sync().then(function () {
 
 app.use('/', express.static(__dirname + '/../client'));
 app.use(bodyParser);
+app.use(cookieParser());
 app.use(passport.initialize()); //middleware to start passport
 app.use(passport.session()); //used for persisten login
+
+var authenticate = function(req,res,next) {
+  console.log('req.cookies.githubID ' + req.cookies.githubID + " req.cookies.token " + req.cookies.token);
+  if(!req.cookies.token) {
+  //  res.sendStatus(401);
+    res.redirect('/auth/github')
+  }
+  else {next();}
+}
 
 /** loading home page */
 app.get('/', function(req, res) {
@@ -43,14 +54,16 @@ app.get('/', function(req, res) {
 });
 
 /** request for login, redirects to github.com */
-app.get('/auth/github', passport.authenticate('github',{scope: 'user:email'}), function(req,res) {
+app.get('/auth/github', passport.authenticate('github'), function(req,res) {
   //request will redirect to Githib for authentication
 });
 
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), User.signIn);
 
-app.get('/profile/:number', User.profileByNumber);
+app.get('/profile',authenticate,User.profileByNumber);
+
+app.get('/profile/:number',authenticate, User.profileByNumber);
 
 app.post('/createProject', Project.createProject);
 
