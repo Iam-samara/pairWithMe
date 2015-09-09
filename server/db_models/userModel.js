@@ -16,7 +16,7 @@ User.model = sequelize.define('users', {
 });
 //on success authentication
 User.signIn = function(req,res) {
-  // console.log(req.user);
+  console.log('signing in');
   User.model.findOrCreate({where: {username: req.user.username}, defaults: {
     githubID: req.user.id, githubProfileURL: req.user.profileUrl,
     githubProfileImage: req.user.profilePic, token: req.user.token, email: req.user.email}}).spread(function(user, created) {

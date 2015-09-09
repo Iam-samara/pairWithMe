@@ -25,10 +25,10 @@ sequelize = new Sequelize(config.get('database.database'), config.get('database.
 var User = require('./db_models/userModel.js');
 var Tag = require('./db_models/tagModel.js');
 var Project = require('./db_models/projectModel.js');
-// var UserTag = require('./db_models/userTags.js');
+var UserTag = require('./db_models/userTags.js');
 
-// Tag.model.belongsToMany(User.model, {through: 'usertag'});
-// User.model.belongsToMany(Tag.model, {through: 'usertag'});
+Tag.model.belongsToMany(User.model, {through: 'usertag'});
+User.model.belongsToMany(Tag.model, {through: 'usertag'});
 Project.model.belongsToMany(User.model, {through: 'userproject'});
 User.model.belongsToMany(Project.model, {through: 'userproject'});
 

@@ -8,10 +8,10 @@ var UserTag = sequelize.define('usertag', {
     primaryKey: true,
     autoIncrement: true
   },
-  status: DataTypes.STRING
+  // status: DataTypes.STRING
 })
 
-Tag.model.belongsToMany(User.model, {through: 'usertag'});
-User.model.belongsToMany(Tag.model, {through: 'usertag'});
+// Tag.model.belongsToMany(User.model, {through: 'usertag'});
+// User.model.belongsToMany(Tag.model, {through: 'usertag'});
 
 module.exports = UserTag;
