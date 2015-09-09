@@ -133,3 +133,13 @@ Based on the wireframes above we decided we need the following components for ou
 - SearchForm
   - SearchResults
   - Users
+
+During the setup phase we realized we needed to modify the gulp file to also concatenate, minify rename and reroute our css from front and back end stylesheets, including our custom styles to the client folder. To do this we had to add the following node modules
+
+* gulp-concat (concatenates all files passed to it)
+* gulp-minify (minify function that when called will do just that)
+* gulp-rename (to take all output css and rename it 'we used styles.min.css' as it was the most descriptive and standard)
+
+After setup was complete we ran into an issue with the navigation re: React Router and our App being an SPA. We successfully created our React components and pass them with front end routes to mount inbetween our Header and Footer components. One issue we ran into was the way Router and Link work to ensure the active page is highlighted. Initially we set it up so that when you first visit the site it sets the initial state of the Header component to be active on '/'.
+
+We ran into one major flaw of this implentation though, when you type a path or refresh a page thats not on home the 'Home' navigation button becomes active. To make this work properly we set the initial state of the Header component to the following `{active: window.location.pathname}` and this will set the initial state to based on the current url. We also use a ternary statement in the path's set to the following `{this.state.active === '/' ? 'active' : ''}` so it will setState active to whichever url you are on.
