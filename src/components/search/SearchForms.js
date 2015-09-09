@@ -22,11 +22,16 @@ var SearchForms = React.createClass({
     partner: '',
     learn: ''
   },
+
   onChangePartner: function(value) {
-    this.valueHolder.partner = value;
+    this.setState({
+      partner: value
+    })
   },
   onChangeTag: function(value) {
-    this.valueHolder.learn = value;
+    this.setState({
+      learn: value
+    })
   },
   componentDidMount: function() {
     $.getJSON('/tags', function(result) {
@@ -68,7 +73,7 @@ var SearchForms = React.createClass({
 								<div className="col-xs-12 col-sm-12">
 									<Select
 										name="form-field-name"
-										value=""
+										value={this.state.partner}
 										options={partner}
                     onChange = {this.onChangePartner}
 									/>
@@ -76,7 +81,7 @@ var SearchForms = React.createClass({
 								<div className="col-xs-12 col-sm-12">
 									<Select
 										name="form-field-name"
-                    value=""
+                    value={this.state.learn}
                     options={this.state.tags}
                     onChange = {this.onChangeTag}
 										multi={false}
