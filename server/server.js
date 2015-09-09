@@ -73,10 +73,10 @@ app.get('/auth/github/callback', passport.authenticate('github', {failureRedirec
 
 app.post('/updateProfile', User.updateProfile);
 
-app.get('/profile',authenticate,User.profileByNumber);
+app.get('/profile1',authenticate,User.profileByNumber);
 
 /* this route is authenticated, user must have cookie before diplaying profile*/
-// app.get('/profile/:number',authenticate, User.profileByNumber);
+app.get('/profile/:number',authenticate, User.profileByNumber);
 
 
 app.post('/createProject', Project.createProject);
