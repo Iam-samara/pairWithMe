@@ -7,8 +7,8 @@ var partner = [
   { value: 'Teacher', label: 'Teacher'}
 ];
 
-
 var ProfileForm = React.createClass({
+
 
 	getInitialState: function () {
       return {
@@ -42,7 +42,6 @@ var ProfileForm = React.createClass({
   onChangeWant: function(value) {
     this.valueHolder.want = value;
   },
-
   componentDidMount: function() {
     $.getJSON('/tags', function(result) {
       result = result.map(function (element, index) {
@@ -55,7 +54,7 @@ var ProfileForm = React.createClass({
   },
   handle: function (e) {
         e.preventDefault();
-    var that = this;  
+    var that = this;
     var sendObject = {};
     sendObject.teacher = this.valueHolder.teacher;
     sendObject.collaborator = this.valueHolder.collaborator;
@@ -72,7 +71,7 @@ var ProfileForm = React.createClass({
       success: function(data) {
         console.log(data);
       }.bind(this),
-      
+
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
@@ -95,7 +94,7 @@ var ProfileForm = React.createClass({
                   </div>
                   <div className="col-xs-8 col-sm-4">
                     <input type="checkbox" name="student" value="true" onChange={this.onChangeStudent}/> Student
-                  </div>                                    
+                  </div>
                 </div>
 
                 <div className="col-xs-12 col-sm-12">
@@ -112,7 +111,7 @@ var ProfileForm = React.createClass({
               </div>
             </form>
           </div>
-        </div>
+        </div> 
   )}
 });
 module.exports = ProfileForm;

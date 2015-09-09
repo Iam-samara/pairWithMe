@@ -23,7 +23,6 @@ var routes = (
 		<Route name="individualprojects" path="individualProjects" handler={IndividualProjects}/>
 		<Route name="search" path="search" handler={Search}/>
 		<Route name="guide" path="guide" handler={Guide}/>
-
 	</Route>
 	)
 

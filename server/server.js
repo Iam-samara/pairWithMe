@@ -4,9 +4,12 @@ var express = require('express'),
   config = require('config'),
   http = require('http'),
   path = require('path'),
-  bodyParser = require('body-parser'),
+  passport = require('./oauth.js'),
+  ensureAuthenticated = require('./ensureAuthenticated.js'),
+  cookieParser = require('cookie-parser'),
+  bodyParser = require('body-parser');
   // .urlencoded({ extended: true }),
-  passport = require('./oauth.js');
+
   cookieParser = require('cookie-parser');
 
 sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
@@ -34,10 +37,25 @@ sequelize.sync().then(function () {
 });
 
 app.use('/', express.static(__dirname + '/../client'));
-app.use(bodyParser.json());
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(cookieParser());
+app.use(bodyParser.json());
+
+//app.use(express.session({secret: "feeling lost"}));
+app.use(passport.initialize()); //middleware to start passport
+app.use(passport.session()); //used for persisten login
+
+/** middleware used to authenticate any route
+  * checks if a cookie exist, if so it will display continue
+  * onthe the next param when used. else it would redirect to the
+  * ouath/github route that will redirect to the github page */
+var authenticate = function(req,res,next) {
+  console.log("req.cookies.token " + req.cookies.token);
+  if(!req.cookies.token) {
+  //  res.sendStatus(401);
+    res.redirect('/auth/github')
+  }
+  else {next();}
+}
 
 /** loading home page */
 app.get('/', function(req, res) {
@@ -52,9 +70,14 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), User.signIn);
 
+
 app.post('/updateProfile', User.updateProfile);
 
-app.get('/profile/:number', User.profileByNumber);
+app.get('/profile',authenticate,User.profileByNumber);
+
+/* this route is authenticated, user must have cookie before diplaying profile*/
+// app.get('/profile/:number',authenticate, User.profileByNumber);
+
 
 app.post('/createProject', Project.createProject);
 
