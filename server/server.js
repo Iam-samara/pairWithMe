@@ -4,10 +4,11 @@ var express = require('express'),
   config = require('config'),
   http = require('http'),
   path = require('path'),
-  bodyParser = require('body-parser').urlencoded({ extended: true }),
   passport = require('./oauth.js'),
   ensureAuthenticated = require('./ensureAuthenticated.js'),
-  cookieParser = require('cookie-parser');
+  cookieParser = require('cookie-parser'),
+  bodyParser = require('body-parser');
+  // .urlencoded({ extended: true }),
 
 sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
   dialect: 'postgres',
@@ -34,9 +35,9 @@ sequelize.sync().then(function () {
 });
 
 app.use('/', express.static(__dirname + '/../client'));
-app.use(bodyParser);
 app.use(cookieParser());
-app.use(express.session({secret: "feeling losta"}));
+app.use(bodyParser.json());
+//app.use(express.session({secret: "feeling lost"}));
 app.use(passport.initialize()); //middleware to start passport
 app.use(passport.session()); //used for persisten login
 
@@ -83,7 +84,8 @@ app.post('/tags', Tag.addTags);
 
 app.post('/search', function (req, res) {
   console.log(req.body);
-  res.send('hi');
+  console.log(req.body.partner)
+  res.send();
 })
 
 app.get('/logout', function (req, res) {

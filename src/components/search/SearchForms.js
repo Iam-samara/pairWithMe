@@ -12,49 +12,44 @@ var SearchForms = React.createClass({
 
 	getInitialState: function () {
     return {
-      tags: []
+      tags: [],
+      partner: '',
+      learn: ''
     }
   },
-  onChange: function(e) {
-    this.setState({
-      itemColor: e.target.itemColor,
-      itemPattern: e.target.itemPattern,
-      itemWarmth: e.target.itemWarmth,
-      itemFormality: e.target.itemFormality
-    });
+  valueHolder: {
+    partner: '',
+    learn: ''
+  },
+  onChangePartner: function(value) {
+    this.valueHolder.partner = value;
+  },
+  onChangeTag: function(value) {
+    this.valueHolder.learn = value;
   },
   componentDidMount: function() {
     $.getJSON('/tags', function(result) {
       result = result.map(function (element, index) {
         return ({value: element.tagName, label: element.tagName})
       })
-      console.log(result);
        this.setState({tags: result});
-      console.log(this.state);
     }.bind(this))
   },
   handle: function (e) {
-    var that = this;
-    console.log(e);
+   
     e.preventDefault();
-    var that = this;
-    console.log('update time');
-    var temp1 = e.target[0].value;
     var sendObject = {};
-    sendObject.partner = e.target[0].value;
-    sendObject.tag = e.target[1].value;
-
- 
-    console.log("nick", sendObject);
+    sendObject.partner = this.valueHolder.partner;
+    sendObject.tag = this.valueHolder.learn;
     $.ajax({
       url: '/search',
       contentType: 'application/json',
       type: 'POST',
       data: JSON.stringify(sendObject),
-      // success: function(data) {
-      //   this.props.update(data);
-      //   console.log(data);
-      // }.bind(this),
+      success: function(data) {
+        // this.props.update(data);
+        console.log(data);
+      }.bind(this),
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
@@ -72,13 +67,15 @@ var SearchForms = React.createClass({
 										name="form-field-name"
 										value=""
 										options={partner}
-										multi={false}
+                    onChange = {this.onChangePartner}
 									/>
 								</div>
 								<div className="col-xs-12 col-sm-6">
 									<Select
 										name="form-field-name"
-										options={this.state.tags}
+                    value=""
+                    options={this.state.tags}
+                    onChange = {this.onChangeTag}
 										multi={false}
 									/>
 								</div>
