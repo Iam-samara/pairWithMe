@@ -3,7 +3,7 @@ var Header = require('./components/global/Header.js');
 var Footer = require('./components/global/Footer.js');
 var Home = require('./components/home/Home.js');
 var Profile = require('./components/profile/Profile.js');
-var ProfileForm = require('./components/profile-editor/ProfileForm.js');
+var ProfileEditor = require('./components/profile-editor/ProfileEditor.js');
 var RecentProjects = require('./components/recent-projects/RecentProjects.js');
 var IndividualProjects = require('./components/individual-project/IndividualProjects.js');
 var Search = require('./components/search/Search.js');
@@ -12,13 +12,13 @@ var App = require('./components/app/App.js');
 var Router = require('react-router');
 var Route = Router.Route;
 var Link = Router.Link;
-
+ 
 /* establishes our routes and gives designated names */
 var routes = (
 	<Route handler = {App}>
 		<Route name="home" path="/" handler={Home}/>
 		<Route name="profile" path="profile" handler={Profile}/>
-		<Route name="profileform" path="profileForm" handler={ProfileForm}/>
+		<Route name="profileeditor" path="profileEditor" handler={ProfileEditor}/>
 		<Route name="recentprojects" path="recentProjects" handler={RecentProjects}/>
 		<Route name="individualprojects" path="individualProjects" handler={IndividualProjects}/>
 		<Route name="search" path="search" handler={Search}/>

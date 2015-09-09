@@ -10,8 +10,6 @@ var express = require('express'),
   bodyParser = require('body-parser');
   // .urlencoded({ extended: true }),
 
-  cookieParser = require('cookie-parser');
-
 sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
   dialect: 'postgres',
   host: config.get('database.host'),
@@ -39,7 +37,6 @@ sequelize.sync().then(function () {
 app.use('/', express.static(__dirname + '/../client'));
 app.use(cookieParser());
 app.use(bodyParser.json());
-
 //app.use(express.session({secret: "feeling lost"}));
 app.use(passport.initialize()); //middleware to start passport
 app.use(passport.session()); //used for persisten login
@@ -57,6 +54,7 @@ var authenticate = function(req,res,next) {
   else {next();}
 }
 
+
 /** loading home page */
 app.get('/', function(req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/index.html'));
@@ -70,13 +68,10 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), User.signIn);
 
-
-app.post('/updateProfile', User.updateProfile);
-
-app.get('/profile',authenticate,User.profileByNumber);
+app.get('/profile',User.profileByNumber);
 
 /* this route is authenticated, user must have cookie before diplaying profile*/
-// app.get('/profile/:number',authenticate, User.profileByNumber);
+app.get('/profile/:number', User.profileByNumber);
 
 
 app.post('/createProject', Project.createProject);

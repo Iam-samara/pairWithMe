@@ -31,6 +31,7 @@ User.signIn = function(req,res) {
   })
 };
 
+
 User.updateProfile = function (req, res) {
   User.model.findOne({where: {githubID: req.cookies.githubID}}).done(function (user) {
     if (req.body.teacher === "true") {
@@ -63,7 +64,7 @@ User.updateProfile = function (req, res) {
 
   console.log(req.body);
   res.send('hi');
-},
+}
 
 User.profileByNumber = function (req, res) {
   User.model.findOne({where: {id: req.params.number}}).done(function (userProfile) {
