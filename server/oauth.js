@@ -12,10 +12,13 @@ var passport = require('passport'),
 passport.use(new GitHubStrategy({
   clientID: config.get('oAuth.clientID'),
   clientSecret: config.get('oAuth.clientSecret'),
+  scope: ['user:email'],
   callbackURL: 'http://localhost:3000/auth/github/callback',
   userAgent: 'pairWithMe'
 },
 function(accessToken, refreshToken, profile, done) {
+  console.log('callback'+accessToken);
+  console.log(profile);
   var options = {
     url: 'https://api.github.com/user/emails?access_token='+accessToken,
     headers: {
@@ -26,6 +29,8 @@ function(accessToken, refreshToken, profile, done) {
   request_module(options, function(err, res, body) {
     if(!err && res.statusCode === 200) {
       process.nextTick(function() {
+        console.log(body);
+
         var userObj = {};
         userObj.id = profile.id;
         userObj.username = profile.username;
@@ -33,8 +38,13 @@ function(accessToken, refreshToken, profile, done) {
         userObj.email = body[0].email;
         userObj.profilePic = profile._json.avatar_url;
         userObj.token = accessToken;
+        console.log(userObj);
         return done(null, userObj);
       });
+    }
+    else{
+      console.log(body);
+      return done(err);
     }
   });
 }));
