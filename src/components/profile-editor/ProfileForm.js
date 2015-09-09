@@ -12,7 +12,7 @@ var ProfileForm = React.createClass({
 
 	getInitialState: function () {
       return {
-      tags: [],
+      tags: [], 
       teacher: '',
       collaborator: '',
       student: '',

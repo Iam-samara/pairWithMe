@@ -10,8 +10,6 @@ var express = require('express'),
   bodyParser = require('body-parser');
   // .urlencoded({ extended: true }),
 
-  cookieParser = require('cookie-parser');
-
 sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
   dialect: 'postgres',
   host: config.get('database.host'),
@@ -39,7 +37,6 @@ sequelize.sync().then(function () {
 app.use('/', express.static(__dirname + '/../client'));
 app.use(cookieParser());
 app.use(bodyParser.json());
-
 //app.use(express.session({secret: "feeling lost"}));
 app.use(passport.initialize()); //middleware to start passport
 app.use(passport.session()); //used for persisten login
@@ -56,6 +53,7 @@ var authenticate = function(req,res,next) {
   }
   else {next();}
 }
+
 
 /** loading home page */
 app.get('/', function(req, res) {
@@ -77,7 +75,6 @@ app.get('/profile1',authenticate,User.profileByNumber);
 
 /* this route is authenticated, user must have cookie before diplaying profile*/
 app.get('/profile/:number',authenticate, User.profileByNumber);
-
 
 app.post('/createProject', Project.createProject);
 
