@@ -50,7 +50,7 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), User.signIn);
 
-// app.get('/updateProfile', User.updateProfile);s
+app.get('/updateProfile', User.updateProfile);
 
 app.get('/profile/:number', User.profileByNumber);
 

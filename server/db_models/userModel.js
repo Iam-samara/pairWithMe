@@ -8,7 +8,10 @@ User.model = sequelize.define('users', {
   githubID: Sequelize.STRING,
   githubProfileURL: Sequelize.STRING,
   githubProfileImage: Sequelize.STRING,
-  token: Sequelize.STRING
+  token: Sequelize.STRING,
+  teacher: Sequelize.BOOLEAN,
+  student: Sequelize.BOOLEAN,
+  collaborator: Sequelize.BOOLEAN
 });
 
 User.signIn = function(req,res) {
@@ -31,9 +34,15 @@ User.signIn = function(req,res) {
   })
 };
 
-// User.updateUser = function (req, res) {
-  
-// }
+User.updateProfile = function (req, res) {
+  User.model.findOne({where: {id: req.params.number}}).done(function (user) {
+    user.updateAttributes({
+      teacher: req.body.teacher,
+      student: req.body.student,
+      collaborator: req.body.collaborator
+    });
+  })
+},
 
 User.profileByNumber = function (req, res) {
   console.log(req.cookies);
