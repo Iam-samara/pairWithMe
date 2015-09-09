@@ -98,7 +98,7 @@ Setup and folder structure
 
 Setting up a React project based on components takes a little bit of time to map out what components you need and where.
 
-Home Page Mock ![Home Page](assets/wireframes/home-page.png "Home Page")
+Home Page Mock ![Home Page](./assets/wireframes/home-page.png "Home Page")
 
 Add Profile Page Mock ![Add Profile Page](assets/wireframes/add-profile-page.png "Add Profile Page")
 
