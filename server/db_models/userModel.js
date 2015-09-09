@@ -1,5 +1,6 @@
 var Sequelize = require('sequelize');
 
+
 var User = {};
 
 User.model = sequelize.define('users', {
@@ -35,13 +36,37 @@ User.signIn = function(req,res) {
 };
 
 User.updateProfile = function (req, res) {
-  User.model.findOne({where: {id: req.params.number}}).done(function (user) {
+  User.model.findOne({where: {githubID: req.cookies.githubID}}).done(function (user) {
+    if (req.body.teacher === "true") {
+      var teacher = true;
+    }
+    else {
+      var teacher = false;
+    }
+    if (req.body.student === "true") {
+      var student = true;
+    }
+    else {
+      var student = false;
+    }
+    if (req.body.collaborator === "true") {
+      var collaborator = true;
+    }
+    else {
+      var collaborator = false;
+    }
+    console.log(collaborator);
     user.updateAttributes({
-      teacher: req.body.teacher,
-      student: req.body.student,
-      collaborator: req.body.collaborator
+      teacher: teacher,
+      student: student,
+      collaborator: collaborator
     });
+
   })
+  console.log(req.body.collaborator);
+
+  console.log(req.body);
+  res.send('hi');
 },
 
 User.profileByNumber = function (req, res) {

@@ -2,7 +2,7 @@ var React = require('react');
 var Select = require('react-select');
 
 var partner = [
-  { value: 'Collaborater', label: 'Collaborater' },
+  { value: 'Collaborator', label: 'Collaborator' },
   { value: 'Student', label: 'Student' },
   { value: 'Teacher', label: 'Teacher'}
 ];
@@ -14,7 +14,7 @@ var ProfileForm = React.createClass({
       return {
       tags: [],
       teacher: '',
-      collaborater: '',
+      collaborator: '',
       student: '',
       have: '',
       want: ''
@@ -22,7 +22,7 @@ var ProfileForm = React.createClass({
   },
    valueHolder: {
       teacher: '',
-      collaborater: '',
+      collaborator: '',
       student: '',
       have: '',
       want: ''
@@ -30,8 +30,8 @@ var ProfileForm = React.createClass({
   onChangeTeacher: function() {
     this.valueHolder.teacher = 'true';
   },
-  onChangeCollaborater: function() {
-    this.valueHolder.collaborater = 'true';
+  onChangeCollaborator: function() {
+    this.valueHolder.collaborator = 'true';
   },
   onChangeStudent: function() {
     this.valueHolder.student = 'true';
@@ -58,13 +58,13 @@ var ProfileForm = React.createClass({
     var that = this;  
     var sendObject = {};
     sendObject.teacher = this.valueHolder.teacher;
-    sendObject.collaborater = this.valueHolder.collaborater;
+    sendObject.collaborator = this.valueHolder.collaborator;
     sendObject.student = this.valueHolder.student;
     sendObject.have = this.valueHolder.have;
     sendObject.want = this.valueHolder.want;
     console.log(sendObject.teacher);
     $.ajax({
-      url: '/search',
+      url: '/updateProfile',
       contentType: 'application/json',
       type: 'POST',
       data: JSON.stringify(sendObject),
@@ -91,7 +91,7 @@ var ProfileForm = React.createClass({
                     <input type="checkbox" name="teacher" onChange={this.onChangeTeacher}/> Teacher
                   </div>
                   <div className="col-xs-8 col-sm-4">
-                    <input type="checkbox" name="collaborater" onChange={this.onChangeCollaborater}/> Collaborater
+                    <input type="checkbox" name="collaborator" onChange={this.onChangeCollaborator}/> Collaborator
                   </div>
                   <div className="col-xs-8 col-sm-4">
                     <input type="checkbox" name="student" value="true" onChange={this.onChangeStudent}/> Student

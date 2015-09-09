@@ -7,6 +7,7 @@ var express = require('express'),
   bodyParser = require('body-parser'),
   // .urlencoded({ extended: true }),
   passport = require('./oauth.js');
+  cookieParser = require('cookie-parser');
 
 sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
   dialect: 'postgres',
@@ -36,6 +37,7 @@ app.use('/', express.static(__dirname + '/../client'));
 app.use(bodyParser.json());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cookieParser());
 
 /** loading home page */
 app.get('/', function(req, res) {
@@ -50,7 +52,7 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), User.signIn);
 
-app.get('/updateProfile', User.updateProfile);
+app.post('/updateProfile', User.updateProfile);
 
 app.get('/profile/:number', User.profileByNumber);
 
