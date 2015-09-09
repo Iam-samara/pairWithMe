@@ -46,7 +46,7 @@ app.use(passport.session()); //used for persisten login
   * onthe the next param when used. else it would redirect to the
   * ouath/github route that will redirect to the github page */
 var authenticate = function(req,res,next) {
-  console.log('req.cookies.githubID ' + req.cookies.githubID + " req.cookies.token " + req.cookies.token);
+  console.log("req.cookies.token " + req.cookies.token);
   if(!req.cookies.token) {
   //  res.sendStatus(401);
     res.redirect('/auth/github')
@@ -72,6 +72,7 @@ app.get('/profile',authenticate,User.profileByNumber);
 /* this route is authenticated, user must have cookie before diplaying profile*/
 app.get('/profile/:number',authenticate, User.profileByNumber);
 
+
 app.post('/createProject', Project.createProject);
 
 app.post('/updateProject', Project.updateProject);
@@ -84,7 +85,6 @@ app.post('/tags', Tag.addTags);
 
 app.post('/search', function (req, res) {
   console.log(req.body);
-  console.log(req.body.partner)
   res.send();
 })
 

@@ -27,6 +27,10 @@ User.signIn = function(req,res) {
   })
 };
 
+// User.updateUser = function (req, res) {
+  
+// }
+
 User.profileByNumber = function (req, res) {
   User.model.findOne({where: {id: req.params.number}}).done(function (userProfile) {
     res.send(userProfile)
