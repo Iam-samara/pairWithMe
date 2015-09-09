@@ -68,7 +68,10 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), User.signIn);
 
-app.get('/profile',authenticate,User.profileByNumber);
+
+app.get('/profile1',authenticate,User.profileByNumber);
+
+//app.get('/profile1',User.profileByNumber);
 
 /* this route is authenticated, user must have cookie before diplaying profile*/
 app.get('/profile/:number',authenticate, User.profileByNumber);
