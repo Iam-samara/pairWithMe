@@ -23,7 +23,7 @@ User.signIn = function(req,res) {
       res.cookie('githubID', user.githubID);
       res.cookie('token', user.token);
     if (created === true) {
-      res.redirect('/profileForm');
+      res.redirect('/profileEditor');
     }
     else {
       res.redirect('/profile');
