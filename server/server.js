@@ -1,11 +1,11 @@
 var express = require('express'),
   app = express(),
+  session = require('express-session'),
   Sequelize = require('sequelize'),
   config = require('config'),
   http = require('http'),
   path = require('path'),
   passport = require('./oauth.js'),
-  ensureAuthenticated = require('./ensureAuthenticated.js'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser');
   // .urlencoded({ extended: true }),
@@ -37,7 +37,11 @@ sequelize.sync().then(function () {
 app.use('/', express.static(__dirname + '/../client'));
 app.use(cookieParser());
 app.use(bodyParser.json());
-//app.use(express.session({secret: "feeling lost"}));
+app.use(session({
+  secret: 'feeling lost',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {}}));
 app.use(passport.initialize()); //middleware to start passport
 app.use(passport.session()); //used for persisten login
 
@@ -47,6 +51,8 @@ app.use(passport.session()); //used for persisten login
   * ouath/github route that will redirect to the github page */
 var authenticate = function(req,res,next) {
   console.log("req.cookies.token " + req.cookies.token);
+  console.log("req.session.cookie ", req.session.cookie);
+  console.log('req.user ', req.user);
   if(!req.cookies.token) {
   //  res.sendStatus(401);
     res.redirect('/auth/github')
