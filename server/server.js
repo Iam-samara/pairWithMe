@@ -23,12 +23,17 @@ sequelize = new Sequelize(config.get('database.database'), config.get('database.
 var User = require('./db_models/userModel.js');
 var Tag = require('./db_models/tagModel.js');
 var Project = require('./db_models/projectModel.js');
-var UserTag = require('./db_models/userTags.js');
+var KnownTag = require('./db_models/knownTagsModel.js');
 
-Tag.model.belongsToMany(User.model, {through: 'usertag'});
-User.model.belongsToMany(Tag.model, {through: 'usertag'});
-Project.model.belongsToMany(User.model, {through: 'userproject'});
-User.model.belongsToMany(Project.model, {through: 'userproject'});
+Tag.belongsToMany(User, {through: 'knowntags'});
+User.belongsToMany(Tag, {through: 'knowntags'});
+Project.model.belongsToMany(User, {through: 'userproject'});
+User.belongsToMany(Project.model, {through: 'userproject'});
+
+var UserController = require('./db_models/userController.js');
+var TagController = require('./db_models/tagController.js');
+
+var KnownTagController = require('./db_models/knownTagsController.js');
 
 sequelize.sync().then(function () {
   return console.log("database has synced");
@@ -66,15 +71,15 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 });
 
 /** authenticates callback */
-app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), User.signIn);
+app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), UserController.signIn);
 
 
-app.post('/updateProfile', User.updateProfile);
+app.post('/updateProfile', KnownTagController.addTags);
 
-app.get('/profile1',authenticate,User.profileByNumber);
+app.get('/profile1',authenticate,UserController.profile);
 
 /* this route is authenticated, user must have cookie before diplaying profile*/
-app.get('/profile/:number',authenticate, User.profileByNumber);
+app.get('/profile/:number',authenticate, UserController.profileByNumber);
 
 app.post('/createProject', Project.createProject);
 
@@ -82,9 +87,11 @@ app.post('/updateProject', Project.updateProject);
 
 app.get('/recentProjects/:number', Project.recentProjects);
 
-app.get('/tags', Tag.getAllTags);
+app.get('/tags', TagController.getAllTags);
 
-app.post('/tags', Tag.addTags);
+app.post('/tags', TagController.addTags);
+
+app.post('/knowntags', KnownTagController.addTags);
 
 app.post('/search', function (req, res) {
   console.log(req.body);
