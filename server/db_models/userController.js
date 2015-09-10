@@ -1,27 +1,18 @@
 var Sequelize = require('sequelize');
+var User = require('./userModel.js');
+var KnownTag = require('./knownTagsModel.js');
 
+var userController = {};
 
-User = sequelize.define('users', {
-  username: Sequelize.STRING,
-  email: Sequelize.STRING,
-  githubID: Sequelize.STRING,
-  githubProfileURL: Sequelize.STRING,
-  githubProfileImage: Sequelize.STRING,
-  token: Sequelize.STRING,
-  teacher: Sequelize.BOOLEAN,
-  student: Sequelize.BOOLEAN,
-  collaborator: Sequelize.BOOLEAN
-});
-/**
-//on success authentication
-User.signIn = function(req,res) {
-  User.model.findOrCreate({where: {username: req.user.username}, defaults: {
+userController.signIn = function(req,res) {
+  console.log('signing in');
+  User.findOrCreate({where: {username: req.user.username}, defaults: {
     githubID: req.user.id, githubProfileURL: req.user.profileUrl,
     githubProfileImage: req.user.profilePic, token: req.user.token, email: req.user.email}}).spread(function(user, created) {
       res.cookie('githubID', user.githubID);
       res.cookie('token', user.token);
     if (created === true) {
-      res.redirect('/profileForm');
+      res.redirect('/profileEditor');
     }
     else {
       res.redirect('/profile');
@@ -29,8 +20,9 @@ User.signIn = function(req,res) {
   })
 };
 
-User.updateProfile = function (req, res) {
-  User.model.findOne({where: {githubID: req.cookies.githubID}}).done(function (user) {
+
+userController.updateProfile = function (req, res) {
+  User.findOne({where: {githubID: req.cookies.githubID}}).done(function (user) {
     if (req.body.teacher === "true") {
       var teacher = true;
     }
@@ -57,19 +49,23 @@ User.updateProfile = function (req, res) {
     });
 
   })
+  
   console.log(req.body.collaborator);
 
   console.log(req.body);
   res.send('hi');
-},
+}
 
-User.profileByNumber = function (req, res) {
-  User.model.findOne({where: {id: req.params.number}}).done(function (userProfile) {
+userController.profile = function (req, res) {
+  User.findOne({where: {githubID: req.cookies.githubID}}).done(function (userProfile) {
     res.send(userProfile)
   });
 };
-*/
 
-// User.
+userController.profileByNumber = function (req, res) {
+  User.findOne({where: {id: req.params.number}}).done(function (userProfile) {
+    res.send(userProfile)
+  });
+};
 
-module.exports = User;
+module.exports = userController;

@@ -1,11 +1,11 @@
 var express = require('express'),
   app = express(),
-  session = require('express-session'),
   Sequelize = require('sequelize'),
   config = require('config'),
   http = require('http'),
   path = require('path'),
   passport = require('./oauth.js'),
+  ensureAuthenticated = require('./ensureAuthenticated.js'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser');
   // .urlencoded({ extended: true }),
@@ -23,12 +23,17 @@ sequelize = new Sequelize(config.get('database.database'), config.get('database.
 var User = require('./db_models/userModel.js');
 var Tag = require('./db_models/tagModel.js');
 var Project = require('./db_models/projectModel.js');
-// var UserTag = require('./db_models/userTags.js');
+var KnownTag = require('./db_models/knownTagsModel.js');
 
-// Tag.model.belongsToMany(User.model, {through: 'usertag'});
-// User.model.belongsToMany(Tag.model, {through: 'usertag'});
-Project.model.belongsToMany(User.model, {through: 'userproject'});
-User.model.belongsToMany(Project.model, {through: 'userproject'});
+Tag.belongsToMany(User, {through: 'knowntags'});
+User.belongsToMany(Tag, {through: 'knowntags'});
+Project.model.belongsToMany(User, {through: 'userproject'});
+User.belongsToMany(Project.model, {through: 'userproject'});
+
+var UserController = require('./db_models/userController.js');
+var TagController = require('./db_models/tagController.js');
+
+var KnownTagController = require('./db_models/knownTagsController.js');
 
 sequelize.sync().then(function () {
   return console.log("database has synced");
@@ -37,11 +42,7 @@ sequelize.sync().then(function () {
 app.use('/', express.static(__dirname + '/../client'));
 app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(session({
-  secret: 'feeling lost',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {}}));
+//app.use(express.session({secret: "feeling lost"}));
 app.use(passport.initialize()); //middleware to start passport
 app.use(passport.session()); //used for persisten login
 
@@ -51,8 +52,6 @@ app.use(passport.session()); //used for persisten login
   * ouath/github route that will redirect to the github page */
 var authenticate = function(req,res,next) {
   console.log("req.cookies.token " + req.cookies.token);
-  console.log("req.session.cookie ", req.session.cookie);
-  console.log('req.user ', req.user);
   if(!req.cookies.token) {
   //  res.sendStatus(401);
     res.redirect('/auth/github')
@@ -72,17 +71,15 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 });
 
 /** authenticates callback */
-app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), User.signIn);
+app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), UserController.signIn);
 
 
-app.get('/profile1',authenticate,User.profileByNumber);
+app.post('/updateProfile', KnownTagController.addTags);
 
-//app.get('/profile1',User.profileByNumber);
+app.get('/api/profile',authenticate,UserController.profile);
 
 /* this route is authenticated, user must have cookie before diplaying profile*/
-app.get('/profile/:number',authenticate, User.profileByNumber);
-
-//app.get('/profile/:number', User.profileByNumber);
+app.get('/api/profile/:number',authenticate, UserController.profileByNumber);
 
 app.post('/createProject', Project.createProject);
 
@@ -90,9 +87,11 @@ app.post('/updateProject', Project.updateProject);
 
 app.get('/recentProjects/:number', Project.recentProjects);
 
-app.get('/tags', Tag.getAllTags);
+app.get('/tags', TagController.getAllTags);
 
-app.post('/tags', Tag.addTags);
+app.post('/tags', TagController.addTags);
+
+app.post('/knowntags', KnownTagController.addTags);
 
 app.post('/search', function (req, res) {
   console.log(req.body);
