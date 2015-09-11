@@ -18,7 +18,7 @@ var UserData = React.createClass({
       	console.log(wanted);
       });
        this.setState({
-       		knownTags: known,
+       	knownTags: known,
        	 wantTags: wanted
        	});
 

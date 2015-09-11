@@ -8,7 +8,7 @@ var OtherUsersData = React.createClass({
 		};
 	},
 	componentDidMount: function() {
-		$.getJSON('/api/profile' + this.props.param.user, function(data){
+		$.getJSON('/api/profile/' + this.props.param.user, function(data){
       var known = data.known.map(function (element, index) {
         return (element.tagName +"  ");
        });
