@@ -1,8 +1,8 @@
 var React = require('react');
 
 var OtherUsersInfo = React.createClass({
-
 	getInitialState: function() {
+		console.log(this.props.param);
 		return {
 			username : '',
 			githubLink : '',
@@ -10,7 +10,7 @@ var OtherUsersInfo = React.createClass({
 		};
 	},
 	componentDidMount: function() {
-		$.getJSON('/api/profile/:name' , function(data){
+		$.getJSON('/api/profile/' + this.props.param.name , function(data){
 			console.log(data);
 			this.setState({
 				username: data.username,
