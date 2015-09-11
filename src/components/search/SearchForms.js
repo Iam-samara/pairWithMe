@@ -18,11 +18,6 @@ var SearchForms = React.createClass({
     }
   },
 
-  valueHolder: {
-    partner: '',
-    learn: ''
-  },
-
   onChangePartner: function(value) {
     this.setState({
       partner: value
@@ -46,8 +41,8 @@ var SearchForms = React.createClass({
     e.preventDefault();
     var that = this;  
     var sendObject = {};
-    sendObject.partner = this.valueHolder.partner;
-    sendObject.tag = this.valueHolder.learn;
+    sendObject.partner = this.state.partner;
+    sendObject.tag = this.state.learn;
     $.ajax({
       url: '/search',
       contentType: 'application/json',
