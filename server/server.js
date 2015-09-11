@@ -24,20 +24,26 @@ var User = require('./db_models/userModel.js');
 var Tag = require('./db_models/tagModel.js');
 var Project = require('./db_models/projectModel.js');
 var KnownTag = require('./db_models/knownTagsModel.js');
+var WantedTag = require('./db_models/wantedTagsModel.js');
 
-Tag.belongsToMany(User, {through: 'knowntags'});
-User.belongsToMany(Tag, {through: 'knowntags'});
+Tag.belongsToMany(User, {as: 'known', through: 'knowntags'});
+User.belongsToMany(Tag, {as: 'known', through: 'knowntags'});
+Tag.belongsToMany(User, {as: 'want', through: 'wantedtags'});
+User.belongsToMany(Tag, {as: 'want', through: 'wantedtags'});
 Project.model.belongsToMany(User, {through: 'userproject'});
 User.belongsToMany(Project.model, {through: 'userproject'});
 
 var UserController = require('./db_models/userController.js');
 var TagController = require('./db_models/tagController.js');
-
 var KnownTagController = require('./db_models/knownTagsController.js');
+var WantedTagController = require('./db_models/wantedTagsController.js');
+//will need project controller
 
 sequelize.sync().then(function () {
   return console.log("database has synced");
 });
+
+var ControllerDirector = require('./db_models/controllerDirector.js');
 
 app.use('/', express.static(__dirname + '/../client'));
 app.use(cookieParser());
@@ -73,13 +79,12 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), UserController.signIn);
 
+app.post('/updateProfile', ControllerDirector.updateProfile);
 
-app.post('/updateProfile', KnownTagController.addTags);
-
-app.get('/api/profile',authenticate,UserController.profile);
+app.get('/api/profile',authenticate,ControllerDirector.getProfile);
 
 /* this route is authenticated, user must have cookie before diplaying profile*/
-app.get('/api/profile/:number',authenticate, UserController.profileByNumber);
+app.get('/api/profile/:name',authenticate, UserController.profileByName);
 
 app.post('/createProject', Project.createProject);
 
