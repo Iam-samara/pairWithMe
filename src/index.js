@@ -25,12 +25,12 @@ var routes = (
 		<Route name="individualprojects" path="individualProjects" handler={IndividualProjects}/>
 		<Route name="search" path="search" handler={Search}/>
 		<Route name="guide" path="guide" handler={Guide}/>
-		<Route name="usersprofile" path="profile/:name" handler={UsersProfile}/>
+		<Route name="usersprofile" path="profile/:user" handler={UsersProfile}/>
 	</Route>
 	)
 
 
-/*runs routes and attcehes them to our div with the class main
+/*runs routes and attaches them to our div with the class main
 	also designates which handler to render */
 Router.run(routes, Router.HistoryLocation, function (Handler) {
   React.render(<Handler/>, document.getElementById("main"));
