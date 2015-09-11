@@ -7,12 +7,13 @@ var Questions = React.createClass({
 			<div>
 				<p>
 					What is Pair Programming?
+					<a href="https://www.versionone.com/agile-101/agile-software-programming-best-practices/pair-programming/">What is Pair Programming?</a>
 				</p>
-				<a href="https://www.versionone.com/agile-101/agile-software-programming-best-practices/pair-programming/">What is Pair Programming?</a>
 				<p>
 					Why Pair Program?
+					<a href="http://cafe.elharo.com/programming/why-pair-programming-works/">Why Pair Program</a>
+	
 				</p>
-				<a href="http://cafe.elharo.com/programming/why-pair-programming-works/">Why Pair Program</a>
 				<p>
 					How to Pair Program?
 				</p>
