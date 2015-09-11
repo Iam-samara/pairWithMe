@@ -1,22 +1,12 @@
 var React = require('react');
-
+var OtherUsersInfo = require('./OtherUsersInfo.js');
+var OtherUsersData = require('./OtherUsersData.js');
 var UsersProfile = React.createClass({
 
 	render: function() {
 		return (
 			<div>
-				<UserInfo/>
-				<UserData/>
-				<div className="row">
-					<FinishedProjects/>
-					<FinishedProjects/>
-					<FinishedProjects/>			
-				</div>
-				<div className="row">
-					<FinishedProjects/>
-					<FinishedProjects/>
-					<FinishedProjects/>			
-				</div>				
+				<OtherUsersInfo/>
 			</div>
 		);
 	}
