@@ -23,6 +23,8 @@ KnownTagController.addTags = function (req, res) {
     }
   })
   console.log('check db');
+
+  
 }
 
 // KnownTagController.getTags = function (req, res) {
