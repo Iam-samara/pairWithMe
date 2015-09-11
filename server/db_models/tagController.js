@@ -10,8 +10,21 @@ TagController.getAllTags = function (req, res) {
 };
 
 TagController.addTags = function (req, res) {
-  for (var i = 0; i < req.tags.length; i++) {
-    Tag.findOrCreate({tagName: req.tags[i].tagName});
+  console.log(req.body.want);
+  var tags = '';
+  if (req.body.have && req.body.want) {
+    tags = req.body.have + ',' + req.body.want;
+  }
+  else if (req.body.have) {
+    tags = req.body.have;
+  }
+  else if (req.body.want) {
+    tags = req.body.want;
+  }
+  var tags = tags.split(',');
+  console.log(tags);
+  for (var i = 0; i < tags.length; i++) {
+    Tag.findOrCreate({where: {tagName: tags[i]}});
   }
 }
 
