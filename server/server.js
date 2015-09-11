@@ -77,7 +77,7 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 });
 
 
-app.get('/test', ControllerDirector.test);
+app.get('/test', ControllerDirector.getProfile);
 
 
 /** authenticates callback */
