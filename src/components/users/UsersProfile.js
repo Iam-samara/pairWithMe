@@ -1,6 +1,6 @@
 var React = require('react');
 var OtherUsersInfo = require('./OtherUsersInfo.js');
-// var OtherUsersData = require('./OtherUsersData.js');
+var OtherUsersData = require('./OtherUsersData.js');
 
 var UsersProfile = React.createClass({
 	contextTypes: {
@@ -13,6 +13,7 @@ var UsersProfile = React.createClass({
 		return (
 			<div> 
 				<OtherUsersInfo param={params} />
+				<OtherUsersData param={params} />
 			</div>
 		);
 	}
