@@ -58,12 +58,12 @@ userController.updateProfile = function (req, res) {
 
 userController.profile = function (req, res) {
   User.findOne({where: {githubID: req.cookies.githubID}}).done(function (userProfile) {
-    res.send(userProfile)
+    return (userProfile);
   });
 };
 
-userController.profileByNumber = function (req, res) {
-  User.findOne({where: {id: req.params.number}}).done(function (userProfile) {
+userController.profileByName = function (req, res) {
+  User.findOne({where: {username: req.params.name}}).done(function (userProfile) {
     res.send(userProfile)
   });
 };
