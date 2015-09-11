@@ -11,6 +11,7 @@ var OtherUsersInfo = React.createClass({
 	},
 	componentDidMount: function() {
 		$.getJSON('/api/profile/' + this.props.param.name , function(data){
+
 			console.log(data);
 			this.setState({
 				username: data.username,

@@ -3,7 +3,6 @@ var User = require('./userModel.js');
 var Tag = require('./tagModel.js');
 var KnownTag = require('./knownTagsModel.js');
 var UserController = require('./userController.js');
-var WantedTagController = require('./wantedTagsController.js');
 
 KnownTagController = {};
 
@@ -22,7 +21,8 @@ KnownTagController.addTags = function (req, res) {
       });
     }
   })
-  console.log('check db');
+
+
 }
 
 // KnownTagController.getTags = function (req, res) {

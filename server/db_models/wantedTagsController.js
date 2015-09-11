@@ -10,7 +10,7 @@ WantedTagController.addTags = function (req, res) {
   User.findOne({
     where: {githubID:req.cookies.githubID}
   }).done(function (user) {
-    var wanteds = req.body.have.split(',');
+    var wanteds = req.body.want.split(',');
     for (var i = 0; i < wanteds.length; i++) {
       Tag.findOne({
         where: {tagName: wanteds[i]}
@@ -21,9 +21,6 @@ WantedTagController.addTags = function (req, res) {
       });
     }
   })
-  UserController.updateProfile;
-  WantedTagController.addTags(req, res);
-  console.log('check db');
 }
 
 module.exports = WantedTagController;

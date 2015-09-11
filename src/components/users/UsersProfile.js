@@ -1,6 +1,7 @@
 var React = require('react');
 var OtherUsersInfo = require('./OtherUsersInfo.js');
 // var OtherUsersData = require('./OtherUsersData.js');
+
 var UsersProfile = React.createClass({
 	contextTypes: {
 		router: React.PropTypes.func.isRequired
