@@ -13,16 +13,17 @@ controllerDirector.updateProfile = function (req, res) {
 controllerDirector.getProfile = function (req, res) {
   var sendIt = {};
   User.findOne({where: {githubID: req.cookies.githubID}}).done(function (user) {
-    sendIt.id = user.id;
-    sendIt.userName = user.userName;
-    user.getKnown().done(function (knowns) {
-      user.knownTags = knowns[0].dataValues;
-      user.getWant().done(function (want) {
-        user.wantTags = want;
-        console.log(user.knownTags);
-        res.send(user);
-      })
-    })
+    // sendIt.id = user.id;
+    // sendIt.userName = user.userName;
+    // user.getKnown().done(function (knowns) {
+    //   user.knownTags = knowns[0].dataValues;
+    //   user.getWant().done(function (want) {
+    //     user.wantTags = want;
+    //     console.log(user.knownTags);
+    //     res.send(user);
+    //   })
+    // })
+    res.send(user);
   })
 };
 

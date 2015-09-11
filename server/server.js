@@ -85,24 +85,16 @@ app.get('/api/profile',authenticate,ControllerDirector.getProfile);
 
 /* this route is authenticated, user must have cookie before diplaying profile*/
 app.get('/api/profile/:name',authenticate, UserController.profileByName);
-
 app.post('/createProject', Project.createProject);
-
 app.post('/updateProject', Project.updateProject);
-
 app.get('/recentProjects/:number', Project.recentProjects);
-
 app.get('/tags', TagController.getAllTags);
-
 app.post('/tags', TagController.addTags);
-
 app.post('/knowntags', KnownTagController.addTags);
-
 app.post('/search', function (req, res) {
   console.log(req.body);
   res.send();
 })
-
 app.get('/logout', function (req, res) {
   res.clearCookie('githubID');
   res.clearCookie('token');
