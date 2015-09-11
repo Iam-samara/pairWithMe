@@ -47,9 +47,7 @@ var ProfileForm = React.createClass({
       result = result.map(function (element, index) {
         return ({value: element.tagName, label: element.tagName})
       })
-      console.log(result);
        this.setState({tags: result});
-      console.log(this.state);
     }.bind(this))
   },
   handle: function (e) {
@@ -61,7 +59,7 @@ var ProfileForm = React.createClass({
     sendObject.student = this.valueHolder.student;
     sendObject.have = this.valueHolder.have;
     sendObject.want = this.valueHolder.want;
-    console.log(sendObject.teacher);
+    console.log(sendObject);
     $.ajax({
       url: '/updateProfile',
       contentType: 'application/json',
