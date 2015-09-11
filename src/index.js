@@ -7,7 +7,8 @@ var ProfileEditor = require('./components/profile-editor/ProfileEditor.js');
 var RecentProjects = require('./components/recent-projects/RecentProjects.js');
 var IndividualProjects = require('./components/individual-project/IndividualProjects.js');
 var Search = require('./components/search/Search.js');
-var Guide = require('./components/guide-page/Guide.js')
+var Guide = require('./components/guide-page/Guide.js');
+var UsersProfile = require('./components/users/UsersProfile.js');
 var App = require('./components/app/App.js');
 var Router = require('react-router');
 var Route = Router.Route;
@@ -24,11 +25,12 @@ var routes = (
 		<Route name="individualprojects" path="individualProjects" handler={IndividualProjects}/>
 		<Route name="search" path="search" handler={Search}/>
 		<Route name="guide" path="guide" handler={Guide}/>
+		<Route name="usersprofile" path="profile/:user" handler={UsersProfile}/>
 	</Route>
 	)
 
 
-/*runs routes and attcehes them to our div with the class main
+/*runs routes and attaches them to our div with the class main
 	also designates which handler to render */
 Router.run(routes, Router.HistoryLocation, function (Handler) {
   React.render(<Handler/>, document.getElementById("main"));

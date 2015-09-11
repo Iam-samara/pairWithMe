@@ -2,7 +2,7 @@ var Sequelize = require('sequelize');
 var User = require('./userModel.js');
 var Tag = require('./tagModel.js');
 
-var KnownTag = sequelize.define('knowntags', {
+var WantedTag = sequelize.define('wantedtags', {
   id: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -10,4 +10,4 @@ var KnownTag = sequelize.define('knowntags', {
   },
 });
 
-module.exports = KnownTag;
+module.exports = WantedTag;
