@@ -1,6 +1,6 @@
 var React = require('react');
 
-var UserInfo = React.createClass({
+var OtherUsersInfo = React.createClass({
 
 	getInitialState: function() {
 		return {
@@ -10,7 +10,8 @@ var UserInfo = React.createClass({
 		};
 	},
 	componentDidMount: function() {
-		$.getJSON('/api/profile', function(data){
+		$.getJSON('/api/profile/:name' , function(data){
+			console.log(data);
 			this.setState({
 				username: data.username,
 				githubLink: data.githubProfileURL,
@@ -39,4 +40,4 @@ var UserInfo = React.createClass({
 
 });
 
-module.exports = UserInfo;
+module.exports = OtherUsersInfo;

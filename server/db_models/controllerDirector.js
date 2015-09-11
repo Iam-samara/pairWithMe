@@ -23,7 +23,7 @@ controllerDirector.getProfile = function (req, res) {
     //     res.send(user);
     //   })
     // })
-    res.send(user);
+  res.send(user);
   })
 };
 
