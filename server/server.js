@@ -76,6 +76,10 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
   //request will redirect to Githib for authentication
 });
 
+
+app.get('/test', ControllerDirector.getProfile);
+
+
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), UserController.signIn);
 

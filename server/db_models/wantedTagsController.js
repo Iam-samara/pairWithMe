@@ -21,8 +21,6 @@ WantedTagController.addTags = function (req, res) {
       });
     }
   })
-  UserController.updateProfile;
-  WantedTagController.addTags(req, res);
   console.log('check db');
 }
 

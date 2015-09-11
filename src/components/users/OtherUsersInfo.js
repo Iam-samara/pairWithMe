@@ -10,9 +10,8 @@ var OtherUsersInfo = React.createClass({
 		};
 	},
 	componentDidMount: function() {
-		var userpro = '/api/profile/'+Iam-samara;
-		console.log(userpro);
-		$.getJSON('/api/profile/'+Iam-samara , function(data){
+		console.log(this.props, this.params.name);
+		$.getJSON('/api/profile/Iam-samara' , function(data){
 			console.log(data);
 			this.setState({
 				username: data.username,
