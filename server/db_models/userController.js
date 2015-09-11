@@ -1,6 +1,7 @@
 var Sequelize = require('sequelize');
 var User = require('./userModel.js');
 var KnownTag = require('./knownTagsModel.js');
+var Tag = require('./tagModel.js');
 
 var userController = {};
 
@@ -19,6 +20,9 @@ userController.signIn = function(req,res) {
     }
   })
 };
+
+
+
 
 
 userController.updateProfile = function (req, res) {
