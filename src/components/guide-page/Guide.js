@@ -1,6 +1,7 @@
 var React = require('react');
 var HowTo = require("./HowTo.js");
 var Resources = require("./Resources.js");
+var Questions = require("./Questions.js");
 var Guide = React.createClass({
 	render: function(){
 		// console.log(this.props.params.read);
@@ -12,6 +13,7 @@ var Guide = React.createClass({
 			<h1>Guide Page</h1>
 			<HowTo/>
 			<Resources/>
+			<Questions/>
 			</div>
 		);
 	},

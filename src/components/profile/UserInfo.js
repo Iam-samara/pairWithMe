@@ -1,30 +1,37 @@
 var React = require('react');
 
-
 var UserInfo = React.createClass({
-getInitialState: function() {
-	return {
-		UserName: '',
-		GitHub: '',
-		Pic: '',
-	};
-},
-componentDidMount: function() {
-	var that = this;
-    $.getJSON('/profile1', function(result) {
-    		that.setState({UserName:result.username})
-    		that.setState({Pic:result.githubProfileImage})
-    		that.setState({GitHub:result.githubProfileURL})
 
-      })
-    },
-
+	getInitialState: function() {
+		return {
+			username : '',
+			githubLink : '',
+			picture: ''
+		};
+	},
+	componentDidMount: function() {
+		$.getJSON('/api/profile', function(data){
+			this.setState({
+				username: data.username,
+				githubLink: data.githubProfileURL,
+				picture: data.githubProfileImage
+			});
+		}.bind(this));
+	},
 	render: function() {
 		return (
 			<div className="row">
 				<div className="col-xs-12 text-center">
-					<img src={this.state.Pic}/>
-						<p>{this.state.UserName}  |  {this.state.GitHub}</p>
+
+						<p>
+							<img src={this.state.picture} className="img-rounded profile-pic"/>
+						</p>
+						<p>
+							{this.state.username}
+						</p>
+						<p>
+							<a href={this.state.githubLink}>GitHub Profile</a>
+						</p>
 				</div>
 			</div>
 		);

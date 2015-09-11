@@ -12,7 +12,8 @@ var App = require('./components/app/App.js');
 var Router = require('react-router');
 var Route = Router.Route;
 var Link = Router.Link;
- 
+window.$ = window.jQuery = require('jquery');
+
 /* establishes our routes and gives designated names */
 var routes = (
 	<Route handler = {App}>
