@@ -22,9 +22,6 @@ userController.signIn = function(req,res) {
 };
 
 
-
-
-
 userController.updateProfile = function (req, res) {
   User.findOne({where: {githubID: req.cookies.githubID}}).done(function (user) {
     if (req.body.teacher === "true") {
@@ -45,19 +42,12 @@ userController.updateProfile = function (req, res) {
     else {
       var collaborator = false;
     }
-    console.log(collaborator);
     user.updateAttributes({
       teacher: teacher,
       student: student,
       collaborator: collaborator
     });
-
   })
-  
-  console.log(req.body.collaborator);
-
-  console.log(req.body);
-  res.send('hi');
 }
 
 userController.profile = function (req, res) {
