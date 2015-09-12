@@ -73,4 +73,21 @@ controllerDirector.getProfile = function (req, res) {
   })
 };
 
+controllerDirector.search = function (req, res) {
+  console.log(req.body);
+  Tag.findOne({where: {tagName: req.body.tag},
+    include: [{model: User, as: 'want'}]}).done(function (tag) {
+      var users1 = [];
+      for (var i = 0; i < tag.want.length; i++) {
+        users1.push(tag.want[i].id)
+      }
+    User.findAll({where: {id: users1},
+    include: [{model: Tag, as: 'want'}, {model: Tag, as: 'known'}]}).done(function (users) {
+      console.log(users);
+      res.send(users);
+    })
+  })
+
+};
+
 module.exports = controllerDirector;

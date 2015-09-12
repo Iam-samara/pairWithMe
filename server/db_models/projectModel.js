@@ -12,6 +12,12 @@ Project.createProject = function (req, res) {
   Project.model.create({projectName: req.body.projectName, githubLink: req.body.githubLink, description: req.body.description});
 };
 
+Project.getProjects = function (req, res) {
+  Project.model.findAll().done(function (projects) {
+    res.send(projects);
+  })
+}
+
 Project.updateProject = function (req, res) {
   Project.model.findOne({where: {id: req.body.projectid} }).on('success', function (project) {
     project.updateAttributes({
