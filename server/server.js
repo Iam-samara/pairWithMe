@@ -93,7 +93,7 @@ app.get('/api/projects', ProjectController.getProjects);
 
 app.post('/updateProject', ProjectController.updateProject);
 
-// app.get('/recentProjects/:number', ProjectController.recentProjects);
+app.get('/recentProjects/:number', ProjectController.recentProjects);
 
 app.get('/tags', TagController.getAllTags);
 

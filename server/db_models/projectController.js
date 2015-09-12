@@ -6,8 +6,8 @@ var ProjectController = {};
 ProjectController.createProject = function (req, res) {
   Project.create({projectName: req.body.pname, githubLink: req.body.github, description: req.body.description}).done(
     function (project) {
-      
-      res.redirect('/recentProjects');
+      var id = project.id + '';
+      res.send(id);
     })
 };
 
