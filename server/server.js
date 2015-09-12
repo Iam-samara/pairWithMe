@@ -88,6 +88,8 @@ app.get('/api/profile/:name',authenticate, UserController.profileByName);
 
 app.post('/createProject', Project.createProject);
 
+app.get('/api/projects', Project.getProjects);
+
 app.post('/updateProject', Project.updateProject);
 
 app.get('/recentProjects/:number', Project.recentProjects);
