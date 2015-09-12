@@ -13,23 +13,23 @@ var ProjectForm = React.createClass({
 		}
 	},
 
-  onChangeName: function(event) {
-    this.setState({name: event.target.value});
+  onChangeName: function() {
+   this.setState({name: event.target.value});
   },
-  onChangeGithub: function(event) {
-    this.setState({github: event.target.value});
+  onChangeGithub: function(value) {
+   this.setState({github: event.target.value});
   },
-  onChangeDescription: function(event) {
-    this.setState({description: event.target.value});
+  onChangeDescription: function() {
+   this.setState({description: event.target.value});
   },
-  onChangeTools: function(event) {
-    this.setState({tools: event.target.value});
+  onChangeTools: function() {
+   this.setState({tools: event.target.value});
   },
-  onChangeLearn: function(event) {
-    this.setState({learn: event.target.value});
+  onChangeLearn: function(value) {
+   this.setState({learn: event.target.value});
   },
-  onChangePartner: function(event) {
-    this.setState({partner: event.target.value});
+  onChangePartner: function(value) {
+   this.setState({partner: event.target.value});
   },
   handle: function (e) {
     e.preventDefault();
@@ -47,31 +47,28 @@ var ProjectForm = React.createClass({
       contentType: 'application/json',
       type: 'POST',
       data: JSON.stringify(sendObject),
-
       success: function(data) {
         console.log(data);
       }.bind(this),
-
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
   },
-
 	render: function() {
 		return (
-			<div>
-				<form id="projectForm" encType="multipart/form-data" onSubmit={this.handle}>
-					<div className="row">
-					  <div className="form-group col-xs-12 col-sm-8">
-					    <label>Title</label>
-					    <input type="text" className="form-control"  placeholder="Title"/>
-					  </div>
-					</div>
+ 			<div>
+ 				<form id="projectForm" encType="multipart/form-data" onSubmit={this.handle}>
+ 					<div className="row">
+ 					  <div className="form-group col-xs-12 col-sm-8">
+ 					    <label>Title</label>
+ 					    <input type="text" className="form-control" value={this.state.name}  placeholder="Title" onChange={this.onChangeName}/>
+ 					  </div>
+ 					</div>
 					<div className="row">
 					  <div className="form-group col-xs-12 col-sm-8">
 					    <label>GitHubLink</label>
-					    <input type="text-area" className="form-control" value={this.state.github} placeholder="GitHubLink" onChange={this.onChangeGithub}/>
+					    <input type="text" className="form-control" value={this.state.github} placeholder="GitHubLink" onChange={this.onChangeGithub}/>
 					  </div>
 					</div>
 					<div className="row">
@@ -101,7 +98,6 @@ var ProjectForm = React.createClass({
 		       <div className="col-xs-12 col-sm-6">
             <input type="submit" value="SUBMIT" name="submit" className="btn btn-primary btn-lg btn-block" />
            </div>
-
 				</form>
 			</div>
 		);
