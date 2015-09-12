@@ -98,10 +98,7 @@ app.post('/tags', TagController.addTags);
 
 app.post('/knowntags', KnownTagController.addTags);
 
-app.post('/search', function (req, res) {
-  console.log(req.body);
-  res.send();
-})
+app.post('/search', ControllerDirector.search);
 
 app.get('/logout', function (req, res) {
   res.clearCookie('githubID');
