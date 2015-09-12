@@ -12,43 +12,35 @@ var ProjectForm = React.createClass({
 
 		}
 	},
-   valueHolder: {
-			name: '',
-			github: '',
-			description: '',
-			tools: '',
-			learn: '',
-			partner: ''
-  },
+
   onChangeName: function() {
-    this.valueHolder.name = this.state.name;
+   this.setState({name: event.target.value});
   },
   onChangeGithub: function(value) {
-  	this.valueHolder.github = value;
-		console.log(value);
+   this.setState({github: event.target.value});
   },
   onChangeDescription: function() {
-    this.valueHolder.description = description;
+   this.setState({description: event.target.value});
   },
   onChangeTools: function() {
-    this.valueHolder.tools = tools;
+   this.setState({tools: event.target.value});
   },
   onChangeLearn: function(value) {
-    this.valueHolder.learn = value;
+   this.setState({learn: event.target.value});
   },
-  onChangepartner: function(value) {
-    this.valueHolder.partner = value;
+  onChangePartner: function(value) {
+   this.setState({partner: event.target.value});
   },
   handle: function (e) {
     e.preventDefault();
     var that = this;
     var sendObject = {};
 	    sendObject.name = this.state.name;
-	    sendObject.github = this.valueHolder.github;
-	    sendObject.description = this.valueHolder.description;
-	    sendObject.tools = this.valueHolder.tools;
-	    sendObject.learn = this.valueHolder.learn;
-	    sendObject.partner = this.valueHolder.partner;
+	    sendObject.github = this.state.github;
+	    sendObject.description = this.state.description;
+	    sendObject.tools = this.state.tools;
+	    sendObject.learn = this.state.learn;
+	    sendObject.partner = this.state.partner;
 	    console.log(sendObject);
     $.ajax({
       url: '/createProject',
@@ -65,42 +57,42 @@ var ProjectForm = React.createClass({
   },
 	render: function() {
 		return (
-			<div>
-				<form id="projectForm" encType="multipart/form-data" onSubmit={this.handle}>
-					<div className="row">
-					  <div className="form-group col-xs-12 col-sm-8">
-					    <label>Title</label>
-					    <input type="text" className="form-control"  placeholder="Title"/>
-					  </div>
-					</div>
+ 			<div>
+ 				<form id="projectForm" encType="multipart/form-data" onSubmit={this.handle}>
+ 					<div className="row">
+ 					  <div className="form-group col-xs-12 col-sm-8">
+ 					    <label>Title</label>
+ 					    <input type="text" className="form-control" value={this.state.name}  placeholder="Title" onChange={this.onChangeName}/>
+ 					  </div>
+ 					</div>
 					<div className="row">
 					  <div className="form-group col-xs-12 col-sm-8">
 					    <label>GitHubLink</label>
-					    <input type="text" className="form-control" placeholder="GitHubLink" onChange={this.onChangeGithub}/>
+					    <input type="text" className="form-control" value={this.state.github} placeholder="GitHubLink" onChange={this.onChangeGithub}/>
 					  </div>
 					</div>
 					<div className="row">
 					  <div className="form-group col-xs-12 col-sm-8">
 					    <label>Description</label>
-					    <textarea className="form-control" rows="3" placeholder="Description" onChangeDescription={this.state.description}></textarea>
+					    <textarea className="form-control" rows="3" value={this.state.description} placeholder="Description" onChange={this.onChangeDescription}></textarea>
 					  </div>
 					</div>
 					<div className="row">
 					  <div className="form-group col-xs-12 col-sm-8">
 					    <label>Tools Used</label>
-					    <input type="text" className="form-control"  placeholder="Tools Used" onChangeTools={this.state.tools}/>
+					    <input type="text" className="form-control" value={this.state.tools} placeholder="Tools Used" onChange={this.onChangeTools}/>
 					  </div>
 					</div>
 					<div className="row">
 					  <div className="form-group col-xs-12 col-sm-8">
 					    <label>What we learned</label>
-					    <textarea className="form-control" row="3" placeholder="What we Learned" onChangeLearned={this.state.learn}></textarea>
+					    <textarea className="form-control" row="3" value={this.state.learn} placeholder="What we Learned" onChange={this.onChangeLearn}></textarea>
 					  </div>
 					</div>
 					<div className="row">
 					  <div className="form-group col-xs-12 col-sm-8">
 					    <label>Partners User Name</label>
-					    <input type="text" className="form-control"  placeholder="Partners User Name" onChangePartner={this.state.partner}/>
+					    <input type="text" className="form-control" value={this.state.partner} placeholder="Partners User Name" onChange={this.onChangePartner}/>
 					  </div>
 					</div>
 		       <div className="col-xs-12 col-sm-6">
