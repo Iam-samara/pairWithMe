@@ -30,13 +30,14 @@ Tag.belongsToMany(User, {as: 'known', through: 'knowntags'});
 User.belongsToMany(Tag, {as: 'known', through: 'knowntags'});
 Tag.belongsToMany(User, {as: 'want', through: 'wantedtags'});
 User.belongsToMany(Tag, {as: 'want', through: 'wantedtags'});
-Project.model.belongsToMany(User, {through: 'userproject'});
-User.belongsToMany(Project.model, {through: 'userproject'});
+Project.belongsToMany(User, {through: 'userproject'});
+User.belongsToMany(Project, {through: 'userproject'});
 
 var UserController = require('./db_models/userController.js');
 var TagController = require('./db_models/tagController.js');
 var KnownTagController = require('./db_models/knownTagsController.js');
 var WantedTagController = require('./db_models/wantedTagsController.js');
+var ProjectController = require('./db_models/projectController.js');
 //will need project controller
 
 sequelize.sync().then(function () {
@@ -86,13 +87,13 @@ app.get('/api/profile',authenticate,ControllerDirector.getProfile);
 /* this route is authenticated, user must have cookie before diplaying profile*/
 app.get('/api/profile/:name',authenticate, UserController.profileByName);
 
-app.post('/createProject', Project.createProject);
+app.post('/createProject', ProjectController.createProject);
 
-app.get('/api/projects', Project.getProjects);
+app.get('/api/projects', ProjectController.getProjects);
 
-app.post('/updateProject', Project.updateProject);
+app.post('/updateProject', ProjectController.updateProject);
 
-app.get('/recentProjects/:number', Project.recentProjects);
+// app.get('/recentProjects/:number', ProjectController.recentProjects);
 
 app.get('/tags', TagController.getAllTags);
 
