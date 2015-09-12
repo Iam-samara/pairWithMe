@@ -6,6 +6,8 @@ var Profile = require('./components/profile/Profile.js');
 var ProfileEditor = require('./components/profile-editor/ProfileEditor.js');
 var RecentProjects = require('./components/recent-projects/RecentProjects.js');
 var IndividualProjects = require('./components/individual-project/IndividualProjects.js');
+var ProjectForm = require('./components/individual-project/ProjectForm.js');
+
 var Search = require('./components/search/Search.js');
 var Guide = require('./components/guide-page/Guide.js');
 var UsersProfile = require('./components/users/UsersProfile.js');
@@ -26,6 +28,7 @@ var routes = (
 		<Route name="search" path="search" handler={Search}/>
 		<Route name="guide" path="guide" handler={Guide}/>
 		<Route name="usersprofile" path="profile/:user" handler={UsersProfile}/>
+		<Route name="projectform" path="projectForm" handler={ProjectForm}/>
 	</Route>
 	)
 
