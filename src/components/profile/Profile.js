@@ -16,6 +16,12 @@ var Profile = React.createClass({
 						<Link to="profileeditor" className="edit-profile-btn"> Profile Editor </Link>
 					</div>
 				</div>
+				<div className="row">
+					<div className="col-xs-12 text-center">
+						<Link to="projectform" className="edit-profile-btn"> Project Form </Link>
+					</div>
+				</div>
+
 
 				<UserData/>
 				<div className="row">

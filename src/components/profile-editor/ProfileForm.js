@@ -1,6 +1,8 @@
 var React = require('react');
 var Select = require('react-select');
-
+var Router= require('react-router');
+var Route = Router.Route;
+var Link = Router.Link;
 var partner = [
   { value: 'Collaborator', label: 'Collaborator' },
   { value: 'Student', label: 'Student' },
@@ -66,6 +68,7 @@ var ProfileForm = React.createClass({
       type: 'POST',
       data: JSON.stringify(sendObject),
       success: function(data) {
+
         window.location.pathname = '/profile';
       }.bind(this),
 
