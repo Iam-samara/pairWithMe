@@ -14,7 +14,7 @@ var ProfileForm = React.createClass({
 
 	getInitialState: function () {
       return {
-      tags: [], 
+      tags: [],
       teacher: '',
       collaborator: '',
       student: '',
@@ -67,12 +67,9 @@ var ProfileForm = React.createClass({
       contentType: 'application/json',
       type: 'POST',
       data: JSON.stringify(sendObject),
-
       success: function(data) {
-        console.log(data);
-        var path ='/profile';
-        this.setstate({active: window.location.path}); 
 
+        window.location.pathname = '/profile';
       }.bind(this),
 
       error: function(xhr, status, err) {
@@ -114,7 +111,7 @@ var ProfileForm = React.createClass({
               </div>
             </form>
           </div>
-        </div> 
+        </div>
   )}
 });
 module.exports = ProfileForm;
