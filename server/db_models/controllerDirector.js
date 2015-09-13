@@ -53,10 +53,12 @@ controllerDirector.updateProfile = function (req, res) {
         Tag.findOrCreate({where: {tagName: tags[i]}}).spread(function (tag) {
           console.log(tag);
           tag.addKnown(user).then(function() {
-            user.addKnown(tag)
+            user.addKnown(tag);
             }).done(function () {
               tag.addWant(user).then(function() {
-              user.addWant(tag)
+              user.addWant(tag).then(function() {
+                res.end();
+              })
             });
           })
         });
@@ -86,7 +88,7 @@ controllerDirector.search = function (req, res) {
       res.send(users);
     })
   })
-  
+
 };
 
 module.exports = controllerDirector;
