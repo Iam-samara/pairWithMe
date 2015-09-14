@@ -34,14 +34,43 @@ var IndividualProjects = React.createClass({
 	render: function(){
 		return (
 			<div>
-				<p> {this.state.name} </p>
-				<p> {this.state.github} </p>
-				<p> {this.state.description} </p>
-				<p> {this.state.tools} </p>
-				<p> {this.state.learn} </p>
-				<p> {this.state.partner} </p>
-
-			</div>
+				<div className="row">
+	 				<div className="form-group col-xs-12 col-sm-8">
+	 					<label>Title</label>
+						  <p className="bordered"> {this.state.name} </p>
+	 				</div>
+	 			</div>
+				<div className="row">
+					<div className="form-group col-xs-12 col-sm-8">
+					  <label>GitHubLink</label>
+					    <p className="bordered"> {this.state.github} </p>
+					</div>
+				</div>
+				<div className="row">
+					<div className="form-group col-xs-12 col-sm-8">
+					  <label>Description</label>
+					    <p className="bordered" row='3'>{this.state.description}</p>
+					</div>
+				</div>
+				<div className="row">
+					<div className="form-group col-xs-12 col-sm-8">
+				    <label>Tools Used</label>
+		  	    <p className="bordered">{this.state.tools}</p>
+					</div>
+				</div>
+				<div className="row">
+					 <div className="form-group col-xs-12 col-sm-8">
+					   <label>What we learned</label>
+					   <p className="bordered">{this.state.learn}</p>
+					 </div>
+				</div>
+				<div className="row">
+					 <div className="form-group col-xs-12 col-sm-8">
+					   <label>Partners User Name</label>
+					   <p className="bordered">{this.state.partner}</p>
+					 </div>
+				</div>
+      </div>
 		);
 	},
 });

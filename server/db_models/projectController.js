@@ -4,7 +4,7 @@ var Project = require('./projectModel.js');
 var ProjectController = {};
 
 ProjectController.createProject = function (req, res) {
-  Project.create({projectName: req.body.pname, githubLink: req.body.github, description: req.body.description}).done(
+  Project.create({projectName: req.body.name, githubLink: req.body.github, description: req.body.description}).done(
     function (project) {
       var id = project.id + '';
       res.send(id);
