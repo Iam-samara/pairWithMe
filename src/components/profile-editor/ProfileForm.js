@@ -84,7 +84,7 @@ var ProfileForm = React.createClass({
           <div className="col-xs-8 col-xs-offset-2">
             <form id="searchForm" encType="multipart/form-data" onSubmit={this.handle} className="form-inline">
               <div className="row">
-
+                <label>What kind of partner are you?(can select more than one)</label>
                 <div className="col-xs-offset-1 col-sm-offset-2">
                   <div className="col-xs-8 col-sm-4">
                     <input type="checkbox" name="teacher" onChange={this.onChangeTeacher}/> Teacher
@@ -96,12 +96,17 @@ var ProfileForm = React.createClass({
                     <input type="checkbox" name="student" value="true" onChange={this.onChangeStudent}/> Student
                   </div>
                 </div>
-
-                <div className="col-xs-12 col-sm-12">
-                  <Select name="form-field-name" options={this.state.tags} multi={true} allowCreate={true} onChange={ this.onChangeHave} />
+                <div className='row'>
+                  <label>Select or create a tag for skills you have(can select more than one)</label>
+                  <div className="col-xs-12 col-sm-12">
+                    <Select name="form-field-name" options={this.state.tags} multi={true} allowCreate={true} onChange={ this.onChangeHave} />
+                  </div>
                 </div>
-                <div className="col-xs-12 col-sm-12">
-                  <Select name="form-field-name" options={this.state.tags} multi={true} allowCreate={true} onChange={ this.onChangeWant} />
+                <div className='row'>
+                  <label>Select or create a tag for skills you want to learn(can select more than one)</label>
+                  <div className="col-xs-12 col-sm-12">
+                    <Select name="form-field-name" options={this.state.tags} multi={true} allowCreate={true} onChange={ this.onChangeWant} />
+                  </div>
                 </div>
               </div>
               <div className="row">

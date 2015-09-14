@@ -6,7 +6,7 @@ render: function(){
 		<div className="row">
       <div className="col-xs-12 col-sm-4 col-sm-push-8">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          Pair with me is a site deticated to finding the optimal pair programming partner for you! We dedicate our self to making sure anyone can find the person they want to work with to ensure they have very best experience. We hope you enjoy and find our site helpful!
         </p>
         <p className="text-center">
 					<a href="/auth/github">

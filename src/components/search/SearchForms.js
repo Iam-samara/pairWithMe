@@ -65,6 +65,7 @@ var SearchForms = React.createClass({
 					<div className="col-xs-8 col-xs-offset-2">
 						<form id="searchForm" encType="multipart/form-data" onSubmit={this.handle} className="form-inline">
 							<div className="row">
+              <label>Select the Type of Partner you are Looking for</label>
 								<div className="col-xs-12 col-sm-12">
 									<Select
 										name="form-field-name"
@@ -73,6 +74,9 @@ var SearchForms = React.createClass({
                     onChange = {this.onChangePartner}
 									/>
 								</div>
+              </div>
+              <div className="row">
+                <label>Select the Skills You Want to Use In This Project</label>
 								<div className="col-xs-12 col-sm-12">
 									<Select
 										name="form-field-name"
