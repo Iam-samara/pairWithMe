@@ -19,7 +19,6 @@ ProjectController.getProjects = function (req, res) {
     offset = 0;
   }
   Project.findAll({limit:10,order: "id desc", offset: offset}).done(function (projects) {
-    console.log(projects);
      res.send(projects);
   });
 }
