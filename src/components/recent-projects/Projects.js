@@ -4,24 +4,25 @@ var Projects = React.createClass({
 		return {
 			title: '',
 			descrition: '',
-			tools: '',
+			github: '',
 			route: ''
 		};
 	},
-	componentDidMount: function() {
-		
+	handle: function(){
+		 window.location.pathname = '/project/'+ this.props.route
 	},
 	render: function() {
+		console.log("props ~>", this.props.title);
 		return(
 			<div className="col-xs-12 col-sm-12 bordered">
-				<p>Title: </p>
-				<p>Description: </p>
-				<p>Tools Used: </p>
-				<p>Project Path: </p>
+				<p>Title:{this.props.title}</p>
+				<p>Description:{this.props.description}</p>
+				<p>Tools Used: {this.props.github}</p>
+				<button onClick={this.handle}>Project Path</button>
 			</div>
 			);
 
 	},
 
 });
-module.exports=(Projects);
+module.exports=Projects;

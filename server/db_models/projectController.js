@@ -11,8 +11,6 @@ ProjectController.createProject = function (req, res) {
     })
 };
 
-
-
 ProjectController.updateProject = function (req, res) {
   Project.findOne({where: {id: req.body.projectid} }).on('success', function (project) {
     project.updateAttributes({
