@@ -12,7 +12,13 @@ ProjectController.createProject = function (req, res) {
 };
 
 ProjectController.getProjects = function (req, res) {
-  Project.findAll({limit:10,order: "id desc"}).done(function (projects) {
+  if (req.params.pageNumber) {
+    offset = (req.params.pageNumber - 1) * 10;
+  }
+  else {
+    offset = 0;
+  }
+  Project.findAll({limit:10,order: "id desc", offset: offset}).done(function (projects) {
     console.log(projects);
      res.send(projects);
   });

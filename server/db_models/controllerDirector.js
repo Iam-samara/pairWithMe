@@ -5,14 +5,9 @@ var UserController = require('./userController.js');
 var KnownTagsController = require('./knownTagsController.js');
 var WantedTagsController = require('./wantedTagsController.js');
 
-
 var controllerDirector = {};
 
 controllerDirector.updateProfile = function (req, res) {
-  // UserController.updateProfile(req, res);
-  // TagController.addTags(req, res);
-  // KnownTagController.addTags(req, res);
-  // WantedTagController.addTags(req, res);
   User.findOne({where: {githubID: req.cookies.githubID}}).done(function (user) {
     if (req.body.teacher === "true") {
       var teacher = true;

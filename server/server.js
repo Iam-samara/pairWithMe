@@ -90,6 +90,7 @@ app.get('/api/profile/:name',authenticate, UserController.profileByName);
 app.post('/createProject', ProjectController.createProject);
 
 app.get('/api/projects', ProjectController.getProjects);
+app.get('/api/projects/:pageNumber', ProjectController.getProjects);
 
 app.post('/updateProject', ProjectController.updateProject);
 
