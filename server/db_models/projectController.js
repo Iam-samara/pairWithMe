@@ -12,10 +12,11 @@ ProjectController.createProject = function (req, res) {
 };
 
 ProjectController.getProjects = function (req, res) {
-  Project.findAll().done(function (projects) {
-    res.send(projects);
-  })
-};
+  Project.findAll({limit:10,order: "id desc"}).done(function (projects) {
+    console.log(projects);
+     res.send(projects);
+  });
+}
 
 ProjectController.updateProject = function (req, res) {
   Project.findOne({where: {id: req.body.projectid} }).on('success', function (project) {

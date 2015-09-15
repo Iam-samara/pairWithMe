@@ -1,7 +1,6 @@
 var Sequelize = require('sequelize');
 var User = require('./userModel.js');
 var KnownTag = require('./knownTagsModel.js');
-var Tag = require('./tagModel.js');
 
 var userController = {};
 
@@ -48,6 +47,7 @@ userController.updateProfile = function (req, res) {
       collaborator: collaborator
     });
   })
+
 }
 
 userController.profile = function (req, res) {
@@ -58,6 +58,8 @@ userController.profile = function (req, res) {
 };
 
 userController.profileByName = function (req, res) {
+
+  //console.log('request for ', req.params.name);
   User.findOne({where: {username: req.params.name},
     include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}).done(function (user) {
     res.send(user);
