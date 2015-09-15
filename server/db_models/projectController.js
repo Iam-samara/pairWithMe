@@ -12,7 +12,7 @@ ProjectController.createProject = function (req, res) {
 };
 
 ProjectController.getProjects = function (req, res) {
-  Project.model.findAll({limit:10,order: "id desc"}).done(function (projects) {
+  Project.findAll({limit:10,order: "id desc"}).done(function (projects) {
     console.log(projects);
      res.send(projects);
   });
