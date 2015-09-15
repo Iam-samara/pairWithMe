@@ -10,12 +10,15 @@ Project.model = sequelize.define('projects', {
 
 Project.createProject = function (req, res) {
   Project.model.create({projectName: req.body.projectName, githubLink: req.body.githubLink, description: req.body.description});
+  //res.sendStatus(200);
+  //res.redirect('/');
 };
 
 Project.getProjects = function (req, res) {
-  Project.model.findAll().done(function (projects) {
-    res.send(projects);
-  })
+  Project.model.findAll({limit:10,order: "id desc"}).done(function (projects) {
+    console.log(projects);
+     res.send(projects);
+  });
 }
 
 Project.updateProject = function (req, res) {
