@@ -1,7 +1,6 @@
 var React = require('react');
 
 var UserInfo = React.createClass({
-
 	getInitialState: function() {
 		return {
 			username : '',
@@ -22,9 +21,8 @@ var UserInfo = React.createClass({
 		return (
 			<div className="row">
 				<div className="col-xs-12 text-center">
-
 						<p>
-							<img src={this.state.picture} className="img-rounded profile-pic"/>
+							<img src={this.state.picture} className="img-rounded"/>
 						</p>
 						<p>
 							{this.state.username}
