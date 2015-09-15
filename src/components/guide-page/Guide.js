@@ -12,8 +12,8 @@ var Guide = React.createClass({
 			<div>
 			<h1>Guide Page</h1>
 			<HowTo/>
-			<Resources/>
 			<Questions/>
+			<Resources/>
 			</div>
 		);
 	},

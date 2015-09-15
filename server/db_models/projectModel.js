@@ -1,8 +1,6 @@
 var Sequelize = require('sequelize');
 
-var Project = {};
-
-Project.model = sequelize.define('projects', {
+var Project  = sequelize.define('projects', {
   projectName: Sequelize.STRING,
   githubLink: Sequelize.STRING,
   description: Sequelize.STRING,
