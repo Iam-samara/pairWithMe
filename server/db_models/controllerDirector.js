@@ -75,11 +75,8 @@ controllerDirector.createProject = function(req, res) {
     description: req.body.description, 
     tools: req.body.tools, 
     learned: req.body.learn}).done( function(project) {
-      console.log('found project ');
       User.findOne({where: {githubID: req.cookies.githubID}}).done(function(user1) {
-        console.log('found user');
         User.findOne({where: {username: req.body.partner}}).done(function(user2) {
-          console.log('found partner');
           user1.addOwnedproject(project).done(function () {
             project.addProjectowner(user1).then(function () {
               user2.addOwnedproject(project).then(function () {
@@ -101,8 +98,7 @@ controllerDirector.getProjects = function (req, res) {
   else {
     offset = 0;
   }
-  Project.findAll({limit:10,order: "id desc", offset: offset, include: [{model: User, as: 'projectowner'}]}).done(function (projects) {
-    console.log(projects);
+  Project.findAll({limit:10, include: [{model: User, as: 'projectowner'}], order: [['id', 'desc']], offset: offset}).done(function (projects) {
      res.send(projects);
   });
 }
