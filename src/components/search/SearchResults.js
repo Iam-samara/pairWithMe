@@ -1,20 +1,14 @@
 var React = require('react');
-
+var Users = require('./Users.js')
 var SearchResults = React.createClass({
-	getInitialState: function() {
-		console.log("passed down", this.props.data);
-		return {
-			users: []
-		};
-	},
-	componentDidMount: function() {
-		console.log("mounted data", this.props.data);
-		this.setState({users:this.props.data})
-		
-	},
 	render: function() {
+		var userData = this.props.data.map(function(element, index){
+				return(<Users picture={element.githubProfileImage} name={element.username} github={element.githubProfileURL} email={element.email} key={index}/>)
+		});
 		return (
-			<div>hi</div>
+			<div>
+				{userData}
+			</div>
 		);
 	},
 });

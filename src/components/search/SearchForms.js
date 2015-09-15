@@ -51,7 +51,7 @@ var SearchForms = React.createClass({
       data: JSON.stringify(sendObject),
 
       success: function(results) {
-        this.setState({data:results})
+        that.setState({data:results});
         console.log(results);
       }.bind(this),
       
@@ -62,8 +62,8 @@ var SearchForms = React.createClass({
   },
 
   render: function() {
-    <SearchResults data={this.data}/>
     return(
+      <div>
 				<div className="row">
 					<div className="col-xs-8 col-xs-offset-2">
 						<form id="searchForm" encType="multipart/form-data" onSubmit={this.handle} className="form-inline">
@@ -98,6 +98,8 @@ var SearchForms = React.createClass({
 						</form>
 					</div>
 				</div>
+          <SearchResults data={this.state.data}/>
+      </div>
   )}
 });
 module.exports = SearchForms;

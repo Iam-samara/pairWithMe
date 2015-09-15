@@ -15,16 +15,16 @@ var Users = React.createClass({
 		return (
 			<div className="col-xs-12 col-sm-3 col-lg-4">
 				<div>
-					<img src={this.state.picture}/>
+					<img src={this.props.picture} className="img-rounded profile-pic"/>
 				</div>
 				<div>
-					<p>{this.state.name}</p>
+					<p>{this.props.name}</p>
 				</div>
 				<div>
-					<a href="mailto:"+{this.state.email}>Email</a>
+					<a href={this.props.email}>Email</a>
 				</div>
 				<div>
-					<a href={this.state.github}></a>
+					<a href={this.props.github}>GitHub</a>
 				</div>
 			</div>
 		);
