@@ -8,9 +8,6 @@ var Users = React.createClass({
 			email: ''
 		};
 	},
-	componentDidMount: function() {
-
-	},
 	render: function() {
 		console.log("mailto:"+this.props.email);
 		return (

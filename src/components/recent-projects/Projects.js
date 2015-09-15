@@ -4,19 +4,17 @@ var Projects = React.createClass({
 		return {
 			title: '',
 			descrition: '',
-			tools: '',
+			github: '',
 			route: ''
 		};
 	},
-	componentDidMount: function() {
-		
-	},
 	render: function() {
+		console.log("props ~>", this.props.title);
 		return(
 			<div className="col-xs-12 col-sm-12 bordered">
-				<p>Title: </p>
-				<p>Description: </p>
-				<p>Tools Used: </p>
+				<p>Title:{this.props.title}</p>
+				<p>Description:{this.props.description}</p>
+				<p>Tools Used: {this.props.github}</p>
 				<p>Project Path: </p>
 			</div>
 			);
@@ -24,4 +22,4 @@ var Projects = React.createClass({
 	},
 
 });
-module.exports=(Projects);
+module.exports=Projects;
