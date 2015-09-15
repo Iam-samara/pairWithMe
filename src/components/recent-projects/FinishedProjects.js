@@ -15,7 +15,7 @@ var FinishedProjects = React.createClass({
 	render: function() {
 		console.log("in render", this.state.projects);
 		var projectList = this.state.projects.map(function(element, index){
-			return (<Projects title={element.projectName} description={element.description} github={element.githubLink} key={index}/>)
+			return (<Projects title={element.projectName} description={element.description} github={element.githubLink} route={element.id} key={index}/>)
 		});
 
 		return(

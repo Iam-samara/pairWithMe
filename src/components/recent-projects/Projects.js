@@ -8,6 +8,9 @@ var Projects = React.createClass({
 			route: ''
 		};
 	},
+	handle: function(){
+		 window.location.pathname = '/project/'+ this.props.route
+	},
 	render: function() {
 		console.log("props ~>", this.props.title);
 		return(
@@ -15,7 +18,7 @@ var Projects = React.createClass({
 				<p>Title:{this.props.title}</p>
 				<p>Description:{this.props.description}</p>
 				<p>Tools Used: {this.props.github}</p>
-				<p>Project Path: </p>
+				<button onClick={this.handle}>Project Path</button>
 			</div>
 			);
 
