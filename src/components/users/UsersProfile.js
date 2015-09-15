@@ -12,8 +12,8 @@ var UsersProfile = React.createClass({
 		console.log(params);
 		return (
 			<div> 
-				<OtherUsersInfo param={params} />
-				<OtherUsersData param={params} />
+				<OtherUsersInfo param={params}/>
+				<OtherUsersData param={params}/>
 			</div>
 		);
 	}

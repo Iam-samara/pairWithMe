@@ -1,6 +1,5 @@
 var React = require('react');
 var SearchForms = require('./SearchForms.js');
-
 var Search = React.createClass({
 	render: function(){
 		return(

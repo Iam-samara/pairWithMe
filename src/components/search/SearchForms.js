@@ -1,6 +1,6 @@
 var React = require('react');
 var Select = require('react-select');
-
+var SearchResults = require('./SearchResults.js');
 
 var partner = [
 	{ value: 'Collaborater', label: 'Collaborater' },
@@ -14,7 +14,8 @@ var SearchForms = React.createClass({
     return {
       tags: [],
       partner: '',
-      learn: ''
+      learn: '',
+      data: []
     }
   },
 
@@ -49,8 +50,9 @@ var SearchForms = React.createClass({
       type: 'POST',
       data: JSON.stringify(sendObject),
 
-      success: function(data) {
-        console.log(data);
+      success: function(results) {
+        that.setState({data:results});
+        console.log(results);
       }.bind(this),
       
       error: function(xhr, status, err) {
@@ -61,6 +63,7 @@ var SearchForms = React.createClass({
 
   render: function() {
     return(
+      <div>
 				<div className="row">
 					<div className="col-xs-8 col-xs-offset-2">
 						<form id="searchForm" encType="multipart/form-data" onSubmit={this.handle} className="form-inline">
@@ -90,11 +93,13 @@ var SearchForms = React.createClass({
 							<div className="row">
 						<div className="col-xs-12">
 								<input type="submit" value="SUBMIT"  name="submit" className="btn btn-primary btn-lg btn-block" />
-						</div>
+            </div>
 					</div>
 						</form>
 					</div>
 				</div>
+          <SearchResults data={this.state.data}/>
+      </div>
   )}
 });
 module.exports = SearchForms;

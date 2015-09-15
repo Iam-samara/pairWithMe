@@ -1,5 +1,16 @@
 var React = require('react');
 var Projects = React.createClass({
+	getInitialState: function() {
+		return {
+			title: '',
+			descrition: '',
+			tools: '',
+			route: ''
+		};
+	},
+	componentDidMount: function() {
+		
+	},
 	render: function() {
 		return(
 			<div className="col-xs-12 col-sm-12 bordered">
