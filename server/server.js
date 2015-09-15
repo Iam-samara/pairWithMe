@@ -30,8 +30,8 @@ Tag.belongsToMany(User, {as: 'known', through: 'knowntags'});
 User.belongsToMany(Tag, {as: 'known', through: 'knowntags'});
 Tag.belongsToMany(User, {as: 'want', through: 'wantedtags'});
 User.belongsToMany(Tag, {as: 'want', through: 'wantedtags'});
-Project.belongsToMany(User, {through: 'userproject'});
-User.belongsToMany(Project, {through: 'userproject'});
+Project.belongsToMany(User, {as: 'projectowner', through: 'userproject'});
+User.belongsToMany(Project, {as: 'ownedproject', through: 'userproject'});
 
 var UserController = require('./db_models/userController.js');
 var TagController = require('./db_models/tagController.js');
@@ -87,10 +87,10 @@ app.get('/api/profile',authenticate,ControllerDirector.getProfile);
 /* this route is authenticated, user must have cookie before diplaying profile*/
 app.get('/api/profile/:name',authenticate, UserController.profileByName);
 
-app.post('/createProject', ProjectController.createProject);
+app.post('/createProject', ControllerDirector.createProject);
 
-app.get('/api/projects', ProjectController.getProjects);
-app.get('/api/projects/:pageNumber', ProjectController.getProjects);
+app.get('/api/projects', ControllerDirector.getProjects);
+app.get('/api/projects/:pageNumber', ControllerDirector.getProjects);
 
 app.post('/updateProject', ProjectController.updateProject);
 

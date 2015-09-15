@@ -4,25 +4,14 @@ var Project = require('./projectModel.js');
 var ProjectController = {};
 
 ProjectController.createProject = function (req, res) {
-  Project.create({projectName: req.body.name, githubLink: req.body.github, description: req.body.description}).done(
+  Project.create({projectName: req.body.name, githubLink: req.body.github, description: req.body.description, tools: req.body.tools, learned: req.body.learned}).done(
     function (project) {
       var id = project.id + '';
       res.send(id);
     })
 };
 
-ProjectController.getProjects = function (req, res) {
-  if (req.params.pageNumber) {
-    offset = (req.params.pageNumber - 1) * 10;
-  }
-  else {
-    offset = 0;
-  }
-  Project.findAll({limit:10,order: "id desc", offset: offset}).done(function (projects) {
-    console.log(projects);
-     res.send(projects);
-  });
-}
+
 
 ProjectController.updateProject = function (req, res) {
   Project.findOne({where: {id: req.body.projectid} }).on('success', function (project) {
