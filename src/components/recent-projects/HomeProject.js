@@ -18,7 +18,7 @@ var HomeProject = React.createClass({
 				<p>Title:{this.props.title}</p>
 				<p>Description:{this.props.description}</p>
 				<p>Tools Used: {this.props.github}</p>
-				<button onClick={this.handle}>Project Path</button>
+				<button className="project-page-btn" onClick={this.handle}>Project Path</button>
 			</div>
 		);
 	},

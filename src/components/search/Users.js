@@ -13,19 +13,20 @@ var Users = React.createClass({
 	},
 	render: function() {
 		return (
-			<div className="col-xs-12 col-sm-3 col-lg-4">
-				<p>
+<<<<<<< HEAD
+			<div className="col-xs-12 col-sm-3 col-lg-4 bordered">
+				<div className="text-center">
 					<img src={this.props.picture} className="img-rounded profile-pic"/>
-				</p>
-				<p>
-					{this.props.name}
-				</p>
-				<p>
-				 	<a href={this.props.email}>Email</a>
-				</p>
-				<p>
-				 	<a href={this.props.github}>GitHub</a>
-				</p>
+				</div>
+				<div className="text-center">
+					<p>{this.props.name}</p>
+				</div>
+				<div className="text-center">
+					<a href={this.props.email}>Email</a>
+				</div>
+				<div className="text-center">
+					<a href={this.props.github}>GitHub</a>
+				</div>
 			</div>
 		);
 	},

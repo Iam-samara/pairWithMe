@@ -21,7 +21,7 @@ var UserProjects = React.createClass({
 				</div>
 				<div className="row">
 					<p className="text-center">
-						<button className="center" onClick={this.handle}>Project Path</button>
+						<button className="project-page-btn" onClick={this.handle}>Project Path</button>
 					</p>
 				</div>
 			</div>

@@ -21,7 +21,7 @@ var OtherProjects = React.createClass({
 				</div>
 				<div className="row">
 					<p className='text-center'>
-						<button onClick={this.handle}>Project Path</button>
+						<button className="project-page-btn" onClick={this.handle}>Project Path</button>
 					</p>
 				</div>
 			</div>
