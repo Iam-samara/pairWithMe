@@ -9,17 +9,7 @@ var OtherUsersInfo = React.createClass({
 			picture: ''
 		};
 	},
-	componentDidMount: function() {
-		$.getJSON('/api/profile/' + this.props.param.user , function(data){
 
-			console.log(data);
-			this.setState({
-				username: data.username,
-				githubLink: data.githubProfileURL,
-				picture: data.githubProfileImage
-			});
-		}.bind(this));
-	},
 	render: function() {
 		return (
 			<div className="row">
