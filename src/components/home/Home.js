@@ -1,6 +1,6 @@
 var React = require('react');
 var HomeHero = require('./HomeHero.js');
-var FinishedProjects = require('../recent-projects/FinishedProjects.js');
+var HomeHeroProjects = require('../recent-projects/HomeHeroProjects.js');
 var Home = React.createClass({
 	render: function(){
 		return (
@@ -9,9 +9,7 @@ var Home = React.createClass({
 				<HomeHero/>
 			</div>
 			<div className="row">
-				<FinishedProjects/>
-				<FinishedProjects/>
-				<FinishedProjects/>			
+				<HomeHeroProjects/>
 			</div>
 		</div>
 		);
