@@ -6,7 +6,7 @@ var Search = React.createClass({
 			<div>
 				<SearchForms/>
 			</div>
-			);
+		);
 	},
 });
 module.exports = Search;

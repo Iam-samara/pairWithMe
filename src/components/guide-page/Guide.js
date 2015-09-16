@@ -10,10 +10,12 @@ var Guide = React.createClass({
 	*/
 		return (
 			<div>
-			<h1>Guide Page</h1>
-			<HowTo/>
-			<Questions/>
-			<Resources/>
+				<h1>
+					Guide Page
+				</h1>
+				<HowTo/>
+				<Questions/>
+				<Resources/>
 			</div>
 		);
 	},

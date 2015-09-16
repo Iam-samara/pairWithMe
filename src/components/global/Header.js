@@ -14,7 +14,6 @@ var Header = React.createClass({
 	},
 	render: function(){
 		return (
-
 			<div className="header clearfix row">
       <nav>
         <ul className="nav nav-pills pull-right">
@@ -44,32 +43,3 @@ var Header = React.createClass({
 	},
 });
 module.exports = Header;
-
-			// <nav class="navbar navbar-default">
-				// <ul>
-				// 	<li>
-				// 		<Link to= "/">Home</Link>
-				// 	</li>
-				// 	<li>
-				// 		<Link to= "guide">Guide</Link>
-				// 	</li>
-				// 	<li>
-				// 		<Link to= "profile">Profile</Link>
-				// 	</li>
-				// 	<li>
-				// 		<Link to= "profileform">Profile Editor</Link>
-				// 	</li>
-				// 	<li>
-				// 		<Link to= "recentprojects">Recent Projects</Link>
-				// 	</li>
-				// 	<li>
-				// 		<Link to= "individualprojects">Individual Projets</Link>
-				// 	</li>
-				// 				<li>
-				// 		<Link to= "search">search</Link>
-				// 	</li>
-					// <li>
-					// 	<a href="/auth/github">githubLogin</a>
-					// </li>
-				// </ul>
-			// </nav>

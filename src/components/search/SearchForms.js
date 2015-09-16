@@ -7,9 +7,7 @@ var partner = [
 	{ value: 'Student', label: 'Student' },
 	{ value: 'Teacher', label: 'Teacher'}
 ];
-
 var SearchForms = React.createClass({
-
 	getInitialState: function () {
     return {
       tags: [],
@@ -18,7 +16,6 @@ var SearchForms = React.createClass({
       data: []
     }
   },
-
   onChangePartner: function(value) {
     this.setState({
       partner: value
@@ -38,9 +35,8 @@ var SearchForms = React.createClass({
     }.bind(this))
   },
   handle: function (e) {
-   
     e.preventDefault();
-    var that = this;  
+    var that = this;
     var sendObject = {};
     sendObject.partner = this.state.partner;
     sendObject.tag = this.state.learn;
@@ -54,13 +50,12 @@ var SearchForms = React.createClass({
         that.setState({data:results});
         console.log(results);
       }.bind(this),
-      
+
       error: function(xhr, status, err) {
         console.error(this.props.url, status, err.toString());
       }.bind(this)
     });
   },
-
   render: function() {
     return(
       <div>
@@ -74,7 +69,7 @@ var SearchForms = React.createClass({
 										name="form-field-name"
 										value={this.state.partner}
 										options={partner}
-                    onChange = {this.onChangePartner}
+										onChange = {this.onChangePartner}
 									/>
 								</div>
               </div>
@@ -83,22 +78,22 @@ var SearchForms = React.createClass({
 								<div className="col-xs-12 col-sm-12">
 									<Select
 										name="form-field-name"
-                    value={this.state.learn}
-                    options={this.state.tags}
-                    onChange = {this.onChangeTag}
+										value={this.state.learn}
+										options={this.state.tags}
+										onChange = {this.onChangeTag}
 										multi={false}
 									/>
 								</div>
 							</div>
 							<div className="row">
-						<div className="col-xs-12">
-								<input type="submit" value="SUBMIT"  name="submit" className="btn btn-primary btn-lg btn-block" />
-            </div>
-					</div>
+								<div className="col-xs-12">
+									<input type="submit" value="SUBMIT"  name="submit" className="btn btn-primary btn-lg btn-block" />
+								</div>
+							</div>
 						</form>
 					</div>
 				</div>
-          <SearchResults data={this.state.data}/>
+        <SearchResults data={this.state.data}/>
       </div>
   )}
 });
