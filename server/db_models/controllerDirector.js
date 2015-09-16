@@ -42,9 +42,9 @@ controllerDirector.updateProfile = function (req, res) {
         })
       var tags2 = req.body.want;
       for (var j = 0; j < tags2.length; j++) {
-        Tag.findOrCreate({where: {tagName: tags[i]}}).spread(function (tag) {
-          tag.addWant(user).then(function() {
-            user.addWant(tag);
+        Tag.findOrCreate({where: {tagName: tags2[i]}}).spread(function (tag2) {
+          tag2.addWant(user).then(function() {
+            user.addWant(tag2);
           })
         })
       }
