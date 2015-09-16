@@ -30,8 +30,8 @@ Tag.belongsToMany(User, {as: 'known', through: 'knowntags'});
 User.belongsToMany(Tag, {as: 'known', through: 'knowntags'});
 Tag.belongsToMany(User, {as: 'want', through: 'wantedtags'});
 User.belongsToMany(Tag, {as: 'want', through: 'wantedtags'});
-Project.belongsToMany(User, {through: 'userproject'});
-User.belongsToMany(Project, {through: 'userproject'});
+Project.belongsToMany(User, {as: 'openproject', through: 'userproject'});
+User.belongsToMany(Project, {as: 'openproject', through: 'userproject'});
 
 var UserController = require('./db_models/userController.js');
 var TagController = require('./db_models/tagController.js');
@@ -96,20 +96,19 @@ app.post('/updateProject', ProjectController.updateProject);
 app.get('/recentProjects/:number', ProjectController.recentProjects);
 
 app.get('/tags', TagController.getAllTags);
+
 app.post('/tags', TagController.addTags);
+
 app.post('/knowntags', KnownTagController.addTags);
+
 app.post('/search', ControllerDirector.search);
+
 app.get('/logout', function (req, res) {
   res.clearCookie('githubID');
   res.clearCookie('token');
   res.redirect('/');
 })
 
-/** ends session*/
-// app.get('/logout', function(req,res) {
-//   req.logout();
-//   res.redirect('/');
-// });
 
 
 /* This is our initial get request for our html and allows us to remove the #
