@@ -10,7 +10,6 @@ TagController.getAllTags = function (req, res) {
 };
 
 TagController.addTags = function (req, res) {
-  console.log(req.body.want);
   var tags = '';
   if (req.body.have && req.body.want) {
     tags = req.body.have + ',' + req.body.want;
@@ -22,7 +21,6 @@ TagController.addTags = function (req, res) {
     tags = req.body.want;
   }
   var tags = tags.split(',');
-  console.log(tags);
   for (var i = 0; i < tags.length; i++) {
     Tag.findOrCreate({where: {tagName: tags[i]}});
   }

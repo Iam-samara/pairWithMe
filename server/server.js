@@ -58,9 +58,7 @@ app.use(passport.session()); //used for persisten login
   * onthe the next param when used. else it would redirect to the
   * ouath/github route that will redirect to the github page */
 var authenticate = function(req,res,next) {
-  console.log("req.cookies.token " + req.cookies.token);
   if(!req.cookies.token) {
-  //  res.sendStatus(401);
     res.redirect('/auth/github')
   }
   else {next();}
