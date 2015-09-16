@@ -21,15 +21,15 @@ var UserInfo = React.createClass({
 		return (
 			<div className="row">
 				<div className="col-xs-12 text-center">
-						<p>
-							<img src={this.state.picture} className="img-rounded"/>
-						</p>
-						<p>
-							{this.state.username}
-						</p>
-						<p>
-							<a href={this.state.githubLink}>GitHub Profile</a>
-						</p>
+					<p>
+						<img src={this.state.picture} className="img-rounded"/>
+					</p>
+					<p>
+						{this.state.username}
+					</p>
+					<p>
+						<a href={this.state.githubLink}>GitHub Profile</a>
+					</p>
 				</div>
 			</div>
 		);

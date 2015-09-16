@@ -29,7 +29,7 @@ var UserData = React.createClass({
 				return (element.tagName +", ");
 			});
 			var ownedproject = data.ownedproject;
-		console.log(ownedproject);
+			console.log(ownedproject);
 			this.setState({
 				knownTags: known,
 				wantTags: wanted,
@@ -57,7 +57,7 @@ var UserData = React.createClass({
 						<div className="col-xs-12 col-sm-4 text-center">
 							<strong>{this.state.student}</strong>
 						</div>
-					</div>				
+					</div>
 					<div className="row">
 						<div className="col-xs-10 col-xs-offset-1 bordered">
 							<strong>Skills Have: </strong>{this.state.knownTags}

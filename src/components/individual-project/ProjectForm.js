@@ -9,28 +9,26 @@ var ProjectForm = React.createClass({
 			tools: '',
 			learn: '',
 			partner: ''
-
 		}
 	},
-
-  onChangeName: function() {
+	onChangeName: function() {
    this.setState({name: event.target.value});
-  },
-  onChangeGithub: function(value) {
-   this.setState({github: event.target.value});
-  },
-  onChangeDescription: function() {
-   this.setState({description: event.target.value});
-  },
-  onChangeTools: function() {
-   this.setState({tools: event.target.value});
-  },
-  onChangeLearn: function(value) {
-   this.setState({learn: event.target.value});
-  },
-  onChangePartner: function(value) {
-   this.setState({partner: event.target.value});
-  },
+	},
+	onChangeGithub: function(value) {
+	 this.setState({github: event.target.value});
+	},
+	onChangeDescription: function() {
+	 this.setState({description: event.target.value});
+	},
+	onChangeTools: function() {
+	 this.setState({tools: event.target.value});
+	},
+	onChangeLearn: function(value) {
+	 this.setState({learn: event.target.value});
+	},
+	onChangePartner: function(value) {
+	 this.setState({partner: event.target.value});
+	},
   handle: function (e) {
     e.preventDefault();
     var that = this;
@@ -96,9 +94,9 @@ var ProjectForm = React.createClass({
 					    <input type="text" className="form-control" value={this.state.partner} placeholder="Partners User Name" onChange={this.onChangePartner}/>
 					  </div>
 					</div>
-		       <div className="col-xs-12 col-sm-6">
-            <input type="submit" value="SUBMIT" name="submit" className="btn btn-primary btn-lg btn-block" />
-           </div>
+					<div className="col-xs-12 col-sm-6">
+					  <input type="submit" value="SUBMIT" name="submit" className="btn btn-primary btn-lg btn-block" />
+					</div>
 				</form>
 			</div>
 		);
