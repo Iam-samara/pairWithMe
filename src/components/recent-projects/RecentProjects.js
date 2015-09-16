@@ -1,17 +1,12 @@
 var React = require('react');
-var Projects = require('./Projects');
+var FinishedProjects = require('./FinishedProjects.js');
 var RecentProjects = React.createClass({
 	render: function(){
 		return (
 			<div>
-				<Projects/>
-				<Projects/>
-				<Projects/>				
-				<Projects/>
-				<Projects/>
-				<Projects/>		
+				<FinishedProjects/>
 			</div>
 		);
 	},
 });
-module.exports = RecentProjects;
+module.exports=RecentProjects;

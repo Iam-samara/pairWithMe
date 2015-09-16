@@ -40,3 +40,11 @@
   max-width: 240px;
   height: auto;
 }
+.guide-block {
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background: rgba(222,222,222,0.2);
+}
+.guide-block h4, .guide-block p {
+  padding: 5px;
+}

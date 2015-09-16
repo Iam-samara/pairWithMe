@@ -4,15 +4,11 @@ var TagController = require('./tagController.js');
 var UserController = require('./userController.js');
 var KnownTagsController = require('./knownTagsController.js');
 var WantedTagsController = require('./wantedTagsController.js');
-
+var Project = require('./projectModel.js');
 
 var controllerDirector = {};
 
 controllerDirector.updateProfile = function (req, res) {
-  // UserController.updateProfile(req, res);
-  // TagController.addTags(req, res);
-  // KnownTagController.addTags(req, res);
-  // WantedTagController.addTags(req, res);
   User.findOne({where: {githubID: req.cookies.githubID}}).done(function (user) {
     if (req.body.teacher === "true") {
       var teacher = true;
@@ -48,10 +44,8 @@ controllerDirector.updateProfile = function (req, res) {
         tags = req.body.want;
       }
       var tags = tags.split(',');
-      console.log(tags);
       for (var i = 0; i < tags.length; i++) {
         Tag.findOrCreate({where: {tagName: tags[i]}}).spread(function (tag) {
-          console.log(tag);
           tag.addKnown(user).then(function() {
             user.addKnown(tag);
             }).done(function () {
@@ -68,12 +62,46 @@ controllerDirector.updateProfile = function (req, res) {
 };
 
 controllerDirector.getProfile = function (req, res) {
-
   User.findOne({where: {githubID: req.cookies.githubID},
-    include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}).done(function (user) {
+    include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}, {model: Project, as: 'ownedproject', include: [{model: User, as: 'projectowner'}]}]}).done(function (user) {
     res.send(user);
   })
 };
+
+controllerDirector.createProject = function(req, res) {
+  Project.create({
+    projectName: req.body.name,
+    githubLink: req.body.github,
+    description: req.body.description,
+    tools: req.body.tools,
+    learned: req.body.learn}).done( function(project) {
+      User.findOne({where: {githubID: req.cookies.githubID}}).done(function(user1) {
+        User.findOne({where: {username: req.body.partner}}).done(function(user2) {
+          user1.addOwnedproject(project).done(function () {
+            project.addProjectowner(user1).then(function () {
+              user2.addOwnedproject(project).then(function () {
+                project.addProjectowner(user2);
+              })
+            })
+          })
+        })
+      })
+      var id = project.id + '';
+      res.send(id);
+    })
+}
+
+controllerDirector.getProjects = function (req, res) {
+  if (req.params.pageNumber) {
+    offset = (req.params.pageNumber - 1) * 10;
+  }
+  else {
+    offset = 0;
+  }
+  Project.findAll({limit:10, include: [{model: User, as: 'projectowner'}], order: [['id', 'desc']], offset: offset}).done(function (projects) {
+     res.send(projects);
+  });
+}
 
 controllerDirector.search = function (req, res) {
   User.findOne({where: {githubID: req.cookies.githubID},
@@ -107,10 +135,10 @@ controllerDirector.search = function (req, res) {
               }
             }
             likeness.sort(function (a, b) {
-              if (a.value > b.value) {
+              if (a.value < b.value) {
                 return 1;
               }
-              if (a.value < b.value) {
+              if (a.value > b.value) {
                 return -1;
               }
               return 0;
@@ -119,7 +147,6 @@ controllerDirector.search = function (req, res) {
             for (var i = 0; i < likeness.length; i++) {
               userSend.push(likeness[i].person);
             }
-            console.log(userSend);
             res.send(userSend);
           })
       })

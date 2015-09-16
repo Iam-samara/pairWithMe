@@ -21,19 +21,7 @@ var Profile = React.createClass({
 						<Link to="projectform" className="edit-profile-btn"> Project Form </Link>
 					</div>
 				</div>
-
-
-				<UserData/>
-				<div className="row">
-					<FinishedProjects/>
-					<FinishedProjects/>
-					<FinishedProjects/>			
-				</div>
-				<div className="row">
-					<FinishedProjects/>
-					<FinishedProjects/>
-					<FinishedProjects/>			
-				</div>				
+				<UserData/>			
 			</div>
 		);
 	},

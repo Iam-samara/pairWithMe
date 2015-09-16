@@ -1,5 +1,5 @@
 var React = require('react');
-var Projects = React.createClass({
+var HomeProject = React.createClass({
 	getInitialState: function() {
 		return {
 			title: '',
@@ -14,7 +14,7 @@ var Projects = React.createClass({
 	render: function() {
 		console.log("props ~>", this.props.title);
 		return(
-			<div className="col-xs-12 col-sm-12 bordered">
+			<div className="col-xs-12 col-sm-4 bordered">
 				<p>Title:{this.props.title}</p>
 				<p>Description:{this.props.description}</p>
 				<p>Tools Used: {this.props.github}</p>
@@ -25,4 +25,4 @@ var Projects = React.createClass({
 	},
 
 });
-module.exports=Projects;
+module.exports=HomeProject;

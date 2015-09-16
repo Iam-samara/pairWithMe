@@ -1,6 +1,6 @@
 var React = require('react');
-var Projects = require('./Projects.js');
-var FinishedProjects = React.createClass({
+var HomeProject = require('./HomeProject.js');
+var HomeHeroProjects = React.createClass({
 	getInitialState: function() {
 		return {
 		projects: []
@@ -9,13 +9,13 @@ var FinishedProjects = React.createClass({
 	componentDidMount: function() {
 		$.getJSON('/api/projects', function(data){
 			console.log("proj", data);
-			this.setState({projects:data})
+			this.setState({projects:data.splice(0,3)})
 		}.bind(this));
 	},
 	render: function() {
 		console.log("in render", this.state.projects);
 		var projectList = this.state.projects.map(function(element, index){
-			return (<Projects title={element.projectName} description={element.description} github={element.githubLink} route={element.id} key={index}/>)
+			return (<HomeProject title={element.projectName} description={element.description} github={element.githubLink} route={element.id} key={index}/>)
 		});
 
 		return(
@@ -27,4 +27,4 @@ var FinishedProjects = React.createClass({
 	},
 
 });
-module.exports=FinishedProjects;
+module.exports=HomeHeroProjects;
