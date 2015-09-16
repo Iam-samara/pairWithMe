@@ -13,7 +13,6 @@ var Users = React.createClass({
 	},
 	render: function() {
 		return (
-<<<<<<< HEAD
 			<div className="col-xs-12 col-sm-3 col-lg-4 bordered">
 				<div className="text-center">
 					<img src={this.props.picture} className="img-rounded profile-pic"/>
