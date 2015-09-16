@@ -1,5 +1,5 @@
 var React = require('react');
-var UserProjects = React.createClass({
+var OtherProjects = React.createClass({
 	getInitialState: function() {
 		return {
 			title: '',
@@ -8,7 +8,7 @@ var UserProjects = React.createClass({
 		};
 	},
 	handle: function(){
-		 window.location.pathname = '/project/'+ this.props.route
+		 window.location.pathname = '/project/'+ this.props.route;
 	},
 	render: function() {
 		return (
@@ -20,12 +20,12 @@ var UserProjects = React.createClass({
 					<p className="text-center">{this.props.tools}</p>
 				</div>
 				<div className="row">
-					<p className="text-center">
-						<button className="center" onClick={this.handle}>Project Path</button>
+					<p className='text-center'>
+						<button onClick={this.handle}>Project Path</button>
 					</p>
 				</div>
 			</div>
 		);
 	}
 });
-module.exports = UserProjects;
+module.exports = OtherProjects;
