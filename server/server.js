@@ -1,5 +1,6 @@
 var express = require('express'),
   app = express(),
+  morgan = require('morgan');
   Sequelize = require('sequelize'),
   config = require('config'),
   http = require('http'),
@@ -9,7 +10,7 @@ var express = require('express'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser');
   // .urlencoded({ extended: true }),
-
+app.use(morgan('combined'));
 sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
   dialect: 'postgres',
   host: config.get('database.host'),
