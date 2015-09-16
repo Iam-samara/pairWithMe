@@ -1,6 +1,8 @@
 var Sequelize = require('sequelize');
 var User = require('./userModel.js');
 var KnownTag = require('./knownTagsModel.js');
+var Project = require('./projectModel.js');
+var Tag = require('./tagModel.js');
 
 var userController = {};
 
@@ -50,18 +52,11 @@ userController.updateProfile = function (req, res) {
 
 }
 
-userController.profile = function (req, res) {
-  User.findOne({where: {githubID: req.cookies.githubID},
-    include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}).done(function (user) {
-    res.send(user);
-  })
-};
-
 userController.profileByName = function (req, res) {
 
   //console.log('request for ', req.params.name);
   User.findOne({where: {username: req.params.name},
-    include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}).done(function (user) {
+    include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}, {model: Project, as: 'ownedproject', include: [{model: User, as: 'projectowner'}]}]}).done(function (user) {
     res.send(user);
   })
 };
