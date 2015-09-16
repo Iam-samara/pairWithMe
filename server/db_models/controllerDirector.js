@@ -33,33 +33,50 @@ controllerDirector.updateProfile = function (req, res) {
       student: student,
       collaborator: collaborator
     }).done(function (user) {
-      var tags = '';
-      if (req.body.have && req.body.want) {
-        tags = req.body.have + ',' + req.body.want;
-      }
-      else if (req.body.have) {
-        tags = req.body.have;
-      }
-      else if (req.body.want) {
-        tags = req.body.want;
-      }
-      var tags = tags.split(',');
+      var tags = req.body.have.split(',');
       for (var i = 0; i < tags.length; i++) {
         Tag.findOrCreate({where: {tagName: tags[i]}}).spread(function (tag) {
           tag.addKnown(user).then(function() {
             user.addKnown(tag);
-            }).done(function () {
-              tag.addWant(user).then(function() {
-              user.addWant(tag).then(function() {
-                res.end();
-              })
-            });
           })
-        });
+        })
       }
+      var tags2 = req.body.want.split(',');
+      console.log(tags2);
+      for (var j = 0; j < tags2.length; j++) {
+        Tag.findOrCreate({where: {tagName: tags2[j]}}).spread(function (tag2) {
+          tag2.addWant(user).then(function() {
+            user.addWant(tag2);
+          })
+        })
+      }
+      res.end();
     });
   })
 };
+
+// if (req.body.have && req.body.want) {
+      //   tags = req.body.have + ',' + req.body.want;
+      // }
+      // else if (req.body.have) {
+      //   tags = req.body.have;
+      // }
+      // else if (req.body.want) {
+      //   tags = req.body.want;
+      // }
+      // var tags = tags.split(',');
+      // for (var i = 0; i < tags.length; i++) {
+      //   Tag.findOrCreate({where: {tagName: tags[i]}}).spread(function (tag) {
+      //     tag.addKnown(user).then(function() {
+      //       user.addKnown(tag);
+      //       }).done(function () {
+      //         tag.addWant(user).then(function() {
+      //         user.addWant(tag).then(function() {
+      //           res.end();
+      //         })
+      //       });
+      //     })
+      //   });
 
 controllerDirector.getProfile = function (req, res) {
   User.findOne({where: {githubID: req.cookies.githubID},
