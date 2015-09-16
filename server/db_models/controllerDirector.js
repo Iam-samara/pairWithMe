@@ -33,23 +33,29 @@ controllerDirector.updateProfile = function (req, res) {
       student: student,
       collaborator: collaborator
     }).done(function (user) {
-      var tags = req.body.have;
+      var tags = req.body.have.split(',');
       for (var i = 0; i < tags.length; i++) {
         Tag.findOrCreate({where: {tagName: tags[i]}}).spread(function (tag) {
           tag.addKnown(user).then(function() {
             user.addKnown(tag);
           })
         })
-      var tags2 = req.body.want;
+      }
+      var tags2 = req.body.want.split(',');
+      console.log(tags2);
       for (var j = 0; j < tags2.length; j++) {
-        Tag.findOrCreate({where: {tagName: tags2[i]}}).spread(function (tag2) {
+        Tag.findOrCreate({where: {tagName: tags2[j]}}).spread(function (tag2) {
           tag2.addWant(user).then(function() {
             user.addWant(tag2);
           })
         })
       }
       res.end();
-      // if (req.body.have && req.body.want) {
+    });
+  })
+};
+
+// if (req.body.have && req.body.want) {
       //   tags = req.body.have + ',' + req.body.want;
       // }
       // else if (req.body.have) {
@@ -71,10 +77,6 @@ controllerDirector.updateProfile = function (req, res) {
       //       });
       //     })
       //   });
-      }
-    });
-  })
-};
 
 controllerDirector.getProfile = function (req, res) {
   User.findOne({where: {githubID: req.cookies.githubID},

@@ -13,7 +13,7 @@ passport.use(new GitHubStrategy({
   clientID: config.get('oAuth.clientID'),
   clientSecret: config.get('oAuth.clientSecret'),
   scope: ['user:email'],
-  callbackURL: 'localhost:3000/auth/github/callback',
+  callbackURL: 'http://localhost:3000/auth/github/callback',
   userAgent: 'pairWithMe'
 },
 function(accessToken, refreshToken, profile, done) {
