@@ -24,7 +24,6 @@ var OtherUsersInfo = React.createClass({
 		return (
 			<div className="row">
 				<div className="col-xs-12 text-center">
-
 						<p>
 							<img src={this.state.picture} className="img-rounded profile-pic"/>
 						</p>

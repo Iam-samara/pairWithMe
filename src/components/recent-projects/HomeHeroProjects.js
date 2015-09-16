@@ -17,13 +17,11 @@ var HomeHeroProjects = React.createClass({
 		var projectList = this.state.projects.map(function(element, index){
 			return (<HomeProject title={element.projectName} description={element.description} github={element.githubLink} route={element.id} key={index}/>)
 		});
-
 		return(
-			<div>
-				{projectList}	
-			</div>
+				<div>
+					{projectList}
+				</div>
 			);
-
 	},
 
 });

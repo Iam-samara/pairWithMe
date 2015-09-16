@@ -20,8 +20,7 @@ var HomeProject = React.createClass({
 				<p>Tools Used: {this.props.github}</p>
 				<button onClick={this.handle}>Project Path</button>
 			</div>
-			);
-
+		);
 	},
 
 });

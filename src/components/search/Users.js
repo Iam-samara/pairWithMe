@@ -9,23 +9,23 @@ var Users = React.createClass({
 		};
 	},
 	componentDidMount: function() {
-			
+
 	},
 	render: function() {
 		return (
 			<div className="col-xs-12 col-sm-3 col-lg-4">
-				<div>
+				<p>
 					<img src={this.props.picture} className="img-rounded profile-pic"/>
-				</div>
-				<div>
-					<p>{this.props.name}</p>
-				</div>
-				<div>
-					<a href={this.props.email}>Email</a>
-				</div>
-				<div>
-					<a href={this.props.github}>GitHub</a>
-				</div>
+				</p>
+				<p>
+					{this.props.name}
+				</p>
+				<p>
+				 	<a href={this.props.email}>Email</a>
+				</p>
+				<p>
+				 	<a href={this.props.github}>GitHub</a>
+				</p>
 			</div>
 		);
 	},
