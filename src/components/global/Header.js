@@ -37,7 +37,7 @@ var Header = React.createClass({
 						</li>
         </ul>
       </nav>
-      <h3 className="text-muted">Project name</h3>
+      <h3 className="text-muted">Pair With Me</h3>
     </div>
 		);
 	},
