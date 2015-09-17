@@ -8,7 +8,8 @@ var Users = React.createClass({
 			email: ''
 		};
 	},
-	componentDidMount: function() {
+	handle: function() {
+				 window.location.pathname = '/profile/'+ this.props.name
 
 	},
 	render: function() {
@@ -26,6 +27,7 @@ var Users = React.createClass({
 				<div className="text-center">
 					<a href={this.props.github}>GitHub</a>
 				</div>
+				<button className="project-page-btn" onClick={this.handle}>Profile Page</button>
 			</div>
 		);
 	},

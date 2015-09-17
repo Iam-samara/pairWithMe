@@ -4,6 +4,7 @@ var Projects = React.createClass({
 		return {
 			title: '',
 			descrition: '',
+			tools: '',
 			github: '',
 			route: ''
 		};
@@ -14,10 +15,10 @@ var Projects = React.createClass({
 	render: function() {
 		console.log("props ~>", this.props.title);
 		return(
-			<div className="col-xs-12 col-sm-12 bordered">
+			<div className={this.props.className}>
 				<p>Title:{this.props.title}</p>
 				<p>Description:{this.props.description}</p>
-				<p>Tools Used: {this.props.github}</p>
+				<p>Tools Used: {this.props.tools}</p>
 				<button className="project-page-btn" onClick={this.handle}>Project Path</button>
 			</div>
 			);

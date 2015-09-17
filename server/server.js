@@ -1,5 +1,6 @@
 var express = require('express'),
   app = express(),
+  morgan = require('morgan'),
   Sequelize = require('sequelize'),
   config = require('config'),
   http = require('http'),
@@ -9,7 +10,7 @@ var express = require('express'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser');
   // .urlencoded({ extended: true }),
-
+app.use(morgan('combined'));
 sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
   dialect: 'postgres',
   host: config.get('database.host'),
@@ -58,9 +59,7 @@ app.use(passport.session()); //used for persisten login
   * onthe the next param when used. else it would redirect to the
   * ouath/github route that will redirect to the github page */
 var authenticate = function(req,res,next) {
-  console.log("req.cookies.token " + req.cookies.token);
   if(!req.cookies.token) {
-  //  res.sendStatus(401);
     res.redirect('/auth/github')
   }
   else {next();}
@@ -97,20 +96,19 @@ app.post('/updateProject', ProjectController.updateProject);
 app.get('/recentProjects/:number', ProjectController.recentProjects);
 
 app.get('/tags', TagController.getAllTags);
+
 app.post('/tags', TagController.addTags);
+
 app.post('/knowntags', KnownTagController.addTags);
+
 app.post('/search', ControllerDirector.search);
+
 app.get('/logout', function (req, res) {
   res.clearCookie('githubID');
   res.clearCookie('token');
   res.redirect('/');
 })
 
-/** ends session*/
-// app.get('/logout', function(req,res) {
-//   req.logout();
-//   res.redirect('/');
-// });
 
 
 /* This is our initial get request for our html and allows us to remove the #
