@@ -9,7 +9,9 @@ var ProfileEditor = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<UserInfo/>
+				<div>
+					<a href={this.props.picture}></a>
+				</div>
 				<div className="row">
 					<div className="col-xs-12 text-center">
 						<Link to="profile" className="edit-profile-btn"> Profile </Link>

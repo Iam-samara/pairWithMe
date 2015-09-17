@@ -1,7 +1,7 @@
 var React = require('react');
-var OtherUsersInfo = require('./OtherUsersInfo.js');
-var OtherUsersData = require('./OtherUsersData.js');
-
+var UsersInfo = require('../profile/UserInfo.js');
+var UsersData = require('../profile/UserData.js');
+var Projects = require('../recent-projects/Projects.js');
 var UsersProfile = React.createClass({
 	contextTypes: {
 		router: React.PropTypes.func.isRequired
@@ -20,7 +20,10 @@ var UsersProfile = React.createClass({
 		};
 	},
 	componentDidMount: function() {
-		$.getJSON('/api/profile', function(data){
+		var params = this.context.router.getCurrentParams();
+		console.log(params.user);
+		$.getJSON('/api/profile/'+params.user, function(data){
+			console.log("returned",data)
 			if(data.teacher) {
 				var teach = "Teacher";
 			}
@@ -52,12 +55,14 @@ var UsersProfile = React.createClass({
 		}.bind(this));
 	},
 	render: function() {
-		var params = this.context.router.getCurrentParams();
-		console.log(params);
+		var otherProjs = this.state.projects.map(function(element, index){
+			return(<Projects className="col-xs-12 col-sm-3 bordered" title={element.projectName} tools={element.tools} route={element.id} key={index}/>)
+		})
 		return (
 			<div> 
-				<OtherUsersInfo param={params} name={this.state.username} github={this.state.githubLink} picture={this.state.picture}/>
-				<OtherUsersData param={params} knownTags={this.state.knownTags} wantTags={this.state.wantTags} teacher={this.state.teacher} collab={this.state.collab} student={this.state.student} projects={this.state.projects}/>
+				<UsersInfo name={this.state.username} github={this.state.githubLink} picture={this.state.picture}/>
+				<UsersData knownTags={this.state.knownTags} wantTags={this.state.wantTags} teacher={this.state.teacher} collab={this.state.collab} student={this.state.student}/>
+				{otherProjs}
 			</div>
 		);
 	}
