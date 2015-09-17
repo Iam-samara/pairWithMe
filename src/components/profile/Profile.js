@@ -57,7 +57,7 @@ var Profile = React.createClass({
 	},
 	render: function(){
 		var userProj = this.state.projects.map(function(element, index){
-			return(<Projects className="col-xs-12 col-sm-3 bordered" title={element.projectName} tools={element.tools} route={element.id} key={index}/>)
+			return(<Projects className="col-xs-12 col-sm-4 bordered" title={element.projectName.slice(0,20)} tools={element.tools.slice(0,20)} description={element.description.slice(0,20)} route={element.id} key={index}/>)
 		})
 
 		return (

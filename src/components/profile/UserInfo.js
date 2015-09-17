@@ -1,13 +1,6 @@
 var React = require('react');
 
 var UserInfo = React.createClass({
-	getInitialState: function() {
-		return {
-			name : '',
-			github : '',
-			picture: ''
-		};
-	},
 
 	render: function() {
 		return (
