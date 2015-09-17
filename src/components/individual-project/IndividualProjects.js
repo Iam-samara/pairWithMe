@@ -26,7 +26,7 @@ var IndividualProjects = React.createClass({
 				github: data.githubLink,
 				description: data.description,
 				tools: data.tools,
-				learn: data.learn,
+				learn: data.learned,
 				partner: data.partner
 			});
 		}.bind(this));

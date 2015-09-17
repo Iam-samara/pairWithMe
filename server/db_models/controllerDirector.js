@@ -42,7 +42,6 @@ controllerDirector.updateProfile = function (req, res) {
         })
       }
       var tags2 = req.body.want.split(',');
-      console.log(tags2);
       for (var j = 0; j < tags2.length; j++) {
         Tag.findOrCreate({where: {tagName: tags2[j]}}).spread(function (tag2) {
           tag2.addWant(user).then(function() {
