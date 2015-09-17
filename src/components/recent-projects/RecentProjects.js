@@ -1,12 +1,28 @@
 var React = require('react');
-var FinishedProjects = require('./FinishedProjects.js');
+var Projects = require('./Projects.js');
 var RecentProjects = React.createClass({
-	render: function(){
-		return (
+	getInitialState: function() {
+		return {
+		projects: []
+		};
+	},
+	componentDidMount: function() {
+		$.getJSON('/api/projects', function(data){
+			console.log("proj", data);
+			this.setState({projects:data})
+		}.bind(this));
+	},
+	render: function() {
+		console.log("in render", this.state.projects);
+		var projectList = this.state.projects.map(function(element, index){
+			return (<Projects title={element.projectName} description={element.description} github={element.githubLink} route={element.id} key={index}/>)
+		});
+
+		return(
 			<div>
-				<FinishedProjects/>
+				{projectList}	
 			</div>
-		);
+			);
 	},
 });
-module.exports=RecentProjects;
+module.exports = RecentProjects;

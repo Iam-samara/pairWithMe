@@ -5,8 +5,8 @@ var Home = require('./components/home/Home.js');
 var Profile = require('./components/profile/Profile.js');
 var ProfileEditor = require('./components/profile-editor/ProfileEditor.js');
 var RecentProjects = require('./components/recent-projects/RecentProjects.js');
-var IndividualProjects = require('./components/individual-project/IndividualProjects.js');
-var ProjectForm = require('./components/individual-project/ProjectForm.js');
+var IndividualProjects = require('./components/recent-projects/IndividualProjects.js');
+var ProjectForm = require('./components/recent-projects/ProjectForm.js');
 
 var Search = require('./components/search/Search.js');
 var Guide = require('./components/guide-page/Guide.js');
