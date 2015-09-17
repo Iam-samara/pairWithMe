@@ -51,6 +51,8 @@ var Profile = React.createClass({
 				student: learn,
 				projects: ownedproject
 			});
+			console.log(this.state.username);
+			console.log(this.state.githubLink);
 		}.bind(this));
 	},
 	render: function(){
