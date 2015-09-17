@@ -7,7 +7,7 @@ var UserInfo = React.createClass({
 			<div className="row">
 				<div className="col-xs-12 text-center">
 					<p>
-						<img src={this.props.picture} className="img-rounded"/>
+						<img src={this.props.picture} className="img-rounded profile-pic"/>
 					</p>
 					<p>
 						{this.props.name}
