@@ -17,17 +17,14 @@ var IndividualProjects = React.createClass({
 	},
 	componentDidMount: function() {
 		var params = this.context.router.getCurrentParams();
-		console.log(params);
 		$.getJSON('/recentProjects/' + params.id  , function(data){
-
-			console.log(data);
 			this.setState({
 				name: data.projectName,
 				github: data.githubLink,
 				description: data.description,
 				tools: data.tools,
-				learn: data.learn,
-				partner: data.partner
+				learn: data.learned,
+				partner: data.projectowner[0].username + ",  " + data.projectowner[1].username
 			});
 		}.bind(this));
 	},

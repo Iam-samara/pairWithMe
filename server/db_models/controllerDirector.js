@@ -42,7 +42,6 @@ controllerDirector.updateProfile = function (req, res) {
         })
       }
       var tags2 = req.body.want.split(',');
-      console.log(tags2);
       for (var j = 0; j < tags2.length; j++) {
         Tag.findOrCreate({where: {tagName: tags2[j]}}).spread(function (tag2) {
           tag2.addWant(user).then(function() {
@@ -87,10 +86,10 @@ controllerDirector.getProfile = function (req, res) {
 
 controllerDirector.createProject = function(req, res) {
   Project.create({
-    projectName: req.body.name, 
-    githubLink: req.body.github, 
-    description: req.body.description, 
-    tools: req.body.tools, 
+    projectName: req.body.name,
+    githubLink: req.body.github,
+    description: req.body.description,
+    tools: req.body.tools,
     learned: req.body.learn}).done( function(project) {
       User.findOne({where: {githubID: req.cookies.githubID}}).done(function(user1) {
         User.findOne({where: {username: req.body.partner}}).done(function(user2) {
