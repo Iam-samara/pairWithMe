@@ -4,10 +4,8 @@ var Route = Router.Route;
 var Link = Router.Link;
 var UserInfo = require('./UserInfo.js');
 var UserData = require('./UserData.js');
-var FinishedProjects = require('../recent-projects/FinishedProjects.js');
-var UserProjects = require('./UserProjects.js')
-
-
+var Projects = require('../recent-projects/Projects.js');
+var profileEditor = require('../profile-editor/ProfileEditor.js');
 
 var Profile = React.createClass({
 	getInitialState: function() {
@@ -53,12 +51,15 @@ var Profile = React.createClass({
 				student: learn,
 				projects: ownedproject
 			});
+			console.log(this.state.username);
+			console.log(this.state.githubLink);
 		}.bind(this));
 	},
 	render: function(){
 		var userProj = this.state.projects.map(function(element, index){
-			return(<UserProjects title={element.projectName} tools={element.tools} route={element.id} key={index}/>)
+			return(<Projects className="col-xs-12 col-sm-3 bordered" title={element.projectName} tools={element.tools} route={element.id} key={index}/>)
 		})
+
 		return (
 			<div>
 				<UserInfo name={this.state.username} github={this.state.githubLink} picture={this.state.picture}/>

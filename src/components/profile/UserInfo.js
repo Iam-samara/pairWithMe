@@ -3,8 +3,8 @@ var React = require('react');
 var UserInfo = React.createClass({
 	getInitialState: function() {
 		return {
-			username : '',
-			githubLink : '',
+			name : '',
+			github : '',
 			picture: ''
 		};
 	},
@@ -17,10 +17,10 @@ var UserInfo = React.createClass({
 						<img src={this.props.picture} className="img-rounded"/>
 					</p>
 					<p>
-						{this.props.username}
+						{this.props.name}
 					</p>
 					<p>
-						<a href={this.props.githubLink}>GitHub Profile</a>
+						<a href={this.props.github}>GitHub Profile</a>
 					</p>
 				</div>
 			</div>
