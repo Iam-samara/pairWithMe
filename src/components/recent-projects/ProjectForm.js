@@ -94,7 +94,7 @@ var ProjectForm = React.createClass({
 					    <input type="text" className="form-control" value={this.state.partner} placeholder="Partners User Name" onChange={this.onChangePartner}/>
 					  </div>
 					</div>
-					<div className="col-xs-12 col-sm-6">
+					<div className="col-xs-12 col-sm-6 col-sm-offset-3">
 					  <input type="submit" value="SUBMIT" name="submit" className="btn btn-primary btn-lg btn-block" />
 					</div>
 				</form>
