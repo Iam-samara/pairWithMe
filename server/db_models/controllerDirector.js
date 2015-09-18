@@ -35,6 +35,9 @@ controllerDirector.updateProfile = function (req, res) {
     }).done(function (user) {
       var tags = req.body.have.split(',');
       for (var i = 0; i < tags.length; i++) {
+        if (tags[i] === ' ') {
+          continue;
+        }
         Tag.findOrCreate({where: {tagName: tags[i]}}).spread(function (tag) {
           tag.addKnown(user).then(function() {
             user.addKnown(tag);
@@ -43,6 +46,9 @@ controllerDirector.updateProfile = function (req, res) {
       }
       var tags2 = req.body.want.split(',');
       for (var j = 0; j < tags2.length; j++) {
+        if (tags2[j] === ' ') {
+          continue;
+        }
         Tag.findOrCreate({where: {tagName: tags2[j]}}).spread(function (tag2) {
           tag2.addWant(user).then(function() {
             user.addWant(tag2);
@@ -53,29 +59,6 @@ controllerDirector.updateProfile = function (req, res) {
     });
   })
 };
-
-// if (req.body.have && req.body.want) {
-      //   tags = req.body.have + ',' + req.body.want;
-      // }
-      // else if (req.body.have) {
-      //   tags = req.body.have;
-      // }
-      // else if (req.body.want) {
-      //   tags = req.body.want;
-      // }
-      // var tags = tags.split(',');
-      // for (var i = 0; i < tags.length; i++) {
-      //   Tag.findOrCreate({where: {tagName: tags[i]}}).spread(function (tag) {
-      //     tag.addKnown(user).then(function() {
-      //       user.addKnown(tag);
-      //       }).done(function () {
-      //         tag.addWant(user).then(function() {
-      //         user.addWant(tag).then(function() {
-      //           res.end();
-      //         })
-      //       });
-      //     })
-      //   });
 
 controllerDirector.getProfile = function (req, res) {
   User.findOne({where: {githubID: req.cookies.githubID},
@@ -119,54 +102,110 @@ controllerDirector.getProjects = function (req, res) {
   });
 }
 
+// controllerDirector.search = function (req, res) {
+//   User.findOne({where: {githubID: req.cookies.githubID},
+//     include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}).done(function (user) {
+//       Tag.findOne({where: {tagName: req.body.tag},
+//         include: [{model: User, as: 'want'}]}).done(function (tag) {
+//           var users1 = [];
+//           for (var i = 0; i < tag.want.length; i++) {
+//             users1.push(tag.want[i].id)
+//           }
+//           User.findAll({where: {id: users1},
+//           include: [{model: Tag, as: 'want'}, {model: Tag, as: 'known'}]}).done(function (users) {
+//             var userArray = user.want.concat(user.known);
+//             var likeness = [];
+//             for (var i = 0; i < users.length; i++) {
+//               if (users[i].id === user.id) {
+//                 users.splice(i,1);
+//                 i--;
+//                 continue;
+//               }
+//               likeness[i] = {};
+//               likeness[i].value = 0;
+//               likeness[i].person = users[i];
+//               var compareArray = users[i].want.concat(users[i].known);
+//               for (var j = 0; j < userArray.length; j++) {
+//                 for (var k = 0; k < compareArray.length; k++) {
+//                   if (userArray[j].id === compareArray[k].id) {
+//                     likeness[i].value++
+//                   }
+//                 }
+//               }
+//             }
+//             likeness.sort(function (a, b) {
+//               if (a.value < b.value) {
+//                 return 1;
+//               }
+//               if (a.value > b.value) {
+//                 return -1;
+//               }
+//               return 0;
+//             })
+//             var userSend = [];
+//             for (var i = 0; i < likeness.length; i++) {
+//               userSend.push(likeness[i].person);
+//             }
+//             res.send(userSend);
+//           })
+//       })
+//   })
+// };
+
 controllerDirector.search = function (req, res) {
-  User.findOne({where: {githubID: req.cookies.githubID},
-    include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}).done(function (user) {
-      Tag.findOne({where: {tagName: req.body.tag},
-        include: [{model: User, as: 'want'}]}).done(function (tag) {
-          var users1 = [];
-          for (var i = 0; i < tag.want.length; i++) {
-            users1.push(tag.want[i].id)
+  User.findOne({where: {githubID: req.cookies.githubID, token: req.cookies.token},
+  include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}).done(function (user) {
+    Tag.findOne({where: {tagName: req.body.learn},
+    include: [{model: User, as: 'want', include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}]}).done(function (tag) {
+      var preSort = [];
+      for (var i = 0; i < tag.want.length; i++) {
+        preSort[i] = {};
+        preSort[i].value = 0;
+        if (user.id === tag.want[i].id) {
+          preSort[i].value = null;
+          continue;
+        }
+        preSort[i].person = tag.want[i];
+        preSort[i].value = 0;
+        for (var j = 0; j < user.want.length; j++) {
+          for (var k = 0; k < tag.want[i].want.length; k++) {
+            if (user.want[j].id == tag.want[i].want[k].id) {
+              preSort[i].value++;
+            }
           }
-          User.findAll({where: {id: users1},
-          include: [{model: Tag, as: 'want'}, {model: Tag, as: 'known'}]}).done(function (users) {
-            var userArray = user.want.concat(user.known);
-            var likeness = [];
-            for (var i = 0; i < users.length; i++) {
-              if (users[i].id === user.id) {
-                users.splice(i,1);
-                i--;
-                continue;
-              }
-              likeness[i] = {};
-              likeness[i].value = 0;
-              likeness[i].person = users[i];
-              var compareArray = users[i].want.concat(users[i].known);
-              for (var j = 0; j < userArray.length; j++) {
-                for (var k = 0; k < compareArray.length; k++) {
-                  if (userArray[j].id === compareArray[k].id) {
-                    likeness[i].value++
-                  }
-                }
-              }
+        }
+        for (var j = 0; j < user.known.length; j++) {
+          for (var k = 0; k < tag.want[i].known.length; k++) {
+            if (user.known[j].id == tag.want[i].known[k].id) {
+              preSort[i].value++;
             }
-            likeness.sort(function (a, b) {
-              if (a.value < b.value) {
-                return 1;
-              }
-              if (a.value > b.value) {
-                return -1;
-              }
-              return 0;
-            })
-            var userSend = [];
-            for (var i = 0; i < likeness.length; i++) {
-              userSend.push(likeness[i].person);
-            }
-            res.send(userSend);
-          })
+          }
+        }
+      }
+      preSort.sort(function (a, b) {
+        if (a.value < b.value) {
+          return 1;
+        }
+        if (a.value > b.value) {
+          return -1;
+        }
+        return 0;
       })
+      if (preSort[preSort.length -1].value == null) {
+        preSort.length--;
+      }
+      res.send(preSort);
+    })
   })
-};
+}
+
+/*
+select *
+from users
+join knowntags
+on ( users.id = knowntags."userId")
+join tags
+on knowntags."tagId" = tags.id;
+*/
 
 module.exports = controllerDirector;
