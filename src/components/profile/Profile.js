@@ -58,7 +58,7 @@ var Profile = React.createClass({
 	render: function(){
 
 		var userProj = this.state.projects.map(function(element, index){
-			return(<Projects className="col-xs-12 col-sm-4" title={element.projectName.slice(0,17)} tools={element.tools.slice(0,17)} description={element.description.slice(0,17)} route={element.id} key={index}/>)
+			return(<Projects className="col-xs-12 col-sm-6 col-md-4" title={element.projectName.slice(0,17)} tools={element.tools.slice(0,17)} description={element.description.slice(0,17)} route={element.id} key={index}/>)
 		})
 
 		return (
@@ -79,15 +79,7 @@ var Profile = React.createClass({
 					</div>
 				</div>
 				<UserData knownTags={this.state.knownTags} wantTags={this.state.wantTags} teacher={this.state.teacher} collab={this.state.collab} student={this.state.student} projects={this.state.projects}/>
-				<div className="row">
-				{userProj.splice(0,3)}		
-				</div>	
-				<div className="row">
-				{userProj.splice(0,3)}		
-				</div>	
-				<div className="row">
-				{userProj.splice(0,3)}		
-				</div>	
+				{userProj}
 			</div>
 		);
 	},
