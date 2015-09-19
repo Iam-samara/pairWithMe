@@ -58,14 +58,16 @@ var SearchForms = React.createClass({
   },
   render: function() {
     return(
-      <div>
+      <div className="bordered">
+      <h3 className="text-center">Search For Partners</h3>
 				<div className="row">
 					<div className="col-xs-8 col-xs-offset-2">
 						<form id="searchForm" encType="multipart/form-data" onSubmit={this.handle} className="form-inline">
 							<div className="row">
-              <label>Select the Type of Partner you are Looking for</label>
 								<div className="col-xs-12 col-sm-12">
-									<Select
+                  <p className="text-center">Select the Type of Partner you are Looking for</p>
+
+									<Select id="partner"
 										name="form-field-name"
 										value={this.state.partner}
 										options={partner}
@@ -74,8 +76,8 @@ var SearchForms = React.createClass({
 								</div>
               </div>
               <div className="row">
-                <label>Select the Skills You Want to Use In This Project</label>
 								<div className="col-xs-12 col-sm-12">
+                  <p className="text-center">Select the Skills You Want to Use In This Project</p>
 									<Select
 										name="form-field-name"
 										value={this.state.learn}
@@ -86,9 +88,11 @@ var SearchForms = React.createClass({
 								</div>
 							</div>
 							<div className="row">
-								<div className="col-xs-12">
+								<div className="col-xs-12 col-sm-6 col-sm-offset-3">
+                <p>
 									<input type="submit" value="SUBMIT"  name="submit" className="btn btn-primary btn-lg btn-block" />
-								</div>
+								</p>
+                </div>
 							</div>
 						</form>
 					</div>

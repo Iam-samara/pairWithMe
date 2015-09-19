@@ -1,20 +1,33 @@
-.row {
+#5DA9CC.row {
   padding: 10px 0 20px;
 }
+body{
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 16px; 
+}
+.header{
+  background-color: #DAD8D8;
+  margin-bottom:30px;
+  padding: 10px 0;
+}
+.header h3{
+  margin-top: 5px;
+  padding-left: 20px;
+}
 .bordered {
-	 margin-top:10px;
-    padding: 20px;
-    outline: 2px solid #ccc;
-    outline-color: #7b8287;
-    outline-offset: -10px;
-    -moz-outline-radius: 10px;
-    -webkit-outline-radius: 10px;
+  border: 1px solid #9A9696;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 .edit-profile-btn {
 	width:200px;
 	margin:0 auto;
 	display: block;
-  background: #c4c4c4;
+  background: #DAD8D8;
   background-image: -webkit-linear-gradient(top, #c4c4c4, #5c5c5c);
   background-image: -moz-linear-gradient(top, #c4c4c4, #5c5c5c);
   background-image: -ms-linear-gradient(top, #c4c4c4, #5c5c5c);
@@ -38,7 +51,7 @@
   text-decoration: none;
 }
 .project-page-btn {
-  width:150px;
+  width:130px;
   margin:0 auto;
   display: block;
   background: #c4c4c4;
@@ -78,9 +91,17 @@
   padding: 5px;
 }
 
-#main a {
-  color: rgb(222,164,35)
+.header a {
+  color: #797171
+}
+p {
+  margin:10px 0;
 }
 #main .nav-pills>li.active>a {
-  background-color: rgb(220,220,220)
+  background-color: rgb(220,220,220);
+  color: #FFFFFF
+}
+#main .nav-pills>li.active>a {
+  background-color: #A2A1A1;
+  color: #FFFFFF;
 }

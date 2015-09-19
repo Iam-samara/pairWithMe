@@ -14,7 +14,7 @@ var Header = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className="header clearfix row">
+			<div className="header clearfix row header">
       <nav>
         <ul className="nav nav-pills pull-right">
 						<li role="presentation" className={this.state.active === '/' ? 'active' : ''}>
