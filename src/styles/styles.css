@@ -1,5 +1,5 @@
 .row {
-  padding: 10px 0 20px;
+  padding: 10px 0;
 }
 body{
   background: url(../img/shattered_@2X.png) top left;
@@ -26,10 +26,10 @@ h4 {
   padding: 15px;
   margin-top: 10px;
   margin-bottom: 10px;
-  background-color: rgba(10, 10, 10, 0.1);
-  -webkit-box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.35);
-  -moz-box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.35);
-  box-shadow: 0px 4px 10px 0px rgba(0,0,0,0.35);
+  background-color: rgba(216, 217, 218, .6);
+  -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.35);
+  -moz-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.35);
+  box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.35);
 }
 .edit-profile-btn {
 	width:200px;
@@ -116,8 +116,13 @@ p {
   background-color: #A2A1A1;
   color: #FFFFFF;
 }
-/* to be placed later */
-.bordered span {color: rgb(165, 0, 228);
-text-shadow: 1px 1px 1px rgb(138, 138, 138);
-font-size: 1.8rem;
+.user-type {
+  font-size: 1.8rem;
 }
+label {
+  padding-left: 10px;
+}
+/* to be placed later */
+/*.bordered span {color: #406699;
+text-shadow: 1px 1px 1px rgb(138, 138, 138);
+}*/
