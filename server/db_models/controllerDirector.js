@@ -155,7 +155,7 @@ controllerDirector.getProjects = function (req, res) {
 controllerDirector.search = function (req, res) {
   User.findOne({where: {githubID: req.cookies.githubID, token: req.cookies.token},
   include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}).done(function (user) {
-    Tag.findOne({where: {tagName: req.body.learn},
+    Tag.findOne({where: {tagName: req.body.tag},
     include: [{model: User, as: 'want', include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}]}).done(function (tag) {
       var preSort = [];
       for (var i = 0; i < tag.want.length; i++) {
