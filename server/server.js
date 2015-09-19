@@ -1,5 +1,6 @@
-var express = require('express'),
+ var express = require('express'),
   app = express(),
+  session = require('express-session'),
   morgan = require('morgan'),
   Sequelize = require('sequelize'),
   config = require('config'),
@@ -10,7 +11,7 @@ var express = require('express'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser');
   // .urlencoded({ extended: true }),
-app.use(morgan('combined'));
+//app.use(morgan('combined'));
 sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
   dialect: 'postgres',
   host: config.get('database.host'),
@@ -50,7 +51,10 @@ var ControllerDirector = require('./db_models/controllerDirector.js');
 app.use('/', express.static(__dirname + '/../client'));
 app.use(cookieParser());
 app.use(bodyParser.json());
-//app.use(express.session({secret: "feeling lost"}));
+app.use(session({
+  secret: "secret",
+  saveUninitialized: true,
+  resave: false}));
 app.use(passport.initialize()); //middleware to start passport
 app.use(passport.session()); //used for persisten login
 
@@ -58,11 +62,18 @@ app.use(passport.session()); //used for persisten login
   * checks if a cookie exist, if so it will display continue
   * onthe the next param when used. else it would redirect to the
   * ouath/github route that will redirect to the github page */
-var authenticate = function(req,res,next) {
-  if(!req.cookies.token) {
-    res.redirect('/auth/github')
-  }
-  else {next();}
+// var authenticate = function(req,res,next) {
+//   if(!req.cookies.token) {
+//     res.redirect('/auth/github')
+//   }
+//   else {next();}
+// }
+function authenticatedOrNot(req, res, next){
+    if(req.isAuthenticated()){
+        next();
+    }else{
+        res.redirect("/home"); //or /auth/github
+    }
 }
 
 
@@ -77,14 +88,17 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 });
 
 /** authenticates callback */
-app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), UserController.signIn);
+app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), function(req,res) {
+  console.log(req.user);
+  res.redirect('/profile');
+});
 
 app.post('/updateProfile', ControllerDirector.updateProfile);
 
-app.get('/api/profile',authenticate,ControllerDirector.getProfile);
+app.get('/api/profile',authenticatedOrNot,ControllerDirector.getProfile);
 
 /* this route is authenticated, user must have cookie before diplaying profile*/
-app.get('/api/profile/:name',authenticate, UserController.profileByName);
+app.get('/api/profile/:name',authenticatedOrNot, UserController.profileByName);
 
 app.post('/createProject', ControllerDirector.createProject);
 
@@ -106,6 +120,7 @@ app.post('/search', ControllerDirector.search);
 app.get('/logout', function (req, res) {
   res.clearCookie('githubID');
   res.clearCookie('token');
+  req.logout();
   res.redirect('/');
 })
 

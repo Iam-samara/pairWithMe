@@ -16,7 +16,8 @@ userController.signIn = function(req,res) {
       res.redirect('/profileEditor');
     }
     else {
-      res.redirect('/profile');
+      //res.redirect('/profile');
+      done(error, user);
     }
   })
 };
