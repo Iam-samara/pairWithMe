@@ -118,6 +118,6 @@ p {
 }
 /* to be placed later */
 .bordered span {color: rgb(165, 0, 228);
-text-shadow: 1px 1px 1px rgb(138, 138, 138);
-font-size: 1.8rem;
+color: rgba(145, 48, 195, 0.68);
+text-shadow: 1px 1px 1px #877894
 }
