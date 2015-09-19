@@ -79,8 +79,6 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), UserController.signIn);
 
-app.get('/search2', ControllerDirector.search2);
-
 app.post('/updateProfile', ControllerDirector.updateProfile);
 
 app.get('/api/profile',authenticate,ControllerDirector.getProfile);
@@ -103,7 +101,7 @@ app.post('/tags', TagController.addTags);
 
 app.post('/knowntags', KnownTagController.addTags);
 
-app.post('/search', ControllerDirector.search);
+app.post('/api/search', ControllerDirector.search);
 
 app.get('/logout', function (req, res) {
   res.clearCookie('githubID');

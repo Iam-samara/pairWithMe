@@ -14,9 +14,9 @@ var Home = React.createClass({
 		}.bind(this));
 	},
 	render: function() {
-		console.log("in render", this.state.projects);
+		console.log("in render", this.state.projects.description);
 		var projectList = this.state.projects.map(function(element, index){
-			return (<Projects className="col-xs-12 col-sm-4 bordered" title={element.projectName} description={element.description} github={element.githubLink} route={element.id} key={index}/>)
+			return (<Projects className="col-xs-12 col-sm-4 bordered" title={element.projectName} description={element.description} tools={element.tools} route={element.id} key={index}/>)
 		});
 		return (
 		<div>

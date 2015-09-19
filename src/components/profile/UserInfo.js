@@ -1,26 +1,19 @@
 var React = require('react');
 
 var UserInfo = React.createClass({
-	getInitialState: function() {
-		return {
-			username : '',
-			githubLink : '',
-			picture: ''
-		};
-	},
 
 	render: function() {
 		return (
 			<div className="row">
 				<div className="col-xs-12 text-center">
 					<p>
-						<img src={this.props.picture} className="img-rounded"/>
+						<img src={this.props.picture} className="img-rounded profile-pic"/>
 					</p>
 					<p>
-						{this.props.username}
+						{this.props.name}
 					</p>
 					<p>
-						<a href={this.props.githubLink}>GitHub Profile</a>
+						<a href={this.props.github}>GitHub Profile</a>
 					</p>
 				</div>
 			</div>

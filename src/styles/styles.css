@@ -65,8 +65,9 @@
   text-decoration: none;
 }
 .profile-pic {
-  max-width: 240px;
-  height: auto;
+  width: auto;
+  height: 140px;
+  margin: 0 auto;
 }
 .guide-block {
   margin-bottom: 20px;
@@ -75,4 +76,11 @@
 }
 .guide-block h4, .guide-block p {
   padding: 5px;
+}
+
+#main a {
+  color: rgb(222,164,35)
+}
+#main .nav-pills>li.active>a {
+  background-color: rgb(220,220,220)
 }
