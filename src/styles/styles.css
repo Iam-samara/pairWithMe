@@ -119,10 +119,10 @@ p {
 .user-type {
   font-size: 1.8rem;
 }
-label {
-  padding-left: 10px;
+.tags {
+  color: #000;
+  margin: 0 3px;
+  font-weight: light;
+  font-style: italic;
+  text-shadow: 1px 1px 1px rgba(250,250,250, .5);
 }
-/* to be placed later */
-/*.bordered span {color: #406699;
-text-shadow: 1px 1px 1px rgb(138, 138, 138);
-}*/

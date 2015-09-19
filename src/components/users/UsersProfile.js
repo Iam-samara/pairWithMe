@@ -28,16 +28,16 @@ var UsersProfile = React.createClass({
 				var teach = "Teacher";
 			}
 			if(data.collaborator) {
-				var collaborator = "Collaborator";
+				var collaborator = "Partner";
 			}
 			if(data.student) {
 				var learn = "Student"
 			}
 			var known = data.known.map(function (element, index) {
-				return (element.tagName +", ");
+				return (element.tagName +" ");
 			});
 			var wanted = data.want.map( function (element,index) {
-				return (element.tagName +", ");
+				return (element.tagName +" ");
 			});
 			var ownedproject = data.ownedproject;
 			console.log(ownedproject);
@@ -56,10 +56,10 @@ var UsersProfile = React.createClass({
 	},
 	render: function() {
 		var otherProjs = this.state.projects.map(function(element, index){
-			return(<Projects className="col-xs-12 col-sm-3" title={element.projectName} tools={element.tools} route={element.id} key={index}/>)
+			return(<Projects className="col-xs-12 col-sm-3" title={element.projectName} tools={element.tools} route={element.id} key={index} />)
 		})
 		return (
-			<div> 
+			<div>
 				<UsersInfo name={this.state.username} github={this.state.githubLink} picture={this.state.picture}/>
 				<UsersData knownTags={this.state.knownTags} wantTags={this.state.wantTags} teacher={this.state.teacher} collab={this.state.collab} student={this.state.student}/>
 				{otherProjs}
