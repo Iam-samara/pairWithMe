@@ -33,10 +33,10 @@ var Profile = React.createClass({
 				var learn = "Student"
 			}
 			var known = data.known.map(function (element, index) {
-				return (element.tagName +", ");
+				return (<div className="btn btn-xs tags">{element.tagName}</div>);
 			});
 			var wanted = data.want.map( function (element,index) {
-				return (element.tagName +", ");
+				return (<div className="btn btn-xs tags">{element.tagName}</div>);
 			});
 			var ownedproject = data.ownedproject;
 			console.log(ownedproject);
@@ -72,7 +72,7 @@ var Profile = React.createClass({
 					</div>
 				</div>
 				<div className="row">
-					<div className="col-xs-12 text-center">
+					<div className="col-xs-10 col-xs-offset-1 text-center">
 						<p>
 						<Link to="projectform" className="edit-profile-btn"> Project Form </Link>
 						</p>

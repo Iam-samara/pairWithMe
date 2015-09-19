@@ -9,12 +9,11 @@ var Users = React.createClass({
 		};
 	},
 	handle: function() {
-				 window.location.pathname = '/profile/'+ this.props.name
-
+		window.location.pathname = '/profile/'+ this.props.name
 	},
 	render: function() {
 		return (
-			<div className="col-xs-12 col-sm-3 ">
+			<div className="col-xs-12 col-sm-3">
 				<div className="bordered text-center">
 					<img src={this.props.picture} className="img-rounded profile-pic"/>
 					<p>{this.props.name}<br/>
