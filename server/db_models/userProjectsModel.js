@@ -1,4 +1,4 @@
-ar Sequelize = require('sequelize');
+var Sequelize = require('sequelize');
 var User = require('./userModel.js');
 var Project = require('./projectModel.js');
 

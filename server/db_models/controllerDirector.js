@@ -62,7 +62,7 @@ controllerDirector.updateProfile = function (req, res) {
 
 controllerDirector.getProfile = function (req, res) {
   User.findOne({where: {githubID: req.cookies.githubID},
-    include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}, {model: Project, as: 'ownedproject', include: [{model: User, as: 'projectowner'}]}]}).done(function (user) {
+    include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}, {model: Project, as: 'ownedproject', include: [{model: User, as: 'projectowner'}], order: [['id', 'desc']]}]}).done(function (user) {
     res.send(user);
   })
 };
@@ -102,61 +102,15 @@ controllerDirector.getProjects = function (req, res) {
   });
 }
 
-// controllerDirector.search = function (req, res) {
-//   User.findOne({where: {githubID: req.cookies.githubID},
-//     include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}).done(function (user) {
-//       Tag.findOne({where: {tagName: req.body.tag},
-//         include: [{model: User, as: 'want'}]}).done(function (tag) {
-//           var users1 = [];
-//           for (var i = 0; i < tag.want.length; i++) {
-//             users1.push(tag.want[i].id)
-//           }
-//           User.findAll({where: {id: users1},
-//           include: [{model: Tag, as: 'want'}, {model: Tag, as: 'known'}]}).done(function (users) {
-//             var userArray = user.want.concat(user.known);
-//             var likeness = [];
-//             for (var i = 0; i < users.length; i++) {
-//               if (users[i].id === user.id) {
-//                 users.splice(i,1);
-//                 i--;
-//                 continue;
-//               }
-//               likeness[i] = {};
-//               likeness[i].value = 0;
-//               likeness[i].person = users[i];
-//               var compareArray = users[i].want.concat(users[i].known);
-//               for (var j = 0; j < userArray.length; j++) {
-//                 for (var k = 0; k < compareArray.length; k++) {
-//                   if (userArray[j].id === compareArray[k].id) {
-//                     likeness[i].value++
-//                   }
-//                 }
-//               }
-//             }
-//             likeness.sort(function (a, b) {
-//               if (a.value < b.value) {
-//                 return 1;
-//               }
-//               if (a.value > b.value) {
-//                 return -1;
-//               }
-//               return 0;
-//             })
-//             var userSend = [];
-//             for (var i = 0; i < likeness.length; i++) {
-//               userSend.push(likeness[i].person);
-//             }
-//             res.send(userSend);
-//           })
-//       })
-//   })
-// };
-
 controllerDirector.search = function (req, res) {
   User.findOne({where: {githubID: req.cookies.githubID, token: req.cookies.token},
   include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}).done(function (user) {
+    var whereQuery = {};
+    var partner = req.body.partner.toLowerCase();
+    whereQuery[partner] = true;
     Tag.findOne({where: {tagName: req.body.tag},
-    include: [{model: User, as: 'want', include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}]}).done(function (tag) {
+    include: [{model: User, as: 'want', where: whereQuery, include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}]}).done(function (tag) {
+      console.log(tag);
       var preSort = [];
       for (var i = 0; i < tag.want.length; i++) {
         preSort[i] = {};
