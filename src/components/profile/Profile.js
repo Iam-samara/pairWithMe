@@ -56,8 +56,9 @@ var Profile = React.createClass({
 		}.bind(this));
 	},
 	render: function(){
+
 		var userProj = this.state.projects.map(function(element, index){
-			return(<Projects className="col-xs-12 col-sm-4 bordered" title={element.projectName.slice(0,20)} tools={element.tools.slice(0,20)} description={element.description.slice(0,20)} route={element.id} key={index}/>)
+			return(<Projects className="col-xs-12 col-sm-4" title={element.projectName.slice(0,17)} tools={element.tools.slice(0,17)} description={element.description.slice(0,17)} route={element.id} key={index}/>)
 		})
 
 		return (
@@ -65,16 +66,28 @@ var Profile = React.createClass({
 				<UserInfo name={this.state.username} github={this.state.githubLink} picture={this.state.picture}/>
 				<div className="row">
 					<div className="col-xs-12 text-center">
+						<p>
 						<Link to="profileeditor" className="edit-profile-btn"> Profile Editor </Link>
+						</p>
 					</div>
 				</div>
 				<div className="row">
 					<div className="col-xs-12 text-center">
+						<p>
 						<Link to="projectform" className="edit-profile-btn"> Project Form </Link>
+						</p>
 					</div>
 				</div>
 				<UserData knownTags={this.state.knownTags} wantTags={this.state.wantTags} teacher={this.state.teacher} collab={this.state.collab} student={this.state.student} projects={this.state.projects}/>
-				{userProj}			
+				<div className="row">
+				{userProj.splice(0,3)}		
+				</div>	
+				<div className="row">
+				{userProj.splice(0,3)}		
+				</div>	
+				<div className="row">
+				{userProj.splice(0,3)}		
+				</div>	
 			</div>
 		);
 	},

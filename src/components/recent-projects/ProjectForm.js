@@ -61,40 +61,40 @@ var ProjectForm = React.createClass({
  					<div className="row">
  					  <div className="form-group col-xs-12 col-sm-8">
  					    <label>Title</label>
- 					    <input type="text" className="form-control" value={this.state.name}  placeholder="Title" onChange={this.onChangeName}/>
+ 					    <input required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,100}$" type="text" className="form-control" value={this.state.name}  placeholder="Title" onChange={this.onChangeName}/>
  					  </div>
  					</div>
 					<div className="row">
 					  <div className="form-group col-xs-12 col-sm-8">
 					    <label>GitHubLink</label>
-					    <input type="text" className="form-control" value={this.state.github} placeholder="GitHubLink" onChange={this.onChangeGithub}/>
+					    <input required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,200}$" type="text" className="form-control" value={this.state.github} placeholder="GitHubLink" onChange={this.onChangeGithub}/>
 					  </div>
 					</div>
 					<div className="row">
 					  <div className="form-group col-xs-12 col-sm-8">
 					    <label>Description</label>
-					    <textarea className="form-control" rows="3" value={this.state.description} placeholder="Description" onChange={this.onChangeDescription}></textarea>
+					    <textarea required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{50,500}$" className="form-control" rows="3" value={this.state.description} placeholder="Description" onChange={this.onChangeDescription}></textarea>
 					  </div>
 					</div>
 					<div className="row">
 					  <div className="form-group col-xs-12 col-sm-8">
 					    <label>Tools Used</label>
-					    <input type="text" className="form-control" value={this.state.tools} placeholder="Tools Used" onChange={this.onChangeTools}/>
+					    <input required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,500}$" type="text" className="form-control" value={this.state.tools} placeholder="Tools Used" onChange={this.onChangeTools}/>
 					  </div>
 					</div>
 					<div className="row">
 					  <div className="form-group col-xs-12 col-sm-8">
 					    <label>What we learned</label>
-					    <textarea className="form-control" row="3" value={this.state.learn} placeholder="What we Learned" onChange={this.onChangeLearn}></textarea>
+					    <textarea required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,500}$" className="form-control" row="3" value={this.state.learn} placeholder="What we Learned" onChange={this.onChangeLearn}></textarea>
 					  </div>
 					</div>
 					<div className="row">
 					  <div className="form-group col-xs-12 col-sm-8">
 					    <label>Partners User Name</label>
-					    <input type="text" className="form-control" value={this.state.partner} placeholder="Partners User Name" onChange={this.onChangePartner}/>
+					    <input required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,500}$" type="text" className="form-control" value={this.state.partner} placeholder="Partners User Name" onChange={this.onChangePartner}/>
 					  </div>
 					</div>
-					<div className="col-xs-12 col-sm-6">
+					<div className="col-xs-12 col-sm-6 col-sm-offset-3">
 					  <input type="submit" value="SUBMIT" name="submit" className="btn btn-primary btn-lg btn-block" />
 					</div>
 				</form>

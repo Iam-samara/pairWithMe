@@ -12,8 +12,7 @@ var UserData = React.createClass({
 	render: function() {
 
 		return (
-				<div className="bordered">
-					<div className="row">
+				<div className="row bordered">
 						<div className="col-xs-12 col-sm-4 text-center">
 							<strong>{this.props.teacher}</strong>
 						</div>
@@ -23,17 +22,12 @@ var UserData = React.createClass({
 						<div className="col-xs-12 col-sm-4 text-center">
 							<strong>{this.props.student}</strong>
 						</div>
-					</div>
-					<div className="row">
-						<div className="col-xs-10 col-xs-offset-1 bordered">
+						<div className="col-xs-12 col-md-10 col-md-offset-1 bordered">
 							<strong>Skills Have: </strong>{this.props.knownTags}
 						</div>
-					</div>
-					<div className="row">
-						<div className="col-xs-10 col-xs-offset-1 bordered">
+						<div className="col-xs-12 col-md-10 col-md-offset-1 bordered">
 							<strong>Skills Wanted: </strong>{this.props.wantTags}
 						</div>
-					</div>
 				</div>
 
 		);

@@ -15,7 +15,7 @@ var RecentProjects = React.createClass({
 	render: function() {
 		console.log("in render", this.state.projects);
 		var projectList = this.state.projects.map(function(element, index){
-			return (<Projects title={element.projectName} description={element.description} github={element.githubLink} route={element.id} key={index}/>)
+			return (<Projects className="col-xs-12" title={element.projectName} description={element.description} tools={element.tools} route={element.id} key={index}/>)
 		});
 
 		return(
