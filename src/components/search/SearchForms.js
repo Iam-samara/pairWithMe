@@ -58,47 +58,52 @@ var SearchForms = React.createClass({
   },
   render: function() {
     return(
-      <div className="bordered">
-      <h3 className="text-center">Search For Partners</h3>
-				<div className="row">
-					<div className="col-xs-8 col-xs-offset-2">
-						<form id="searchForm" encType="multipart/form-data" onSubmit={this.handle} className="form-inline">
-							<div className="row">
-								<div className="col-xs-12 col-sm-12">
-                  <p className="text-center">Select the Type of Partner you are Looking for</p>
+			<div className="row">
+				<div className="col-xs-12">
 
-									<Select id="partner"
-										name="form-field-name"
-										value={this.state.partner}
-										options={partner}
-										onChange = {this.onChangePartner}
-									/>
+	      <div className="bordered">
+	      <h3 className="text-center">Search For Partners</h3>
+					<div className="row">
+						<div className="col-xs-8 col-xs-offset-2">
+							<form id="searchForm" encType="multipart/form-data" onSubmit={this.handle} className="form-inline">
+								<div className="row">
+									<div className="col-xs-12 col-sm-12">
+	                  <p className="text-center">Select the Type of Partner you are Looking for</p>
+
+										<Select id="partner"
+											name="form-field-name"
+											value={this.state.partner}
+											options={partner}
+											onChange = {this.onChangePartner}
+										/>
+									</div>
+	              </div>
+	              <div className="row">
+									<div className="col-xs-12 col-sm-12">
+	                  <p className="text-center">Select the Skills You Want to Use In This Project</p>
+										<Select
+											name="form-field-name"
+											value={this.state.learn}
+											options={this.state.tags}
+											onChange = {this.onChangeTag}
+											multi={false}
+										/>
+									</div>
 								</div>
-              </div>
-              <div className="row">
-								<div className="col-xs-12 col-sm-12">
-                  <p className="text-center">Select the Skills You Want to Use In This Project</p>
-									<Select
-										name="form-field-name"
-										value={this.state.learn}
-										options={this.state.tags}
-										onChange = {this.onChangeTag}
-										multi={false}
-									/>
+								<div className="row">
+									<div className="col-xs-12 col-sm-6 col-sm-offset-3">
+	                <p>
+										<input type="submit" value="SUBMIT"  name="submit" className="btn btn-primary btn-lg btn-block" />
+									</p>
+	                </div>
 								</div>
-							</div>
-							<div className="row">
-								<div className="col-xs-12 col-sm-6 col-sm-offset-3">
-                <p>
-									<input type="submit" value="SUBMIT"  name="submit" className="btn btn-primary btn-lg btn-block" />
-								</p>
-                </div>
-							</div>
-						</form>
+							</form>
+						</div>
 					</div>
-				</div>
-        <SearchResults data={this.state.data}/>
-      </div>
+	        <SearchResults data={this.state.data}/>
+	      </div>
+			</div>
+		</div>
   )}
 });
 module.exports = SearchForms;

@@ -13,7 +13,7 @@ var UserInfo = React.createClass({
 						{this.props.name}
 					</p>
 					<p>
-						<a href={this.props.github}>GitHub Profile</a>
+						<a href={this.props.github} className="btn btn-info btn-xs">GitHub Profile</a>
 					</p>
 				</div>
 			</div>
