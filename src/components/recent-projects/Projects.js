@@ -17,10 +17,12 @@ var Projects = React.createClass({
 		return(
 			<div className={this.props.className}>
 				<div className="bordered">
-				<p><strong>Title: </strong>{this.props.title}</p>
-				<p><strong>Description: </strong>{this.props.description}</p>
-				<p><strong>Tools Used: </strong> {this.props.tools}</p>
-				<button className="project-page-btn" onClick={this.handle}>Project Path</button>
+				<p className="projects-text"><strong>Title: </strong>{this.props.title}</p>
+				<p className="projects-text"><strong>Description: </strong>{this.props.description}</p>
+				<p className="projects-text"><strong>Tools Used: </strong> {this.props.tools}</p>
+				<p>
+					<button className="project-page-btn" onClick={this.handle}>Project Path</button>
+				</p>
 			</div>
 			</div>
 			);

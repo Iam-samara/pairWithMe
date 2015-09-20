@@ -6,6 +6,7 @@ var SearchResults = React.createClass({
 				return(<Users picture={element.githubProfileImage} name={element.username} github={element.githubProfileURL} email={element.email} key={index}/>)
 		});
 		return (
+			// NOTE: FIX SEARCH RESULTS TO BE IN ROWS OF 4 COLUMNS
 			<div>
 				{userData}
 			</div>

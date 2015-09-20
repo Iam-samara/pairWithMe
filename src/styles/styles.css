@@ -24,7 +24,7 @@ h4 {
   border: 1px solid #9A9696;
   border-radius: 5px;
   padding: 15px;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 10px;
   background-color: rgba(216, 217, 218, .6);
   -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.35);
@@ -119,17 +119,23 @@ p {
 .user-type {
   font-size: 1.8rem;
 }
-label {
-  padding-left: 10px;
+.tags {
+  color: #000;
+  margin: 0 3px;
+  font-weight: light;
+  font-style: italic;
+  text-shadow: 1px 1px 1px rgba(250,250,250, .5);
+  font-size: 1.6rem;
+}
+.projects-box {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.projects-text {
+  padding-bottom: 10px;
 }
 /* to be placed later */
-<<<<<<< HEAD
-.bordered span {color: rgb(165, 0, 228);
-color: rgba(145, 48, 195, 0.68);
-text-shadow: 1px 1px 1px #877894
-}
-=======
+
 /*.bordered span {color: #406699;
 text-shadow: 1px 1px 1px rgb(138, 138, 138);
 }*/
->>>>>>> 70a30e02a37a42aa1d9c1f5c179852b6e5f9ceb3
