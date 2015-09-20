@@ -3,7 +3,7 @@ var Select = require('react-select');
 var SearchResults = require('./SearchResults.js');
 
 var partner = [
-	{ value: 'Collaborater', label: 'Collaborater' },
+	{ value: 'Collaborator', label: 'Collaborator' },
 	{ value: 'Student', label: 'Student' },
 	{ value: 'Teacher', label: 'Teacher'}
 ];
