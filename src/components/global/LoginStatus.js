@@ -1,12 +1,12 @@
 var React = require('react');
 var LoginStatus = React.createClass({
-	// render: function(){
-	// 	return(
-	// 		<div>
- //  			<input type="text" name="fname">
-	// 		</div>
-	// 	);
 
-	// }
+render: function() {
+	return (
+		<div>
+		
+		</div>
+	);
+}
 });
-// module.exports = LoginStatus;
+module.exports = LoginStatus;

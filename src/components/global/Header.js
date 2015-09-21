@@ -2,6 +2,7 @@ var React = require('react');
 var Router= require('react-router');
 var Route = Router.Route;
 var Link = Router.Link;
+var LoginStatus = require('./LoginStatus.js');
 var Header = React.createClass({
 	/* this renders a link to all of our routes */
 	"getInitialState": function(){
@@ -13,6 +14,7 @@ var Header = React.createClass({
 		});
 	},
 	render: function(){
+
 		return (
 			<div className="header clearfix row header">
       <nav>
@@ -33,7 +35,7 @@ var Header = React.createClass({
 							<Link to="search" onClick={this.active}>Search</Link>
 						</li>
 						<li role="presentation">
-							<a href="/auth/github">GitHub Login</a>
+							<LoginStatus/>
 						</li>
         </ul>
       </nav>
