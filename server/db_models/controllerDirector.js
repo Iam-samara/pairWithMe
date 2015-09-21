@@ -107,30 +107,37 @@ controllerDirector.search = function (req, res) {
   include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}).done(function (user) {
     var whereQuery = {};
     var partner = req.body.partner.toLowerCase();
+    var skill = 'want';
+    if (partner === 'teacher') {
+      skill = 'known';
+    }
     whereQuery[partner] = true;
     Tag.findOne({where: {tagName: req.body.tag},
-    include: [{model: User, as: 'want', where: whereQuery, include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}]}).done(function (tag) {
+    include: [{model: User, as: skill, where: whereQuery, include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}]}).done(function (tag) {
       console.log(tag);
       var preSort = [];
-      for (var i = 0; i < tag.want.length; i++) {
+      if (tag == null) {
+        res.end();
+      }
+      for (var i = 0; i < tag[skill].length; i++) {
         preSort[i] = {};
         preSort[i].value = 0;
-        if (user.id === tag.want[i].id) {
+        if (user.id === tag[skill][i].id) {
           preSort[i].value = null;
           continue;
         }
-        preSort[i].person = tag.want[i];
+        preSort[i].person = tag[skill][i];
         preSort[i].value = 0;
         for (var j = 0; j < user.want.length; j++) {
-          for (var k = 0; k < tag.want[i].want.length; k++) {
-            if (user.want[j].id == tag.want[i].want[k].id) {
+          for (var k = 0; k < tag[skill][i].want.length; k++) {
+            if (user.want[j].id == tag[skill][i].want[k].id) {
               preSort[i].value++;
             }
           }
         }
         for (var j = 0; j < user.known.length; j++) {
-          for (var k = 0; k < tag.want[i].known.length; k++) {
-            if (user.known[j].id == tag.want[i].known[k].id) {
+          for (var k = 0; k < tag[skill][i].known.length; k++) {
+            if (user.known[j].id == tag[skill][i].known[k].id) {
               preSort[i].value++;
             }
           }
@@ -145,6 +152,9 @@ controllerDirector.search = function (req, res) {
         }
         return 0;
       })
+      if (preSort.length === 0) {
+        res.end();
+      }
       if (preSort[preSort.length -1].value == null) {
         preSort.length--;
       }
