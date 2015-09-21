@@ -1,5 +1,6 @@
 var React = require('react');
 var Router= require('react-router');
+var LoginStatus = require('./LoginStatus.js')
 var Route = Router.Route;
 var Link = Router.Link;
 var LoginStatus = require('./LoginStatus.js');
@@ -14,9 +15,16 @@ var Header = React.createClass({
 		});
 	},
 	render: function(){
-
+		var profile = <a href="/auth/github/" >Profile</a>;
+		var search = <a href="/auth/github/" >Search</a>;;
+		if(document.cookie){
+			search = <Link to="search" onClick={this.active}>Search</Link>;
+			profile = <Link to="profile" onClick={this.active}>Profile</Link>;
+						
+		}
 		return (
 			<div className="header clearfix row header">
+				<h3 className="text-muted pull-left">Pair With Me</h3>
       <nav>
         <ul className="nav nav-pills pull-right">
 						<li role="presentation" className={this.state.active === '/' ? 'active' : ''}>
@@ -25,21 +33,21 @@ var Header = React.createClass({
 						<li role="presentation" className={this.state.active === '/guide' ? 'active' : ''}>
 							<Link to="guide" onClick={this.active}>Guide</Link>
 						</li>
-						<li role="presentation" className={this.state.active === '/profile' ? 'active' : ''}>
-							<Link to="profile" onClick={this.active}>Profile</Link>
-						</li>
+
 						<li role="presentation" className={this.state.active === '/recentProjects' ? 'active' : ''}>
 							<Link to="recentprojects" onClick={this.active}>Recent Projects</Link>
 						</li>
+						<li role="presentation" className={this.state.active === '/profile' ? 'active' : ''}>
+						{profile}
+						</li>
 						<li role="presentation" className={this.state.active === '/search' ? 'active' : ''}>
-							<Link to="search" onClick={this.active}>Search</Link>
+						{search}
 						</li>
-						<li role="presentation">
-							<LoginStatus/>
-						</li>
+
+
+						<LoginStatus />
         </ul>
       </nav>
-      <h3 className="text-muted">Pair With Me</h3>
     </div>
 		);
 	},
