@@ -33,12 +33,11 @@ var Header = React.createClass({
 						<li role="presentation" className={this.state.active === '/guide' ? 'active' : ''}>
 							<Link to="guide" onClick={this.active}>Guide</Link>
 						</li>
-
-						<li role="presentation" className={this.state.active === '/recentProjects' ? 'active' : ''}>
-							<Link to="recentprojects" onClick={this.active}>Recent Projects</Link>
-						</li>
 						<li role="presentation" className={this.state.active === '/profile' ? 'active' : ''}>
 						{profile}
+						</li>
+						<li role="presentation" className={this.state.active === '/recentProjects' ? 'active' : ''}>
+							<Link to="recentprojects" onClick={this.active}>Recent Projects</Link>
 						</li>
 						<li role="presentation" className={this.state.active === '/search' ? 'active' : ''}>
 						{search}
