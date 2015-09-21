@@ -1,5 +1,6 @@
 var React = require('react');
 var Router= require('react-router');
+var LoginStatus = require('./LoginStatus.js')
 var Route = Router.Route;
 var Link = Router.Link;
 var Header = React.createClass({
@@ -15,6 +16,7 @@ var Header = React.createClass({
 	render: function(){
 		return (
 			<div className="header clearfix row header">
+				<h3 className="text-muted pull-left">Pair With Me</h3>
       <nav>
         <ul className="nav nav-pills pull-right">
 						<li role="presentation" className={this.state.active === '/' ? 'active' : ''}>
@@ -32,12 +34,9 @@ var Header = React.createClass({
 						<li role="presentation" className={this.state.active === '/search' ? 'active' : ''}>
 							<Link to="search" onClick={this.active}>Search</Link>
 						</li>
-						<li role="presentation">
-							<a href="/auth/github">GitHub Login</a>
-						</li>
+						<LoginStatus />
         </ul>
       </nav>
-      <h3 className="text-muted">Pair With Me</h3>
     </div>
 		);
 	},

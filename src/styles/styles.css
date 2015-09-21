@@ -17,8 +17,26 @@ h4 {
 }
 .header h3{
   font-size: 24px;
-  margin-top: 7px;
-  padding-left: 20px;
+  margin-top: 2px;
+  padding-left: 10px;
+}
+.login-button {
+  margin-top: -3px;
+  margin-left: -10px;
+  width: 160px;
+  border: 1px solid #9A9696;
+  border-radius: 5px;
+}
+.nav>li>a {
+  padding-top: 3px !important;
+  padding-bottom: 5px !important;
+}
+.nav>li>a.login-link:focus, .nav>li>a.login-link:hover {
+  background-color: transparent !important;
+  opacity: .88;
+}
+.header li.logout-button a{
+  color: rgb(138,0,0) !important;
 }
 .bordered {
   border: 1px solid #9A9696;
@@ -30,6 +48,11 @@ h4 {
   -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.35);
   -moz-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.35);
   box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.35);
+}
+.img-shadow {
+  -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.65);
+  -moz-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.65);
+  box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.65);
 }
 .edit-profile-btn {
 	width:200px;
@@ -141,8 +164,3 @@ hr {
   -moz-box-shadow: 0px 1px 1px rgba(0,0,0, 0.2);
   box-shadow: 0px 1px 1px rgba(0,0,0, 0.2);
 }
-/* to be placed later */
-
-/*.bordered span {color: #406699;
-text-shadow: 1px 1px 1px rgb(138, 138, 138);
-}*/
