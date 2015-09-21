@@ -116,8 +116,8 @@ controllerDirector.search = function (req, res) {
     include: [{model: User, as: skill, where: whereQuery, include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}]}).done(function (tag) {
       console.log(tag);
       var preSort = [];
-      if (tag == null) {
-        res.end();
+      if (!tag || !tag[skill]) {
+        return res.end();
       }
       for (var i = 0; i < tag[skill].length; i++) {
         preSort[i] = {};
