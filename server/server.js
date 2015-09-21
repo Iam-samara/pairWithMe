@@ -69,11 +69,13 @@ app.use(passport.session()); //used for persisten login
 //   else {next();}
 // }
 function authenticatedOrNot(req, res, next){
-    if(req.isAuthenticated()){
-        next();
-    }else{
-        res.redirect("/home"); //or /auth/github
-    }
+  if(!req.isAuthenticated()){
+    console.log('running an auth user');
+    res.redirect('/auth/github');
+  }else{
+    console.log('not auth user, redirect');
+   next(); //or /auth/github
+  }
 }
 
 
@@ -90,6 +92,8 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), function(req,res) {
   console.log(req.user);
+  res.cookie('githubID', req.user.id);
+  res.cookie('token', req.user.token);
   res.redirect('/profile');
 });
 

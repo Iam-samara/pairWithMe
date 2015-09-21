@@ -62,16 +62,13 @@ function(accessToken, refreshToken, profile, done) {
   User.findOrCreate({where: {username: userObj.username}, defaults: {
     githubID: userObj.id, githubProfileURL: userObj.profileUrl,
     githubProfileImage: userObj.profilePic, token: userObj.token, email: userObj.email}}).spread(function(user, created) {
-      res.cookie('githubID', user.githubID);
-      res.cookie('token', user.token);
+    //  res.cookie('githubID', user.githubID);
+      //res.cookie('token', user.token);
     if (created === true) {
       res.redirect('/profileEditor');
     }
-    else {
-      //res.redirect('/profile');
-      done(error, user);
-    }
   })
+  return;
 };
 
 
