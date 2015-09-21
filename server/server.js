@@ -11,7 +11,11 @@
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser');
   // .urlencoded({ extended: true }),
+<<<<<<< HEAD
 //app.use(morgan('combined'));
+=======
+// app.use(morgan('combined'));
+>>>>>>> 55ecc6d308f265d9ba4481ae07326b849dbe36b8
 sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
   dialect: 'postgres',
   host: config.get('database.host'),

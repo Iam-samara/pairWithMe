@@ -9,25 +9,19 @@ var Users = React.createClass({
 		};
 	},
 	handle: function() {
-				 window.location.pathname = '/profile/'+ this.props.name
-
+		window.location.pathname = '/profile/'+ this.props.name
 	},
 	render: function() {
 		return (
-			<div className="col-xs-12 col-sm-3 col-lg-4">
-				<div className="text-center">
+			<div className="col-xs-12 col-sm-4 col-md-3">
+				<div className="bordered text-center">
 					<img src={this.props.picture} className="img-rounded profile-pic"/>
-				</div>
-				<div className="text-center">
-					<p>{this.props.name}</p>
-				</div>
-				<div className="text-center">
-					<a href={this.props.email}>Email</a>
-				</div>
-				<div className="text-center">
+					<p>{this.props.name}<br/>
+					<a href={this.props.email}>Email</a><br/>
 					<a href={this.props.github}>GitHub</a>
+					</p>
+					<button className="project-page-btn" onClick={this.handle}>Profile Page</button>
 				</div>
-				<button className="project-page-btn" onClick={this.handle}>Profile Page</button>
 			</div>
 		);
 	},

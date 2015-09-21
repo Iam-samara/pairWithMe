@@ -15,10 +15,14 @@ var Projects = React.createClass({
 	render: function() {
 		return(
 			<div className={this.props.className}>
-				<p>Title:{this.props.title}</p>
-				<p>Description:{this.props.description}</p>
-				<p>Tools Used: {this.props.tools}</p>
-				<button className="project-page-btn" onClick={this.handle}>Project Path</button>
+				<div className="bordered">
+				<p className="projects-text"><strong>Title: </strong>{this.props.title}</p>
+				<p className="projects-text"><strong>Description: </strong>{this.props.description}</p>
+				<p className="projects-text"><strong>Tools Used: </strong> {this.props.tools}</p>
+				<p>
+					<button className="project-page-btn" onClick={this.handle}>Project Path</button>
+				</p>
+			</div>
 			</div>
 			);
 

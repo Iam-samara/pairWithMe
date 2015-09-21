@@ -1,20 +1,64 @@
 .row {
-  padding: 10px 0 20px;
+  padding: 10px 0;
+}
+body{
+  background: url(../img/shattered_@2X.png) top left;
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 16px;
+}
+.header{
+  /*background-color: #f0f03d;*/
+  text-shadow: 1px 1px 2px rgba(250, 250, 250, 1);
+  margin-bottom:30px;
+  padding: 10px 0;
+  border-radius: 5px;
+}
+.header h3{
+  font-size: 24px;
+  margin-top: 2px;
+  padding-left: 10px;
+}
+.login-button {
+  margin-top: -3px;
+  margin-left: -10px;
+  width: 160px;
+  border: 1px solid #9A9696;
+  border-radius: 5px;
+}
+.nav>li>a {
+  padding-top: 3px !important;
+  padding-bottom: 5px !important;
+}
+.nav>li>a.login-link:focus, .nav>li>a.login-link:hover {
+  background-color: transparent !important;
+  opacity: .88;
+}
+.header li.logout-button a{
+  color: rgb(138,0,0) !important;
 }
 .bordered {
-	 margin-top:10px;
-    padding: 20px;
-    outline: 2px solid #ccc;
-    outline-color: #7b8287;
-    outline-offset: -10px;
-    -moz-outline-radius: 10px;
-    -webkit-outline-radius: 10px;
+  border: 1px solid #9A9696;
+  border-radius: 5px;
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background-color: rgba(216, 217, 218, .6);
+  -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.35);
+  -moz-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.35);
+  box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.35);
+}
+.img-shadow {
+  -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.65);
+  -moz-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.65);
+  box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.65);
 }
 .edit-profile-btn {
 	width:200px;
 	margin:0 auto;
 	display: block;
-  background: #c4c4c4;
+  background: #DAD8D8;
   background-image: -webkit-linear-gradient(top, #c4c4c4, #5c5c5c);
   background-image: -moz-linear-gradient(top, #c4c4c4, #5c5c5c);
   background-image: -ms-linear-gradient(top, #c4c4c4, #5c5c5c);
@@ -38,7 +82,7 @@
   text-decoration: none;
 }
 .project-page-btn {
-  width:150px;
+  width:130px;
   margin:0 auto;
   display: block;
   background: #c4c4c4;
@@ -65,8 +109,9 @@
   text-decoration: none;
 }
 .profile-pic {
-  max-width: 240px;
-  height: auto;
+  width: auto;
+  height: 140px;
+  margin: 0 auto;
 }
 .guide-block {
   margin-bottom: 20px;
@@ -75,4 +120,47 @@
 }
 .guide-block h4, .guide-block p {
   padding: 5px;
+}
+
+.header a {
+  color: #797171;
+  font-size: 18px;
+}
+p {
+  margin:10px 0;
+}
+#main .nav-pills>li.active>a {
+  background-color: rgb(220,220,220);
+  color: #FFFFFF;
+  text-shadow: 1px 1px 2px rgba(20,20,20, 1);
+
+}
+#main .nav-pills>li.active>a {
+  background-color: #A2A1A1;
+  color: #FFFFFF;
+}
+.user-type {
+  font-size: 1.8rem;
+}
+.tags {
+  color: #03509D;
+  margin-left: 5px;
+  font-weight: light;
+  font-style: italic;
+  text-shadow: .5px .5px 1px rgba(255,255,255, .3);
+  font-size: 1.6rem;
+  display: inline-block;
+}
+.projects-box {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.projects-text {
+  padding-bottom: 10px;
+}
+hr {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  -webkit-box-shadow: 0px 1px 1px rgba(0,0,0, 0.2);
+  -moz-box-shadow: 0px 1px 1px rgba(0,0,0, 0.2);
+  box-shadow: 0px 1px 1px rgba(0,0,0, 0.2);
 }
