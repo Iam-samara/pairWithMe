@@ -17,7 +17,7 @@ h4 {
 }
 .header h3{
   font-size: 24px;
-  margin-top: 5px;
+  margin-top: 7px;
   padding-left: 20px;
 }
 .bordered {
@@ -120,12 +120,13 @@ p {
   font-size: 1.8rem;
 }
 .tags {
-  color: #000;
-  margin: 0 3px;
+  color: #03509D;
+  margin-left: 5px;
   font-weight: light;
   font-style: italic;
-  text-shadow: 1px 1px 1px rgba(250,250,250, .5);
+  text-shadow: .5px .5px 1px rgba(255,255,255, .3);
   font-size: 1.6rem;
+  display: inline-block;
 }
 .projects-box {
   padding-top: 10px;
@@ -133,6 +134,12 @@ p {
 }
 .projects-text {
   padding-bottom: 10px;
+}
+hr {
+  border: 1px solid rgba(255, 255, 255, 0.7);;
+  -webkit-box-shadow: 0px 1px 1px rgba(0,0,0, 0.2);
+  -moz-box-shadow: 0px 1px 1px rgba(0,0,0, 0.2);
+  box-shadow: 0px 1px 1px rgba(0,0,0, 0.2);
 }
 /* to be placed later */
 

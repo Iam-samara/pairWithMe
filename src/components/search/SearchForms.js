@@ -60,8 +60,7 @@ var SearchForms = React.createClass({
     return(
 			<div className="row">
 				<div className="col-xs-12">
-
-	      <div className="bordered">
+	      <div className="col-xs-10 col-xs-offset-1 bordered">
 	      <h3 className="text-center">Search For Partners</h3>
 					<div className="row">
 						<div className="col-xs-8 col-xs-offset-2">
@@ -92,16 +91,20 @@ var SearchForms = React.createClass({
 								</div>
 								<div className="row">
 									<div className="col-xs-12 col-sm-6 col-sm-offset-3">
-	                <p>
-										<input type="submit" value="SUBMIT"  name="submit" className="btn btn-primary btn-lg btn-block" />
-									</p>
-	                </div>
+										<p>
+											<input type="submit" value="SUBMIT"  name="submit" className="btn btn-primary btn-lg btn-block" />
+										</p>
+	            </div>
 								</div>
 							</form>
 						</div>
 					</div>
-	        <SearchResults data={this.state.data}/>
-	      </div>
+					<div className="row">
+						<div className="col-xs-12">
+		        <SearchResults data={this.state.data}/>
+		      </div>
+					</div>
+				</div>
 			</div>
 		</div>
   )}
