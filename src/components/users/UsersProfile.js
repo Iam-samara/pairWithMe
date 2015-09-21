@@ -34,10 +34,10 @@ var UsersProfile = React.createClass({
 				var learn = "Student"
 			}
 			var known = data.known.map(function (element, index) {
-				return (element.tagName +" ");
+				return (<div className="btn btn-xs tags">{element.tagName +" "}</div>);
 			});
 			var wanted = data.want.map( function (element,index) {
-				return (element.tagName +" ");
+				return (<div className="btn btn-xs tags">{element.tagName +" "}</div>);
 			});
 			var ownedproject = data.ownedproject;
 			console.log(ownedproject);
