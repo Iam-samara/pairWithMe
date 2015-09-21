@@ -33,10 +33,10 @@ var Profile = React.createClass({
 				var learn = "Student"
 			}
 			var known = data.known.map(function (element, index) {
-				return (<div className="btn btn-xs tags">{element.tagName}</div>);
+				return (<div className="tags">{element.tagName}</div>);
 			});
 			var wanted = data.want.map( function (element,index) {
-				return (<div className="btn btn-xs tags">{element.tagName}</div>);
+				return (<div className="tags">{element.tagName}</div>);
 			});
 			var ownedproject = data.ownedproject;
 			console.log(ownedproject);
@@ -58,7 +58,7 @@ var Profile = React.createClass({
 	render: function(){
 
 		var userProj = this.state.projects.map(function(element, index){
-			return(<Projects className="col-xs-12 col-sm-6 col-md-4" title={element.projectName.slice(0,17)} tools={element.tools.slice(0,17)} description={element.description.slice(0,17)} route={element.id} key={index}/>)
+			return(<Projects className="col-xs-12 col-sm-6 col-md-4 projects-box" title={element.projectName.slice(0,17)} tools={element.tools.slice(0,17)} description={element.description.slice(0,17)} route={element.id} key={index}/>)
 		})
 
 		return (

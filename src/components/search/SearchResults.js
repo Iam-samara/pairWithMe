@@ -7,6 +7,7 @@ var SearchResults = React.createClass({
 		});
 		return (
 			<div>
+				<hr />
 				{userData}
 			</div>
 		);
