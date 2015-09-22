@@ -79,7 +79,7 @@ var ProjectForm = React.createClass({
 					<div className="row">
 					  <div className="form-group col-xs-12 col-sm-8">
 					    <label>GitHubLink</label>
-					    <input required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,200}$" type="text" className="form-control" value={this.state.github} placeholder="GitHubLink" onChange={this.onChangeGithub}/>
+					    <input  type="text" className="form-control" value={this.state.github} placeholder="GitHubLink" onChange={this.onChangeGithub}/>
 					  </div>
 					</div>
 					<div className="row">
