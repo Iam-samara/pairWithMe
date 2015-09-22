@@ -61,7 +61,7 @@ var ProjectForm = React.createClass({
  					<div className="row">
  					  <div className="form-group col-xs-12 col-sm-8">
  					    <label>Title</label>
- 					    <input required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,100}$" type="text" className="form-control" value={this.state.name}  placeholder="Title" onChange={this.onChangeName}/>
+ 					    <textarea required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,100}$" type="text" className="form-control" value={this.state.name}  placeholder="Title" onChange={this.onChangeName}/>
  					  </div>
  					</div>
 					<div className="row">
@@ -79,7 +79,7 @@ var ProjectForm = React.createClass({
 					<div className="row">
 					  <div className="form-group col-xs-12 col-sm-8">
 					    <label>Tools Used</label>
-					    <input required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,500}$" type="text" className="form-control" value={this.state.tools} placeholder="Tools Used" onChange={this.onChangeTools}/>
+					    <textarea required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,500}$" type="text" className="form-control" value={this.state.tools} placeholder="Tools Used" onChange={this.onChangeTools}/>
 					  </div>
 					</div>
 					<div className="row">
