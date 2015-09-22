@@ -1,6 +1,6 @@
 var express = require('express'),
   app = express(),
-  morgan = require('morgan'),
+  // morgan = require('morgan'),
   Sequelize = require('sequelize'),
   config = require('config'),
   http = require('http'),
@@ -18,7 +18,7 @@ sequelize = new Sequelize(config.get('database.database'), config.get('database.
   dialectOptions: {
     ssl: true
   },
-  logging: false
+  // logging: false
 });
 
 var User = require('./db_models/userModel.js');
@@ -26,13 +26,14 @@ var Tag = require('./db_models/tagModel.js');
 var Project = require('./db_models/projectModel.js');
 var KnownTag = require('./db_models/knownTagsModel.js');
 var WantedTag = require('./db_models/wantedTagsModel.js');
+var UserProject = require('./db_models/userProjectsModel.js');
 
 Tag.belongsToMany(User, {as: 'known', through: 'knowntags'});
 User.belongsToMany(Tag, {as: 'known', through: 'knowntags'});
 Tag.belongsToMany(User, {as: 'want', through: 'wantedtags'});
 User.belongsToMany(Tag, {as: 'want', through: 'wantedtags'});
-Project.belongsToMany(User, {as: 'projectowner', through: 'userproject'});
-User.belongsToMany(Project, {as: 'ownedproject', through: 'userproject'});
+Project.belongsToMany(User, {as: 'projectowner', through: 'userprojects'});
+User.belongsToMany(Project, {as: 'ownedproject', through: 'userprojects'});
 
 var UserController = require('./db_models/userController.js');
 var TagController = require('./db_models/tagController.js');
@@ -76,10 +77,13 @@ app.get('/auth/github', passport.authenticate('github'), function(req,res) {
   //request will redirect to Githib for authentication
 });
 
+app.get('/test', ControllerDirector.getProfile);
 /** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), UserController.signIn);
 
 app.post('/updateProfile', ControllerDirector.updateProfile);
+
+app.get('/api/users', UserController.allUsers);
 
 app.get('/api/profile',authenticate,ControllerDirector.getProfile);
 
