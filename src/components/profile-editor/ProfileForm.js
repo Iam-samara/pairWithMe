@@ -39,11 +39,12 @@ var ProfileForm = React.createClass({
     this.valueHolder.student = 'true';
   },
   onChangeHave: function(value) {
-    this.valueHolder.have = value;
+    var haveTags = value.replace(/ /g, '-')
+    this.valueHolder.have = haveTags;
   },
   onChangeWant: function(value) {
-    this.valueHolder.want = value;
-  },
+    var wantTags = value.replace(/ /g, '-')
+    this.valueHolder.want = wantTags;  },
   componentDidMount: function() {
     $.getJSON('/tags', function(result) {
       result = result.map(function (element, index) {
@@ -106,7 +107,7 @@ var ProfileForm = React.createClass({
                 <label>Select or create a tag for skills you have. (can select more than one)</label>
               </p>
               <div className="col-xs-12 col-sm-12">
-                <Select name="form-field-name" options={this.state.tags} multi={true} allowCreate={true} onChange={ this.onChangeHave} />
+                <Select name="form-field-name" required pattern="^[a-zA-Z][a-zA-Z0-9\.]{1,50}$" options={this.state.tags} multi={true} allowCreate={true} onChange={ this.onChangeHave} />
               </div>
             </div>
             <div className='row'>
@@ -114,7 +115,7 @@ var ProfileForm = React.createClass({
                 <label>Select or create a tag for skills you want to learn. (can select more than one)</label>
               </p>
               <div className="col-xs-12 col-sm-12">
-                <Select name="form-field-name" options={this.state.tags} multi={true} allowCreate={true} onChange={ this.onChangeWant} />
+                <Select name="form-field-name" required pattern="^[a-zA-Z][a-zA-Z0-9\.]{1,50}$" options={this.state.tags} multi={true} allowCreate={true} onChange={ this.onChangeWant} />
               </div>
             </div>
             <div className="row">

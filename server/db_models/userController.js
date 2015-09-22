@@ -34,7 +34,12 @@ userController.updateProfile = function (req, res) {
       collaborator: collaborator
     });
   })
+};
 
+userController.allUsers = function (req, res) {
+  User.findAll({attributes: ['username']}).done(function (users) {
+    res.send(users);
+  })
 }
 
 userController.profileByName = function (req, res) {
