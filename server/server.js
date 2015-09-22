@@ -9,13 +9,14 @@
   passport = require('./oauth.js'),
   ensureAuthenticated = require('./ensureAuthenticated.js'),
   cookieParser = require('cookie-parser'),
-  bodyParser = require('body-parser');
+  bodyParser = require('body-parser'),
+  //ws = require('ws').Server,
+  express = require('express');
+  //wss = new ws({port: 8080});
   // .urlencoded({ extended: true }),
-<<<<<<< HEAD
-//app.use(morgan('combined'));
-=======
+
 // app.use(morgan('combined'));
->>>>>>> 55ecc6d308f265d9ba4481ae07326b849dbe36b8
+
 sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
   dialect: 'postgres',
   host: config.get('database.host'),
@@ -72,6 +73,34 @@ app.use(passport.session()); //used for persisten login
 //   }
 //   else {next();}
 // }
+
+
+
+// var wsarr = [];
+// wss.on("connection", function(ws){
+//  console.log("we connected<3");
+//  wsarr.push(ws);
+//  ws.send("from ws server");
+//  ws.on("message", function(msg) {
+//    for(var i = 0; i < wsarr.length; i++) {
+//    wsarr[i].send(msg);
+//  }
+//  })
+// });
+// app.get('/', function(req, res) {
+//  res.sendFile(__dirname + "/index.html");
+// })
+//app.listen({port: 3000});
+//var ws = new WebSocket('ws://localhost:8080');
+
+
+
+
+
+
+
+
+
 function authenticatedOrNot(req, res, next){
   if(!req.isAuthenticated()){
     console.log('running an auth user');
