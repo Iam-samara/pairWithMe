@@ -139,7 +139,7 @@ app.post('/updateProfile', ControllerDirector.updateProfile);
 
 app.get('/api/users', UserController.allUsers);
 
-app.get('/api/profile',authenticate,ControllerDirector.getProfile);
+app.get('/api/profile',authenticatedOrNot,ControllerDirector.getProfile);
 
 /* this route is authenticated, user must have cookie before diplaying profile*/
 app.get('/api/profile/:name',authenticatedOrNot, UserController.profileByName);
