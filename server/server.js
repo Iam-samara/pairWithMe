@@ -83,6 +83,8 @@ app.get('/auth/github/callback', passport.authenticate('github', {failureRedirec
 
 app.post('/updateProfile', ControllerDirector.updateProfile);
 
+app.get('/api/users', UserController.allUsers);
+
 app.get('/api/profile',authenticate,ControllerDirector.getProfile);
 
 /* this route is authenticated, user must have cookie before diplaying profile*/
