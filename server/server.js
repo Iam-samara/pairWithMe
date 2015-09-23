@@ -1,8 +1,6 @@
  var express = require('express'),
   app = express(),
   session = require('express-session'),
-//  morgan = require('morgan'),
-
   Sequelize = require('sequelize'),
   config = require('config'),
   http = require('http'),
@@ -11,16 +9,12 @@
   ensureAuthenticated = require('./ensureAuthenticated.js'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
-  //ws = require('ws').Server,
   express = require('express');
-  //wss = new ws({port: 8080});
-  // .urlencoded({ extended: true }),
 
-// app.use(morgan('combined'));
-
-sequelize = new Sequelize(config.get('database.database'), config.get('database.user'), config.get('database.password'), {
+/*Connects to Database via sequalize ORM */
+sequelize = new Sequelize(process.env.DATABASE, process.env.DATABASE_USER, process.env.DATABASE_PASSWORD, {
   dialect: 'postgres',
-  host: config.get('database.host'),
+  host: process.env.DATABASE_HOST,
   port: 5432,
   dialectOptions: {
     ssl: true
@@ -28,6 +22,8 @@ sequelize = new Sequelize(config.get('database.database'), config.get('database.
   logging: false
 });
 
+
+/* inheriting database models + establishing the relations many to many*/
 var User = require('./db_models/userModel.js');
 var Tag = require('./db_models/tagModel.js');
 var Project = require('./db_models/projectModel.js');
@@ -42,19 +38,19 @@ User.belongsToMany(Tag, {as: 'want', through: 'wantedtags'});
 Project.belongsToMany(User, {as: 'projectowner', through: 'userprojects'});
 User.belongsToMany(Project, {as: 'ownedproject', through: 'userprojects'});
 
+sequelize.sync().then(function () {
+  return console.log("database has synced");
+});
+
+/* Seperated the server file into multiple files, inhering other files  */
 var UserController = require('./db_models/userController.js');
 var TagController = require('./db_models/tagController.js');
 var KnownTagController = require('./db_models/knownTagsController.js');
 var WantedTagController = require('./db_models/wantedTagsController.js');
 var ProjectController = require('./db_models/projectController.js');
-//will need project controller
-
-sequelize.sync().then(function () {
-  return console.log("database has synced");
-});
-
 var ControllerDirector = require('./db_models/controllerDirector.js');
 
+/* Setting up middleware */
 app.use('/', express.static(__dirname + '/../client'));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -75,34 +71,6 @@ app.use(passport.session()); //used for persisten login
 //   }
 //   else {next();}
 // }
-
-
-
-// var wsarr = [];
-// wss.on("connection", function(ws){
-//  console.log("we connected<3");
-//  wsarr.push(ws);
-//  ws.send("from ws server");
-//  ws.on("message", function(msg) {
-//    for(var i = 0; i < wsarr.length; i++) {
-//    wsarr[i].send(msg);
-//  }
-//  })
-// });
-// app.get('/', function(req, res) {
-//  res.sendFile(__dirname + "/index.html");
-// })
-//app.listen({port: 3000});
-//var ws = new WebSocket('ws://localhost:8080');
-
-
-
-
-
-
-
-
-
 function authenticatedOrNot(req, res, next){
   if(!req.isAuthenticated()){
     console.log('running an auth user');
@@ -118,20 +86,18 @@ function authenticatedOrNot(req, res, next){
 app.get('/', function(req, res) {
   res.sendFile(path.resolve(__dirname + '/../client/index.html'));
 });
-
 /** request for login, redirects to github.com */
 app.get('/auth/github', passport.authenticate('github'), function(req,res) {
   //request will redirect to Githib for authentication
 });
-
-app.get('/test', ControllerDirector.getProfile);
-/** authenticates callback */
 app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: 'login'}), function(req,res) {
   console.log(req.user);
   res.cookie('githubID', req.user.id);
   res.cookie('token', req.user.token);
   res.redirect('/profile');
 });
+
+app.get('/test', ControllerDirector.getProfile);
 
 app.post('/updateProfile', ControllerDirector.updateProfile);
 

@@ -12,8 +12,8 @@ var passport = require('passport'),
   * on success of the email request, we resume and create an object to
   * hold the wanted data retrieved from both requests.**/
 passport.use(new GitHubStrategy({
-  clientID: config.get('oAuth.clientID'),
-  clientSecret: config.get('oAuth.clientSecret'),
+  clientID: process.env.OAUTH_CLIENT_ID,
+  clientSecret:process.env.OAUTH.CLIENTSECRET,
   scope: ['user:email'],
   callbackURL: 'http://localhost:3000/auth/github/callback',
   userAgent: 'pairWithMe'
