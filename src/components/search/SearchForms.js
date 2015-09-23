@@ -49,7 +49,7 @@ var SearchForms = React.createClass({
 // error right now
       success: function(results) {
       	if(results.length === 0){
-      		that.setState({noResults:'Sorry No Results Found'});
+      		that.setState({noResults:'Sorry, No Results Found'});
       		that.setState({data:[]});
       	} else {
       	that.setState({noResults:''});
