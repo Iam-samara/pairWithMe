@@ -25,7 +25,7 @@ var Header = React.createClass({
 		return (
 			<div className="header clearfix row header">
 				<h3>
-				<Link to='/' className="pull-left pair">Pair With Me</Link>
+				<Link to='/' className="pull-left pair" onClick={this.state.active}><strong>Pair With Me</strong></Link>
 				</h3>
       <nav>
         <ul className="nav nav-pills pull-right">

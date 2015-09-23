@@ -114,7 +114,6 @@ controllerDirector.search = function (req, res) {
     whereQuery[partner] = true;
     Tag.findOne({where: {tagName: req.body.tag},
     include: [{model: User, as: skill, where: whereQuery, include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}]}]}).done(function (tag) {
-      console.log(tag);
       var preSort = [];
       if (!tag || !tag[skill]) {
         return res.end();

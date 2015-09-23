@@ -22,9 +22,7 @@ var UsersProfile = React.createClass({
 	},
 	componentDidMount: function() {
 		var params = this.context.router.getCurrentParams();
-		console.log(params.user);
 		$.getJSON('/api/profile/'+params.user, function(data){
-			console.log("returned",data)
 			if(data.teacher) {
 				var teach = "Teacher";
 			}
@@ -41,7 +39,6 @@ var UsersProfile = React.createClass({
 				return (<div className="btn btn-xs tags">{element.tagName +" "}</div>);
 			});
 			var ownedproject = data.ownedproject;
-			console.log(ownedproject);
 			this.setState({
 				username: data.username,
 				githubLink: data.githubProfileURL,
