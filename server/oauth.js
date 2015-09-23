@@ -1,7 +1,6 @@
 var passport = require('passport'),
     GitHubStrategy = require('passport-github').Strategy,
-    request_module = require('request'),
-    config = require('config');
+    request_module = require('request');
     // Sequelize = require('sequelize'),
     // User = require('./db_models/userModel.js');
 
@@ -12,8 +11,8 @@ var passport = require('passport'),
   * on success of the email request, we resume and create an object to
   * hold the wanted data retrieved from both requests.**/
 passport.use(new GitHubStrategy({
-  clientID: process.env.OAUTH_CLIENT_ID || config.get('oAuth.clientID'),
-  clientSecret:process.env.OAUTH_CLIENTSECRET || config.get('oAuth.clientSecret') ,
+  clientID: process.env.OAUTH_CLIENT_ID,
+  clientSecret:process.env.OAUTH_CLIENTSECRET,
   scope: ['user:email'],
   callbackURL: 'http://localhost:3000/auth/github/callback',
   userAgent: 'pairWithMe'
