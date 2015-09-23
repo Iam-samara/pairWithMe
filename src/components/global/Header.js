@@ -15,6 +15,8 @@ var Header = React.createClass({
 		});
 	},
 	render: function(){
+				console.log("header",this.state.active);
+
 		var profile = <a href="/auth/github/" >Profile</a>;
 		var search = <a href="/auth/github/" >Search</a>;;
 		if(document.cookie){
@@ -25,7 +27,7 @@ var Header = React.createClass({
 		return (
 			<div className="header clearfix row header">
 				<h3>
-				<Link to='/' className="pull-left pair" onClick={this.state.active}><strong>Pair With Me</strong></Link>
+				<Link to="/" className="pull-left pair" onClick={this.active}>Pair With Me</Link>
 				</h3>
       <nav>
         <ul className="nav nav-pills pull-right">

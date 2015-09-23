@@ -9,12 +9,10 @@ var Home = React.createClass({
 	},
 	componentDidMount: function() {
 		$.getJSON('/api/projects', function(data){
-			console.log("proj", data);
 			this.setState({projects:data.splice(0,3)})
 		}.bind(this));
 	},
 	render: function() {
-		console.log("in render", this.state.projects.description);
 		var projectList = this.state.projects.map(function(element, index){
 			return (<Projects className="col-xs-12 col-md-4" title={element.projectName.slice(0,17)} description={element.description.slice(0,17)} tools={element.tools.slice(0,17)} route={element.id} key={index}/>)
 		});
