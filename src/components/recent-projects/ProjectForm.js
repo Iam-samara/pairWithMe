@@ -71,42 +71,45 @@ var ProjectForm = React.createClass({
  			<div>
  				<form id="projectForm" encType="multipart/form-data" onSubmit={this.handle}>
  					<div className="row">
- 					  <div className="form-group col-xs-12 col-sm-8">
- 					    <label>Title</label>
- 					    <textarea required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,100}$" type="text" className="form-control" value={this.state.name}  placeholder="Title" onChange={this.onChangeName}/>
- 					  </div>
+						<div className="form-group col-xs-8 col-xs-offset-2 col-sm-8 text-center">
+							<label htmlFor="title">Title</label>
+							<textarea required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,100}$" type="text" className="form-control" value={this.state.name}  placeholder="Title" onChange={this.onChangeName} id="title"/>
+						</div>
  					</div>
 					<div className="row">
-					  <div className="form-group col-xs-12 col-sm-8">
-					    <label>GitHubLink</label>
-					    <input  type="text" className="form-control" value={this.state.github} placeholder="GitHubLink" onChange={this.onChangeGithub}/>
-					  </div>
+						<div className="form-group col-xs-8 col-xs-offset-2 col-sm-8 text-center">
+							<label htmlFor="ghlink">GitHubLink</label>
+							<input  type="text" className="form-control" value={this.state.github} placeholder="ghlink" onChange={this.onChangeGithub} id="GitHubLink"/>
+						</div>
 					</div>
 					<div className="row">
-					  <div className="form-group col-xs-12 col-sm-8">
-					    <label>Description</label>
-					    <textarea required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{50,500}$" className="form-control" rows="3" value={this.state.description} placeholder="Description" onChange={this.onChangeDescription}></textarea>
-					  </div>
+						<div className="form-group col-xs-8 col-xs-offset-2 col-sm-8 text-center">
+						  <label htmlFor="description">Description</label>
+						  <textarea required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{50,500}$" className="form-control" rows="3" value={this.state.description} placeholder="Description" onChange={this.onChangeDescription} id="description"></textarea>
+						</div>
 					</div>
 					<div className="row">
-					  <div className="form-group col-xs-12 col-sm-8">
-					    <label>Tools Used</label>
-					    <textarea required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,500}$" type="text" className="form-control" value={this.state.tools} placeholder="Tools Used" onChange={this.onChangeTools}/>
-					  </div>
+						<div className="form-group col-xs-8 col-xs-offset-2 col-sm-8 text-center">
+						  <label htmlFor="tools">Tools Used</label>
+						  <textarea required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,500}$" type="text" className="form-control" value={this.state.tools} placeholder="Tools Used" onChange={this.onChangeTools} id="tools"/>
+						</div>
 					</div>
 					<div className="row">
-					  <div className="form-group col-xs-12 col-sm-8">
-					    <label>What we learned</label>
-					    <textarea required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,500}$" className="form-control" row="3" value={this.state.learn} placeholder="What we Learned" onChange={this.onChangeLearn}></textarea>
-					  </div>
+						<div className="form-group col-xs-8 col-xs-offset-2 col-sm-8 text-center">
+						  <label htmlFor="learns">What we learned</label>
+						  <textarea required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,500}$" className="form-control" row="3" value={this.state.learn} placeholder="What we Learned" onChange={this.onChangeLearn} id="learns"></textarea>
+						</div>
 					</div>
 					<div className="row">
-					  <div className="form-group col-xs-12 col-sm-8">
-                <Select name="form-field-name" placeholder={this.state.partner} required pattern="^[a-zA-Z][a-zA-Z0-9\.]{1,50}$" options={this.state.options}  onChange={ this.onChangePartner} />
-              </div>
+						<div className="form-group col-xs-8 col-xs-offset-2 col-sm-8 text-center">
+							<label>Paired Partner</label>
+							<Select name="form-field-name" placeholder={this.state.partner} required pattern="^[a-zA-Z][a-zA-Z0-9\.]{1,50}$" options={this.state.options}  onChange={ this.onChangePartner} className="text-left" />
+						</div>
 					</div>
-					<div className="col-xs-12 col-sm-6 col-sm-offset-3">
-					  <input type="submit" value="SUBMIT" name="submit" className="btn btn-primary btn-lg btn-block" />
+					<div className="row">
+						<div className="col-xs-6 col-xs-offset-2 col-sm-6 col-sm-offset-3">
+						  <input type="submit" value="SUBMIT" name="submit" className="btn btn-primary btn-lg btn-block" />
+						</div>
 					</div>
 				</form>
 			</div>
