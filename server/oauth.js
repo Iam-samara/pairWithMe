@@ -1,6 +1,5 @@
 var passport = require('passport'),
     GitHubStrategy = require('passport-github').Strategy,
-    config = require('config'),
     request_module = require('request');
     // Sequelize = require('sequelize'),
     // User = require('./db_models/userModel.js');

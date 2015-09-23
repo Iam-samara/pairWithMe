@@ -2,7 +2,6 @@
   app = express(),
   session = require('express-session'),
   Sequelize = require('sequelize'),
-  config = require('config'),
   http = require('http'),
   path = require('path'),
   passport = require('./oauth.js'),
