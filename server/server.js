@@ -4,6 +4,7 @@
   Sequelize = require('sequelize'),
   http = require('http'),
   path = require('path'),
+  config = require('config'),
   passport = require('./oauth.js'),
   ensureAuthenticated = require('./ensureAuthenticated.js'),
   cookieParser = require('cookie-parser'),
@@ -11,9 +12,9 @@
   express = require('express');
 
 /*Connects to Database via sequalize ORM */
-sequelize = new Sequelize(process.env.DATABASE, process.env.DATABASE_USER, process.env.DATABASE_PASSWORD, {
+sequelize = new Sequelize(process.env.DATABASE || config.get('database.database'), process.env.DATABASE_USER || config.get('database.user'), process.env.DATABASE_PASSWORD || config.get('database.password'), {
   dialect: 'postgres',
-  host: process.env.DATABASE_HOST,
+  host: process.env.DATABASE_HOST || config.get('database.host'),
   port: 5432,
   dialectOptions: {
     ssl: true
@@ -70,15 +71,15 @@ app.use(passport.session()); //used for persisten login
 //   }
 //   else {next();}
 // }
-function authenticatedOrNot(req, res, next){
-  if(!req.isAuthenticated()){
-    console.log('running an auth user');
-    res.redirect('/auth/github');
-  }else{
-    console.log('not auth user, redirect');
-   next(); //or /auth/github
-  }
-}
+// function authenticatedOrNot(req, res, next){
+//   if(!req.isAuthenticated()){
+//     console.log('running an auth user');
+//     res.redirect('/auth/github');
+//   }else{
+//     console.log('not auth user, redirect');
+//    next(); //or /auth/github
+//   }
+// }
 
 
 /** loading home page */
@@ -104,10 +105,10 @@ app.post('/updateProfile', ControllerDirector.updateProfile);
 
 app.get('/api/users', UserController.allUsers);
 
-app.get('/api/profile',authenticatedOrNot,ControllerDirector.getProfile);
+app.get('/api/profile', ControllerDirector.getProfile);
 
 /* this route is authenticated, user must have cookie before diplaying profile*/
-app.get('/api/profile/:name',authenticatedOrNot, UserController.profileByName);
+app.get('/api/profile/:name', UserController.profileByName);
 
 app.post('/createProject', ControllerDirector.createProject);
 

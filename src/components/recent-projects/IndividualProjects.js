@@ -7,7 +7,6 @@ var IndividualProjects = React.createClass({
 	router: React.PropTypes.func.isRequired
 	},
 
-
 	getInitialState: function() {
 		return {
 			name: '',
@@ -19,6 +18,7 @@ var IndividualProjects = React.createClass({
 			partner2: '',
 		};
 	},
+
 	componentDidMount: function() {
 		var params = this.context.router.getCurrentParams();
 		$.getJSON('/recentProjects/' + params.id  , function(data){
@@ -33,12 +33,7 @@ var IndividualProjects = React.createClass({
 			});
 		}.bind(this));
 	},
-	// handle1: function(){
-	// 	window.location.pathname = '/profile/'+ this.state.partner1
-	// },
-	// handle2: function(){
-	// 	window.location.pathname = '/profile/'+ this.state.partner2
-	// },
+
 	render: function(){
 		var space = "   |   ";
 		var profile1 = "/profile/"+this.state.partner1
@@ -54,7 +49,9 @@ var IndividualProjects = React.createClass({
 				<div className="row">
 					<div className="form-group col-xs-12 col-sm-8">
 					  <label>GitHubLink</label>
-					    <p className="bordered"> {this.state.github} </p>
+						  <div className="bordered">
+						    <a href={this.state.github}>Projects Github</a>
+						  </div>
 					</div>
 				</div>
 				<div className="row">
@@ -78,10 +75,10 @@ var IndividualProjects = React.createClass({
 				<div className="row">
 					 <div className="form-group col-xs-12 col-sm-8">
 					   <label>Authors</label><br/>
-					   <p className="bordered">
-							<Link to={profile1}><strong>{this.state.partner1}{space}</strong></Link>
-							<Link to={profile2}><strong>{this.state.partner2}</strong></Link>
-							</p>
+						   <div className="bordered">
+									<Link to={profile1}><strong>{this.state.partner1}{space}</strong></Link>
+									<Link to={profile2}><strong>{this.state.partner2}</strong></Link>
+								</div>
 					 </div>
 				</div>
       </div>

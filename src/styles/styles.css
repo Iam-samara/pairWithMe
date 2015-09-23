@@ -27,6 +27,13 @@ h4 {
   border: 1px solid #9A9696;
   border-radius: 5px;
 }
+.homehero{
+  font-size: 2.0rem;
+  margin: 10px 10px;
+}
+.header a.pair{
+  font-size: 34px;
+}
 .nav>li>a {
   padding-top: 3px !important;
   padding-bottom: 5px !important;
