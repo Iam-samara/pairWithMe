@@ -41,7 +41,7 @@ var Header = React.createClass({
 						{profile}
 						</li>
 						<li role="presentation" className={this.state.active === '/recentProjects' ? 'active' : ''}>
-							<Link to="recentprojects" onClick={this.active}>Recent Projects</Link>
+							<Link to="recentprojects" onClick={this.active}>Projects</Link>
 						</li>
 						<li role="presentation" className={this.state.active === '/search' ? 'active' : ''}>
 						{search}
