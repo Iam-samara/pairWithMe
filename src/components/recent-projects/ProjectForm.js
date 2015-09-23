@@ -33,7 +33,7 @@ var ProjectForm = React.createClass({
 		console.log(value)
 	 this.setState({partner: ''+value+''});
 	},
-	  componentDidMount: function() {
+	componentDidMount: function() {
     $.getJSON('/api/users', function(result) {
       result = result.map(function (element, index) {
         return ({value: element.username, label: element.username})
@@ -102,8 +102,9 @@ var ProjectForm = React.createClass({
 					</div>
 					<div className="row">
 					  <div className="form-group col-xs-12 col-sm-8">
-                <Select name="form-field-name" placeholder={this.state.partner} required pattern="^[a-zA-Z][a-zA-Z0-9\.]{1,50}$" options={this.state.options}  onChange={ this.onChangePartner} />
-              </div>
+					  	<label>Partners Username</label>
+              <Select name="form-field-name" placeholder={this.state.partner} required pattern="^[a-zA-Z][a-zA-Z0-9\.]{1,50}$" options={this.state.options}  onChange={ this.onChangePartner} />
+             </div>
 					</div>
 					<div className="col-xs-12 col-sm-6 col-sm-offset-3">
 					  <input type="submit" value="SUBMIT" name="submit" className="btn btn-primary btn-lg btn-block" />

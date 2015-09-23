@@ -54,7 +54,6 @@ var SearchForms = React.createClass({
       	} else {
       	that.setState({noResults:''});
         that.setState({data:results});
-        console.log(results);
         }
       },
 

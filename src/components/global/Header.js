@@ -24,7 +24,9 @@ var Header = React.createClass({
 		}
 		return (
 			<div className="header clearfix row header">
-				<h3 className="text-muted pull-left">Pair With Me</h3>
+				<h3>
+				<Link to='/' className="pull-left pair">Pair With Me</Link>
+				</h3>
       <nav>
         <ul className="nav nav-pills pull-right">
 						<li role="presentation" className={this.state.active === '/' ? 'active' : ''}>
