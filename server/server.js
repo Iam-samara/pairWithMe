@@ -4,6 +4,7 @@
   Sequelize = require('sequelize'),
   http = require('http'),
   path = require('path'),
+  config = require('config'),
   passport = require('./oauth.js'),
   ensureAuthenticated = require('./ensureAuthenticated.js'),
   cookieParser = require('cookie-parser'),
@@ -11,9 +12,9 @@
   express = require('express');
 
 /*Connects to Database via sequalize ORM */
-sequelize = new Sequelize(process.env.DATABASE, process.env.DATABASE_USER, process.env.DATABASE_PASSWORD, {
+sequelize = new Sequelize(process.env.DATABASE || config.get('database.database'), process.env.DATABASE_USER || config.get('database.user'), process.env.DATABASE_PASSWORD || config.get('database.password'), {
   dialect: 'postgres',
-  host: process.env.DATABASE_HOST
+  host: process.env.DATABASE_HOST || config.get('database.host'),
   port: 5432,
   dialectOptions: {
     ssl: true
