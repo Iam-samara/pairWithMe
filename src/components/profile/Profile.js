@@ -39,7 +39,6 @@ var Profile = React.createClass({
 				return (<div className="tags">{element.tagName}</div>);
 			});
 			var ownedproject = data.ownedproject;
-			console.log(ownedproject);
 			this.setState({
 				username: data.username,
 				githubLink: data.githubProfileURL,
@@ -51,8 +50,7 @@ var Profile = React.createClass({
 				student: learn,
 				projects: ownedproject
 			});
-			console.log(this.state.username);
-			console.log(this.state.githubLink);
+
 		}.bind(this));
 	},
 	render: function(){
