@@ -33,7 +33,7 @@ var ProjectForm = React.createClass({
 		console.log(value)
 	 this.setState({partner: ''+value+''});
 	},
-	  componentDidMount: function() {
+	componentDidMount: function() {
     $.getJSON('/api/users', function(result) {
       result = result.map(function (element, index) {
         return ({value: element.username, label: element.username})
