@@ -62,7 +62,7 @@ controllerDirector.updateProfile = function (req, res) {
 
 controllerDirector.getProfile = function (req, res) {
   User.findOne({where: {githubID: req.cookies.githubID},
-    include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}, {model: Project, as: 'ownedproject', include: [{model: User, as: 'projectowner'}], order: [['id', 'desc']]}]}).done(function (user) {
+    include: [{model: Tag, as: 'known'}, {model: Tag, as: 'want'}, {model: Project, as: 'ownedproject', raw: 'ORDER BY ownedproject.id'}]}).done(function (user) {
     res.send(user);
   })
 };
