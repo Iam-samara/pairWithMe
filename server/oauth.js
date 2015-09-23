@@ -13,7 +13,7 @@ var passport = require('passport'),
   * hold the wanted data retrieved from both requests.**/
 passport.use(new GitHubStrategy({
   clientID: process.env.OAUTH_CLIENT_ID,
-  clientSecret:process.env.OAUTH.CLIENTSECRET,
+  clientSecret:process.env.OAUTH_CLIENTSECRET,
   scope: ['user:email'],
   callbackURL: 'http://localhost:3000/auth/github/callback',
   userAgent: 'pairWithMe'
