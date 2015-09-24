@@ -16,7 +16,7 @@ sequelize = new Sequelize(
   process.env.DATABASE || config.get('database.database'), process.env.DATABASE_USER || config.get('database.user'), process.env.DATABASE_PASSWORD || config.get('database.password'),
   {
     dialect: 'postgres',
-    host: process.env.DATABASE_HOST,
+    host: process.env.DATABASE_HOST || config.get('database.host'),
     port: 5432,
     dialectOptions: {
       ssl: true
